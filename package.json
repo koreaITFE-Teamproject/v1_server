@@ -1,0 +1,24 @@
+{
+  "name": "v1_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koreaITFE-Teamproject/v1_server.git"
+  },
+  "author": "KOREAIT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koreaITFE-Teamproject/v1_server/issues"
+  },
+  "homepage": "https://github.com/koreaITFE-Teamproject/v1_server#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.0"
+  }
+}
