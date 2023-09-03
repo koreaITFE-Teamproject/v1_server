@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 const mysql = require("mysql2");
+
+app.use(cors());
 
 // MySQL 접속 주소를 기반으로 연결 정보 설정
 const connection = mysql.createConnection({
@@ -25,7 +28,7 @@ connection.connect((err) => {
   }
 });
 
-app.get("/", (req, res) => {
+app.get("/getList", (req, res) => {
   // 데이터베이스 조회 쿼리
   const query = "SELECT * FROM temp"; // 본인의 테이블 이름으로 수정
   connection.query(query, (queryErr, results) => {
@@ -37,7 +40,7 @@ app.get("/", (req, res) => {
 
     console.log("Database results:", results);
 
-    res.send("Hello, Node.js! Check the console for database results.");
+    res.json(results);
   });
 });
 
