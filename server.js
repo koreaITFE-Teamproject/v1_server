@@ -30,7 +30,7 @@ connection.connect((err) => {
 
 app.get("/getList", (req, res) => {
   // 데이터베이스 조회 쿼리
-  const query = "SELECT * FROM temp"; // 본인의 테이블 이름으로 수정
+  const query = "SELECT * FROM bk_column"; // 본인의 테이블 이름으로 수정
   connection.query(query, (queryErr, results) => {
     if (queryErr) {
       console.error("Error executing query:", queryErr);
