@@ -23,13 +23,13 @@ main{
     flex-direction: column;
     align-items: center;
     border: 2px solid #764127;
-    width: 600px;
+    width: 60%;
 }
 
 /* main_div 안의 내용들 div */
 .contents {
     padding: 5px;
-    width: 600px;
+    width: 100%;
 }
 
 /* 이름, 아이디 등 구분하는 div */
@@ -39,8 +39,9 @@ main{
     padding: 10px;
     background-color: #F9ECDB;
     text-align: center;
-    width: 100px;
+    width: 20%;
     border-radius: 5px;
+    margin-right: 1%;
 }
 
 /* 비밀번호 변경 */
@@ -63,7 +64,7 @@ h1 {
 
 /* 확인 버튼 div */
 #ck_button {
-    width: 400px;
+    width: 50%;
     padding: 15px;
     text-align: center;
     display: inline-block;
@@ -88,11 +89,12 @@ h1 {
 }
 
 .validation-message{
-    border: 1.5px solid;
     padding: 5px;
+    width: 74%;
 }
 
 .message-outline{
-    border: 1.3px solid blue;
-    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    width: 98%;
 }

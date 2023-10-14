@@ -22,9 +22,12 @@
                 </div>
                 <div class="count_bar"><span class="textCount">0</span>/1000</div>
                 <div class="rows">
-                    <div class="name">첨부사진</div>
-                    <div class="file_input"></div>
-                    <div class="name file_btn">파일선택</div>
+                    <div class="name_picture">첨부사진</div>
+                    <div class="file-upload">
+                        <input type="text" class="upload-name" value="파일을 선택해주세요." disabled="disabled">
+                        <label for="ex_filename">파일 선택</label>
+                        <input type="file" id="ex_filename" class="upload-hidden" multiple>
+                    </div>
                     <div class="name file_btn">삭제</div>
                 </div>
                 <div class="btn_bar">

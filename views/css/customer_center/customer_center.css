@@ -1,4 +1,4 @@
-main{
+main {
     display: flex;
     justify-content: center;
 }
@@ -13,11 +13,11 @@ main{
     border-radius: 10px;
 }
 
-h1{
+h1 {
     min-width: 500px;
     margin: 0 auto;
     padding: 30px 40px 10px 40px;
-    
+
 }
 
 .rows {
@@ -27,33 +27,37 @@ h1{
     padding: 10px;
 }
 
-.content_input, .div_input {
+.content_input,
+.div_input {
     border: 1.5px solid #764127;
     width: 100%;
     margin-left: 5px;
     border-radius: 5px;
 }
 
-.div_input, .file_input{
+.div_input,
+.file_input {
     height: 60px;
 }
 
-.file_input{
+.file_input {
     width: 80%;
     border: 1.5px solid #764127;
     margin-left: 5px;
     border-radius: 5px;
 }
 
-.content_input{
+.content_input {
     height: 200px;
 }
 
-.file_btn, #check{
+.file_btn,
+#check {
     margin-left: 5px;
 }
 
-.file_btn, .check_btn{
+.file_btn,
+.check_btn {
     cursor: pointer;
 }
 
@@ -75,16 +79,127 @@ h1{
     align-items: center;
 }
 
-.count_bar{
+.count_bar {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.file_btn:hover, .btn_bar :hover{
-    background-color: #F6E3CE;   
+.file_btn:hover,
+.btn_bar :hover {
+    background-color: #F6E3CE;
 }
 
-.red{
+.red {
     color: red;
+}
+
+.file-upload label {
+    background-color: #F9ECDB;
+    cursor: pointer;
+    font-family: 'HakgyoansimWoojuR';
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    width: 150px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 0.6%;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.file-upload .upload-name {
+    flex: 1;
+    display: flex;
+    appearance: none;
+    width: 60%;
+    /* 원하는 너비로 조정 */
+    border: 1.5px solid #764127;
+    margin-left: 6px;
+    border-radius: 5px;
+    height: 57px;
+    background-color: white;
+}
+
+/* imaged preview */
+.file-upload .upload-display {
+    /* 이미지가 표시될 지역 */
+    margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+    .file-upload .upload-display {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}
+
+.file-upload .upload-thumb-wrap {
+    /* 추가될 이미지를 감싸는 요소 */
+    display: inline-block;
+    width: 54px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.file-upload .upload-display img {
+    /* 추가될 이미지 */
+    display: block;
+    max-width: 100%;
+    width: 100% \9;
+    height: auto;
+}
+
+.file-upload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-upload label:hover {
+    background-color: #F6E3CE;
+}
+
+.file-upload {
+    width: 75%;
+    /* 원하는 너비로 조정 */
+}
+
+.name_picture {
+    width: 130px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #F9ECDB;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
 }

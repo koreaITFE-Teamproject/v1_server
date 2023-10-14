@@ -25,7 +25,8 @@ main {
     font-family: 'HakgyoansimWoojuR';
 }
 
-a {
+a,
+.bi {
     text-decoration: none;
     color: #764127;
 }
@@ -147,8 +148,4 @@ header {
     text-align: center;
     text-decoration: none;
     width: 64px;
-}
-
-a {
-    color: #764127;
 }

@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    // 클릭했을때 작동 하는지 확인하기 위해 만든 script 페이지 필요 없으면 없애도 됩니다.
-    $(".bar_item, .class_item").on("click", function () {
-        alert($(this).text() + " 클릭");                                                // 임의 값
-    });
-
-
     var carouselIdx = 0;                                                                // 각 캐러셀의 인덱스
     var indicatorsIdx = [0, 0, 0];                                                      // 각 슬라이드의 지표 인덱스, 각 슬라이드 위치
 

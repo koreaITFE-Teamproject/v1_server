@@ -19,7 +19,7 @@ a:hover {
 
 .layouts {
   width: 50%;
-  min-width: 730px;
+  min-width: 800px;
   margin: 0 auto;
   margin-bottom: 10px;
   display: grid;
@@ -60,6 +60,6 @@ a:hover {
 
 #write-wrap {
   width: 50%;
-  min-width: 730px;
+  min-width: 800px;
   margin: 0 auto;
 }

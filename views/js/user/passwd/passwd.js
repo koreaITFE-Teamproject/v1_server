@@ -1,7 +1,3 @@
-// 3.이메일 글자 20자 제약? 이메일도 제약을 하나? : 구글링은 이메일 정규 표현식이라는게 있기는 한데.
-// 반복 부분 함수로 빼기
-// 1. 공백 입력 방지
-
 $(document).ready(function () {
     // 함수로 중복 코드 추상화
     function checkInput(selector, maxLength) {

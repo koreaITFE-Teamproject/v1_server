@@ -1,22 +1,26 @@
 *{
-  margin: 0;  
-  color: #764127;
-}
-.banner_div {
-    border: 2px solid #764127;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 70px;
-}
-
-div {
-    display: inline-block;
-
-}
-
-.btn {
-    font-size: 45px;
-    margin: 0px 10px;
-}
+    margin: 0;  
+    color: #764127;
+  }
+  .banner_div {
+      z-index: 1;
+      width: 70%;
+      margin: 0 auto;
+      position: absolute;
+      border: 2px solid #764127;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 70px;
+  }
+  
+  div {
+      display: inline-block;
+  
+  }
+  
+  .btn {
+      font-size: 45px;
+      margin: 0px 10px;
+  }

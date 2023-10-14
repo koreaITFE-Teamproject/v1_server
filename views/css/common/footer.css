@@ -8,15 +8,16 @@ footer {
   background-color: #F9ECDB;
   color: #764127;
   font-family: 'HakgyoansimWoojuR';
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 footer span {
   margin: 0 70px;
-  line-height: 3.5;
 }
 
 footer>div {
-  display: inline-block;
   font-family: 'GmarketSansMedium';
 }
 

@@ -19,6 +19,7 @@ select{
 }
 
 button {
+    font-family: 'HakgyoansimWoojuR';
     min-width: 70px;
     width: 100%;
     height: 100%;
@@ -35,7 +36,6 @@ button:hover {
 }
 
 .user-join-wrap {
-    width: 50%;
     min-width: 400px;
     margin: 0 auto;
     border: 2px solid #764127;
@@ -49,10 +49,9 @@ button:hover {
 }
 
 #user-join-title{
-    width: 85%;
     border-radius: 5px;
     padding: 8px 0;
-    margin: 30px 0 20px 40px;
+    margin: 30px auto;
     font-size: 32px;
 }
 
@@ -102,26 +101,16 @@ button:hover {
     display: none;
 }
 
-/* 전화번호 */
-.input-numbers {
-    display: flex;
-}
 
-.user-phone-number-input {
-    text-align: center;
-}
-
-.user-phone-number-input:first-child {
-    width: 50%;
-    text-align: center;
-}
-
-
-/* 회원가입 버튼 */
+/* 로그인 버튼 */
 .user-join-wrap-btn {
     width: 88%;
     height: 50px;
     margin: 20px 5px;
+}
+
+#login-id-duplicate-check-btn{
+    width:30%;
 }
 
 
