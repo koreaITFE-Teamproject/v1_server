@@ -14,6 +14,11 @@ html 파일- views/page/∙∙∙
 ## url
 기본형태 - (localhost):3000/
 
+| Command | Description |
+| --- | --- |
+| git status | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
+
 1. 메인
 | 페이지 | /router | /page | `전체` |
 | ------ | ------- | ----- | ------ |
