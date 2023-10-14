@@ -1,0 +1,93 @@
+/* 화면 정의서대로 수정 */
+
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    font-family: 'HakgyoansimWoojuR';
+}
+
+.room-setting-container {
+    width: 50%;
+    margin: 30px auto;
+    padding: 40px 0;
+    border: 2px solid #764127;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 1fr 2fr 3fr;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.box-head {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    width: 50vw;
+    text-align: center;
+}
+
+.room-name,
+.text-field {
+    height: 8vh;
+    display: grid;
+    align-items: center;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.room-name {
+    background-color: #F9ECDB;
+    margin: 0 20px;
+
+}
+
+.text-field {
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.box-body {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.select-box {
+    height: 8vh;
+    text-align: center;
+    margin-bottom: 50px;
+    border: 1.5px solid #764127;
+}
+
+
+.add-btn,
+.cancel-btn {
+    width: 30%;
+    height: 8vh;
+    cursor: pointer;
+    margin: 0 10px;
+    background-color: #F9ECDB;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+}
+
+.add-btn:hover,
+.cancel-btn:hover {
+    background-color: #F6E3CE;
+}

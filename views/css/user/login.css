@@ -1,0 +1,205 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo-wrap {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.logo {
+    font-family: 'GmarketSansMedium';
+    text-decoration: none;
+    color: #764127;
+    font-size: 22px;
+    width: 100%;
+}
+
+.bi {
+    font-size: 30px;
+    color: #764127;
+}
+
+main {
+    font-family: 'HakgyoansimWoojuR';
+}
+
+h1 {
+    margin: 10px 0 20px 0;
+}
+
+.login-form {
+    width: 500px;
+    border: 2px solid #764127;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+.login-form>h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 수정 요청한 부분 추가 */
+.login-wrap {
+    display: grid;
+    grid-template-columns: 1.5fr 8.5fr;
+    grid-gap: 15px;
+}
+
+/* 수정 요청한 부분 추가 */
+.login-id,
+.login-pw {
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    background-color: #F9ECDB;
+    margin: 7px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.text-field,
+.submit-btn,
+.qr-btn {
+    font-family: 'HakgyoansimWoojuR';
+    font-size: 1.1rem;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    margin: 7px 0;
+    padding: 18px 12px;
+}
+
+.text-field {
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    border: 1.5px solid #764127;
+}
+
+.submit-btn,
+.qr-btn {
+    padding: 12px 0;
+    background-color: #F9ECDB;
+    cursor: pointer;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.links a {
+    font-size: 1.2rem;
+    color: black;
+}
+
+.find-wrap a:first-child {
+    margin-right: 10px;
+}
+
+.login-btn-container {
+    text-align: center;
+}
+
+.login-btn-container img {
+    width: 100%;
+    height: 65px;
+    margin: 5px auto;
+    cursor: pointer;
+}
+
+/* 439 70 */
+
+.submit-btn:hover,
+.qr-btn:hover {
+    background-color: #F6E3CE;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dadada80;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid black;
+}
+
+.qr-wrap,
+.qr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.fa-xmark {
+    position: fixed;
+    top: 3%;
+    right: 5%;
+    cursor: pointer;
+    font-size: 30px;
+    color: rgb(104, 104, 104);
+    transition: color 0.3s;
+}
+
+.fa-xmark:hover {
+    color: black;
+}
+
+.qr {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
+
+.remaining-time {
+    position: fixed;
+    bottom: 30%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 1.2rem;
+}
+
+.time {
+    text-align: center;
+}

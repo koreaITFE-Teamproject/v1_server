@@ -4,7 +4,12 @@ const cors = require("cors");
 
 const mysql = require("mysql2");
 
+app.set("view engine", "ejs");      // EJS 설정
+
 app.use(cors());
+app.use(express.static("./views/css"));   // css
+app.use(express.static("./views/js"));    // js
+app.use(express.static("./views/img"));   // image
 
 // MySQL 접속 주소를 기반으로 연결 정보 설정
 const connection = mysql.createConnection({
@@ -56,6 +61,18 @@ process.on("SIGINT", () => {
   });
 });
 
+
+// 라우터
+const mainRouter = require("./router/mainRouter");
+const userRouter = require("./router/userRouter");
+const discussionRouter = require("./router/discussionRouter");
+const customerRouter = require("./router/customerRouter");
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+
+app.use("/main", mainRouter);
+app.use("/user", userRouter);
+app.use("/discussion", discussionRouter);
+app.use("/customer", customerRouter);

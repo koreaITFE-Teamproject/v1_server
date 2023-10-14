@@ -1,0 +1,197 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+main {
+    font-family: 'HakgyoansimWoojuR';
+}
+
+i {
+    cursor: pointer;
+}
+
+.chating-room-wrap {
+    width: 50%;
+    min-width: 600px;
+    margin: 30px auto;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+}
+
+/* 제목 부분 */
+.room-head {
+    width: 100%;
+    border-bottom: 1.5px solid #764127;
+}
+
+.room-head>h1 {
+    margin: 10px 2%;
+}
+
+/* 인원, 캠 스크린 부분 */
+.room-body {
+    display: grid;
+    grid-template-columns: 1.5fr 8.5fr;
+    text-align: center;
+}
+
+.user-list {
+    min-width: 100px;
+    width: 100%;
+    border-right: 1.5px solid #764127;
+}
+
+.user-list>p {
+    font-size: 1.2rem;
+    border-bottom: 1.5px solid #764127;
+    padding: 10px 0;
+}
+
+/* ul */
+.users-nickname {
+    padding: 0;
+}
+
+/* li */
+.users-nickname>li {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    word-wrap: break-word;
+}
+
+
+/* 화상화면 */
+.video-container {
+    padding: 20px 0;
+    border-bottom: 1.5px solid #764127;
+}
+
+.user-video-screen {
+    display: inline-block;
+    width: calc(100% / 3.3);
+    height: 250px;
+    margin: 10px;
+}
+
+/* 본인화면 색 다름 */
+.user-video-screen:first-child>.screen {
+    border: 2px solid;
+}
+
+.screen {
+    height: 80%;
+    margin: 10px 0;
+    padding-top: 80px;
+    border: 1px solid;
+}
+
+.user-video-screen>p {
+    font-size: 1.4rem;
+}
+
+
+/* 화상캠, 마이크 on/off */
+.options {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.options>div {
+    padding: 15px 20px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1.5px solid;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.options>div>i {
+    font-size: 18px;
+}
+
+.options>div>p {
+    margin: 0 10px;
+    background-color: #fff;
+}
+
+
+/* 반응형 캠사이즈 조절
+@media screen and (max-width: 1260px) {
+    .user-video-screen {
+        width: calc(100% / 2.2);
+    }
+
+    .options {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .user-video-screen {
+        width: 93%;
+        height: 300px;
+    }
+
+    .options {
+        width: 90%;
+    }
+} */
+
+
+/* 토글 스위치 */
+.toggle-swt {
+    /* 스위치의 길이 */
+    width: 80px;
+    height: 40px;
+    display: block;
+    position: relative;
+    border: 1.4px solid #919191;
+    border-radius: 30px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+/* 토글 버튼 체크 전 */
+.toggle-btn {
+    /* 버튼의 길이 */
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #F9ECDB;
+    transition: all .3s;
+}
+
+/* 토글 스위치 체크 후 */
+.toggle-swt-checked {
+    background-color: #F9ECDB;
+}
+
+/* 토글 버튼 체크 후 */
+.toggle-btn-checked {
+    left: calc(100% - 34px);
+    background-color: #fff;
+}

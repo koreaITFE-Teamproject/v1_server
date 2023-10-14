@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.logo-wrap {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.logo {
+    font-family: 'GmarketSansMedium';
+    text-decoration: none;
+    color: #764127;
+    font-size: 22px;
+    width: 100%;
+}

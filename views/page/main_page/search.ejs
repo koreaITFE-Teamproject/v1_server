@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/mainPage/search.css">
+    <script src="/main_page/search.js"></script>
+    <script src="/common/common.js"></script>
+</head>
+
+<body>
+    <header id="header"></header>
+    <main>
+        <div class="outline">
+            <div class="search_div">
+                <select name="전체" id="srch_select">
+                    <option value="all">전체</option>
+                    <option value="title">제목</option>
+                    <option value="writer">글쓴이</option>
+                    <!-- <option value="tag">태그</option>  -->
+                    <!-- 태그 기능이 완성 되면 주석 풀기 -->
+                </select>
+                <input type="text" id="search_input">
+                <i class="bi bi-search" id="search_icon"></i>
+            </div>
+        </div>
+        <div class="search_results">
+            <table id="postTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>제목</th>
+                        <th>글쓴이</th>
+                    </tr>
+                </thead>
+                <tbody id="postBody"></tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>
+<!-- script로 테스트 데이터 3개 만들고 input 값이 no이랑 같으면 나오게 함. -->
+<!-- 나중에 DB랑 연결하면 이부분 실제 검색한거랑 동일하게 해야함. -->

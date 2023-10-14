@@ -1,0 +1,168 @@
+@font-face {
+  font-family: 'HakgyoansimWoojuR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+li {
+  list-style: none;
+}
+
+.path-wrap {
+  position: relative;
+  width: 70%;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.path{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.column-list-article {
+  width: 50%;
+  height: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
+  font-family: 'HakgyoansimWoojuR';
+
+}
+
+.option_bar {
+  padding-top: 20px;
+  border-top: 3px solid #F6E3CE;
+  border-bottom: 2px solid #F6E3CE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option_bar>ul {
+  margin: 0;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option_bar>ul>li {
+  margin: 0 15px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.option_bar>ul>li:first-child {
+  font-weight: bold;
+  border-bottom: 2px solid #764127;
+}
+
+.all {
+  width: 200px; 
+  border-radius: 4px;
+}
+
+.sub {
+  width: 400px; 
+  border-radius: 4px;
+}
+
+.like {
+  width: 400px; 
+  border-radius: 4px;
+}
+
+/* postTable(게시글 목록 요소 스타일) */
+table {
+  width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th:nth-child(1) {
+  width: 10%;
+}
+
+th:nth-child(2) {
+  width: 50%;
+}
+
+th:nth-child(3),
+th:nth-child(4) {
+  width: 20%;
+}
+
+/* 컬럼 검색, 글쓰기 버튼 */
+.column-search-wrap {
+  width: 50%;
+  max-width: 1020px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 20px;
+}
+
+.column-search-wrap>p,
+.search-input,
+.column-search-wrap>button {
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 0 3px;
+  padding: 8px 5px;
+  font-size: 1.1rem;
+  background-color: #F9ECDB;
+  border: 1.5px solid #764127;
+}
+
+.search-input:hover,
+.column-search-wrap>button:hover{
+  background-color: #F6E3CE;
+
+}
+
+.search-input {
+  /* width: 500px; */
+  background-color: white;
+  padding: 0 8px;
+}
+
+/* 페이지네이션 스타일 */
+/* 나중에 게시글 테이블 완성되면 하단고정으로 만들어야함. */
+/* 하....... 버튼 배치를 못하면 어쩌자는거야... */
+/* 일단 요소 위치 설정은 나중에 다시 하고 페이지네이션 옆에 버튼 붙히는걸로 */
+.pagination-container {
+  display: flex;
+  justify-content: center; 
+  font-family: 'HakgyoansimWoojuR';
+}
+
+/* .pagination{
+  
+} */
+
+.page-link {
+  color: black;
+}

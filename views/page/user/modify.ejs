@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정</title>
+    <link rel="stylesheet" href="/user/modify.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/user/userModify.js"></script>
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main>
+        <div class="title-wrap">
+            <h1 id="user-modify-title">회원 정보</h1>
+        </div>
+        <form action="#">
+            <article class="user-join-wrap">
+
+                <p class="brief"><span class="required">*</span>표시는 필수 기입항목입니다.</p>
+                <div>
+                    <!-- 이름 -->
+                    <div id="user-name" class="editable-info">
+                        <div><span class="required">*</span>이름</div>
+                        <div>
+                            <input type="text" class="user-name-input" maxlength="10">
+                        </div>
+                        <div class="validation-message"></div>
+                    </div>
+
+                    <!-- 아이디 -->
+                    <div id="user-login-id">
+                        <div>아이디</div>
+                        <div>
+                            <!-- 보기 전용 readonly -->
+                            <input type="text" class="user-login-id-input" disabled>
+                        </div>
+                    </div>
+
+                    <!-- 비밀번호 -->
+                    <div id="user-login-pw" class="editable-info">
+                        <div><span class="required">*</span>비밀번호</div>
+                        <div>
+                            <input type="password" class="user-login-pw-input" maxlength="30">
+                            <!-- <i id="show-eyes" class="fa-solid fa-eye" style="color: #474747;"></i> -->
+                            <!-- <i id="hide-eyes" class="fa-solid fa-eye-slash" style="color: #474747;"></i> -->
+                        </div>
+                        <div class="validation-message"></div>
+                    </div>
+
+                    <!-- 비밀번호 확인 -->
+                    <div id="user-login-pw-ck" class="editable-info">
+                        <div><span class="required">*</span>비밀번호 확인</div>
+                        <div>
+                            <input type="password" class="user-login-pw-ck-input">
+                        </div>
+                        <div class="validation-message"></div>
+                    </div>
+
+                    <!-- 이메일 -->
+                    <div id="user-email" class="editable-info">
+                        <div><span class="required">*</span>이메일</div>
+                        <div>
+                            <input type="text" class="user-email-input">
+                            <span>@</span>
+                            <input type="text" class="custom-input">
+                            <select name="" id="select-email-option">
+                                <option value="none">==선택==</option>
+                                <option value="userInput">직접입력</option>
+                                <option value="google.com">google.com</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="nate.com">nate.com</option>
+                                <option value="daum.net">daum.net</option>
+                                <!-- <option value="">카카오</option> -->
+                            </select>
+                        </div>
+                        <div class="validation-message"></div>
+                    </div>
+
+                    <!-- 전화번호 -->
+                    <div id="user-phone-number">
+                        <div>전화번호</div>
+                        <div class="input-numbers">
+                            <!-- 각 input 패턴 적용 -->
+                            <input type="text" class="user-phone-number-input" maxlength="3">
+                            <span>-</span>
+                            <input type="text" class="user-phone-number-input" maxlength="4">
+                            <span>-</span>
+                            <input type="text" class="user-phone-number-input" maxlength="4">
+                        </div>
+                        <div class="validation-message"></div>
+                    </div>
+
+                    <!-- 주소 -->
+                    <div id="user-address">
+                        <div>주소</div>
+                        <div>
+                            <input type="text" class="user-address-input">
+                            <button type="button" id="find-postal-code-btn" class="user-join-wrap-btn">우편번호로 찾기</button>
+                        </div>
+                        <div class="validation-message"></div>
+                    </div>
+
+                    <!-- 알림설정 -->
+                    <div id="user-id-check">
+                        <div>알림설정</div>
+                        <div>
+                            <input type="checkbox" id="toggle" hidden>
+                            <label for="toggle" id="notification-toggle-switch" class="toggle-swt">
+                                <span id="toggle-btn" class="toggle-btn"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-wrap">
+                    <button type="button" id="cancle-button">취소</button>
+                    <button type="submit" id="update-btn">저장</button>
+                </div>
+
+            </article>
+        </form>
+    </main>
+
+    <!-- <footer id="footer"></footer> -->
+</body>
+
+</html>

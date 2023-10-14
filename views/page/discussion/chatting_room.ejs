@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>토론방 창(채팅)</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/discussion/chatting_room.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/discussion/chatting_room.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main>
+        <div class="chating-room-wrap">
+            <div class="room-head">
+                <h1>토론방 이름</h1> <!-- 방장이 지정한 토론방 이름 -->
+            </div>
+            <div class="room-body">
+                <div class="user-list">
+                    <p>인원: <span class="participant-count">5</span></p>
+                    <ul class="users-nickname">
+                        <li>닉네임1</li>
+                        <li>닉네임2</li>
+                        <li>닉네임3</li>
+                        <li>닉네임4</li>
+                        <li>닉네임5</li>
+                    </ul>
+                </div>
+
+                <!-- 채팅 관련 컨테이너 -->
+                <div class="user-chat-container">
+                    <div class="chat_screen"></div>
+
+                    <div class="input_div">
+                        <textarea id="chat_input"></textarea>
+                        <div class="enter_btn">입력</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    font-family: 'HakgyoansimWoojuR';
+}
+
+input,
+select {
+    width: 100%;
+    height: 100%;
+    letter-spacing: 1.5px;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    padding: 0 15px;
+}
+
+button {
+    min-width: 60px;
+    width: 100%;
+    height: 100%;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    background-color: #F9ECDB;
+    margin-left: 10px;
+    cursor: pointer;
+    font-family: 'HakgyoansimWoojuR';
+}
+
+button:hover{
+    background-color: #F6E3CE;
+}
+
+/* 
+#find-postal-code-btn {
+    border-left-color: white;
+} */
+
+.title-wrap {
+    width: 50%;
+    min-width: 500px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 30px 40px 10px 40px;
+    border: 2px solid #764127;
+    border-bottom: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#user-modify-title {
+    width: 20%;
+    border-radius: 5px;
+    padding: 8px 0;
+    text-align: center;
+}
+
+
+.user-join-wrap {
+    width: 50%;
+    min-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 0 0 20px 0;
+    text-align: center;
+    border: 2px solid #764127;
+    border-top: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.brief {
+    text-align: left;
+    padding: 15px 45px;
+}
+
+.user-join-wrap>div>div {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 50px 30px;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.user-join-wrap>div>div>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 이름, 아이디, 비밀번호 등 정보 표시 */
+.user-join-wrap>div>div>div:first-child {
+    min-width: 60px;
+    height: 100%;
+    background-color: #F9ECDB;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* .user-join-wrap>div>div:not(:last-child)>div:first-child {
+    border-right-color: white;
+} */
+
+.required {
+    color: red;
+}
+
+.user-join-wrap>div>div>div:nth-child(2) {
+    height: 100%;
+}
+
+
+/* 유효성 검사 메시지 */
+.validation-message {
+    grid-column: 2 / 3;
+    font-size: 12px;
+    justify-self: left;
+    padding: 0 15px;
+}
+
+/* 아이디 */
+.user-login-id-input {
+    background-color: white;
+    color: black;
+}
+
+/* 이메일 */
+#user-email>div:nth-child(2)>span {
+    padding: 0 10px;
+}
+
+.custom-input {
+    display: none;
+    margin: 0 20px 0 0;
+}
+
+/* 전화번호 */
+#user-phone-number span {
+    padding: 0 10px;
+}
+
+.input-numbers {
+    display: flex;
+}
+
+.user-phone-number-input {
+    text-align: center;
+}
+
+.user-phone-number-input:first-child {
+    width: 50%;
+    text-align: center;
+}
+
+
+/* 중복 확인 버튼 */
+.user-join-wrap-btn {
+    width: 30%;
+}
+
+
+/* 알림 토글 스위치 */
+#user-id-check>div:last-child {
+    /* 토글 스위치 위치 */
+    padding: 0 20px;
+    justify-self: left;
+}
+
+/* 토글 스위치 체크 전 */
+.toggle-swt {
+    /* 스위치의 길이 */
+    width: 80px;
+    height: 40px;
+    display: block;
+    position: relative;
+    border: 1.5px solid #764127;
+    border-radius: 30px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+/* 토글 버튼 체크 전 */
+.toggle-btn {
+    /* 버튼의 길이 */
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #F9ECDB;
+    transition: all .3s;
+}
+
+/* 토글 스위치 체크 후 */
+.toggle-swt-checked {
+    background-color: #F9ECDB;
+}
+
+/* 토글 버튼 체크 후 */
+.toggle-btn-checked {
+    left: calc(100% - 34px);
+    background-color: #fff;
+}
+
+
+/* 취소, 저장 버튼 */
+.btn-wrap {
+    width: 100%;
+}
+
+.btn-wrap>button {
+    width: 10%;
+    height: 40px;
+    margin: 0 5px;
+}

@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
+.outline{
+    width: 50%;
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    height: 90vh; 
+    
+}
+
+ .main_div{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+ }
+ .chat_q_list{
+    width: 200px;
+    height: 95%;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    border-left:  2px solid #764127; 
+    border-right: 2px solid #764127;
+    }
+.chat_q{
+    font-family: 'HakgyoansimWoojuR';
+    width: 90%;
+    height: 80%;
+    border-top: 2px solid #F6E3CE; 
+    border-bottom: 2px solid #F6E3CE; 
+    margin: 3% 5%;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+ }
+
+ .chat_q:hover{
+  text-decoration: underline;
+  text-decoration-color: #764127;
+  text-decoration-thickness: 1.5px;
+  
+ }
+
+ .chat_talk{
+    width: 75%;
+    height: 95%;
+    margin: 1%;
+    border: 2px solid #764127;
+    border-radius: 10px; 
+    padding: 5px;
+ }
+
+ .page_title{
+   font-size: 2.5rem;
+   font-family: 'HakgyoansimWoojuR';
+   border-top: 3px solid #F6E3CE;
+   border-bottom: 3px solid #F6E3CE;
+ }
+ /* 챗봇 대화 퍼블리싱으로 박은거 css */
+
+ .chat-bubble{
+    color: #764127;
+    background-color: #F9ECDB;
+    margin-top: 10px;
+ }

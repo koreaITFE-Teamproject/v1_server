@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탈퇴 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/user/deleteAccount.css">
+    <script src="/common/common.js"></script>
+    <script src="/user/deleteAccount.js"></script>
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main>
+        <div class="delete_account-form">
+            <p>정말 탈퇴하시겠습니까? <br> 탈퇴하려는 이유를 체크해 주세요</p>
+            <div class="checkbox-part">
+                <label for="reason1"><input type="checkbox" class="all" id="reason1" value="all" /><span>다른 사이트가 더
+                        좋아서</span></label>
+                <label for="reason2"><input type="checkbox" class="all" id="reason2" value="all" /><span>사용빈도가
+                        낮아서</span></label>
+                <label for="reason3"><input type="checkbox" class="all" id="reason3" value="all" /><span>콘텐츠
+                        불만</span></label>
+                <label for="reason4"><input type="checkbox" class="all" id="reason4"
+                        value="all" /><span>기타</span></label>
+                <textarea name="기타" class="text-field" placeholder="이유를 적어주세요"></textarea>
+                <!-- <input type="text" name="기타" class="text-field" placeholder="이유를 적어주세요"> -->
+            </div>
+
+            <div class="password-part">
+                <p>현재 사용중인 비밀번호</p>
+                <input type="password" id="passwordInput" placeholder="비밀번호를 입력하세요" maxlength="30">
+                <p>비밀번호를 잊으셨나요?</p>
+                <div class="links">
+                    <a href="#">비밀번호 재설정</a>
+                </div>
+            </div>
+            <div class="delete-btn-part">
+                <button class="out" id="withdrawButton">탈퇴하기</button>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

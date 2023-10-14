@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+main {
+    font-family: 'HakgyoansimWoojuR';
+    height: calc(100vh - 160px);
+}
+
+i {
+    cursor: pointer;
+}
+
+.chating-room-wrap {
+    width: 50%;
+    min-width: 600px;
+    height: 100%;
+    margin: 30px auto;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+}
+
+/* 제목 부분 */
+.room-head {
+    border-bottom: 1.5px solid #764127;
+    display: grid;
+    align-items: center;
+}
+
+.room-head>h1 {
+    margin: 10px 2%;
+    /* 폰트 h1 사이즈 40px */
+    font-size: 40px;
+}
+
+/* 인원 */
+.room-body {
+    display: grid;
+    grid-template-columns: 1.5fr 8.5fr;
+    text-align: center;
+}
+
+.user-list {
+    min-width: 100px;
+    width: 100%;
+    border-right: 1.5px solid #764127;
+}
+
+.user-list>p {
+    font-size: 1.2rem;
+    border-bottom: 1.5px solid #764127;
+    padding: 10px 0;
+}
+
+/* ul */
+.users-nickname {
+    padding: 0;
+}
+
+/* li */
+.users-nickname>li {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    word-wrap: break-word;
+}
+
+
+/* 수정 */
+.user-chat-container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 7.5fr 2.5fr;
+}
+
+/* 소민님 어드민 채팅 디자인 참고 */
+.chat_screen {
+    font-family: 'HakgyoansimWoojuR';
+    overflow-y: auto;
+    border-bottom: 1.5px solid #764127;
+}
+
+.chat-bubble {
+    background-color: #F9ECDB;
+    color: black;
+}
+
+.input_div {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 8.5fr 1.5fr;
+}
+
+#chat_input {
+    font-family: 'HakgyoansimWoojuR';
+    padding: 5px;
+    font-size: 1.2rem;
+    border: 0;
+    border-right: 1.5px solid #764127;
+    resize: none;
+}
+
+.enter_btn {
+    font-family: 'HakgyoansimWoojuR';
+    background-color: #F9ECDB;
+    text-align: center;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    font-size: 1.4rem;
+    border-bottom-right-radius: 5px;
+}
+
+.enter_btn:hover{
+    background-color: #F6E3CE;
+}

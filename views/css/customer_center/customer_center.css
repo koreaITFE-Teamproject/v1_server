@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+}
+
+main{
+    font-family: 'HakgyoansimWoojuR';
+    display: flex;
+    justify-content: center;
+}
+.container {
+    padding: 20px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #764127;
+    width: 50%;
+    border-radius: 10px;
+}
+
+h1{
+    min-width: 500px;
+    margin: 0 auto;
+    padding: 30px 40px 10px 40px;
+    
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    color: #764127;
+    padding: 10px;
+}
+
+.content_input, .div_input {
+    border: 1.5px solid #764127;
+    width: 100%;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.div_input, .file_input{
+    height: 60px;
+}
+
+.file_input{
+    width: 80%;
+    border: 1.5px solid #764127;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.content_input{
+    height: 200px;
+}
+
+.file_btn, #check{
+    margin-left: 5px;
+}
+
+.file_btn, .check_btn{
+    cursor: pointer;
+}
+
+.name {
+    width: 150px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F9ECDB;
+    text-align: center;
+    border: 1.5px solid #764127;
+    border-radius: 5px;
+}
+
+.btn_bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.count_bar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.file_btn:hover, .btn_bar :hover{
+    background-color: #F6E3CE;   
+}
+
+.red{
+    color: red;
+}

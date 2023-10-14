@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'HakgyoansimWoojuR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+}
+
+main {
+  font-family: 'HakgyoansimWoojuR';
+}
+
+/* 썸머노트 내용 입력란에있는 p태그에 마진이 있어서 제거 */
+p {
+  margin: 0;
+}
+
+.layouts {
+  width: 50%;
+  min-width: 730px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 5fr 2.5fr 2.5fr;
+  grid-auto-rows: minmax(50px, auto);
+  grid-gap: 10px;
+  font-size: 1.7rem;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.buttons>button {
+  width: 100%;
+  background-color: #F9ECDB;
+  border-radius: 5px;
+  border: 1.5px solid #764127;
+}
+
+.buttons>button:hover {
+  background-color: #F6E3CE;
+}
+
+.name {
+  border: 1.5px solid #764127;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+
+#column {
+  text-align: center;
+  border: 1.5px solid #764127;
+  border-radius: 5px;
+}
+
+#write-wrap {
+  width: 50%;
+  min-width: 730px;
+  margin: 0 auto;
+}

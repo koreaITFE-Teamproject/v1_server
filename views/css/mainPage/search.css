@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+main{
+    font-family: 'HakgyoansimWoojuR';
+}
+
+#srch_select{
+    border: 1.5px solid #764127;
+    text-align: center;
+}
+.search_div {
+    border-top: 3px solid #F6E3CE;
+    border-bottom: 3px solid #F6E3CE;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    border: 1.5px solid #764127;
+    width: 80%;
+    margin: 0 1%;
+}
+
+.outline {
+    width: 50%;
+    height: 10vh;
+    margin: 0 auto;
+}
+
+#srch_select, #search_input, #search_icon{
+    height: 60%;
+    border-radius: 5px;
+}
+
+/* 검색 결과 표 */
+table {
+    width: 70%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1.5px solid #764127;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th:nth-child(1) {
+    width: 10%;
+}
+
+th:nth-child(2) {
+    width: 50%;
+}
+
+th:nth-child(3),
+th:nth-child(4) {
+    width: 20%;
+}

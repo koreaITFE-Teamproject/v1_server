@@ -1,0 +1,240 @@
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    font-family: 'HakgyoansimWoojuR';
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+p {
+    margin: 0;
+}
+
+.path-wrap {
+    position: relative;
+    width: 70%;
+    max-width: 1020px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.path {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.discussion-rooms-article {
+    width: 70%;
+    min-width: 620px;
+    height: 100%;
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+/* 토론방 선택 */
+.select-discussion-rooms {
+    padding-top: 20px;
+    border-top: 3px solid #F6E3CE;
+    border-bottom: 2px solid #F6E3CE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-discussion-rooms>ul {
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-discussion-rooms>ul>li {
+    margin: 0 15px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.select-discussion-rooms>ul>li:first-child {
+    font-weight: bold;
+    border-bottom: 2px solid #764127;
+}
+
+
+
+/* 토론방 타이틀 모음 */
+.room-title-wrap>ul {
+    display: grid;
+    grid-template-columns: 1fr 6fr 3fr;
+    grid-auto-rows: minmax(40px, auto);
+    border: 1px solid #ddd;
+    margin: 30px 0 0 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.room-title-wrap>ul>li {
+    height: 100%;
+    display: grid;
+    align-items: center;
+    text-align: center;
+}
+
+.room-title-wrap>ul>li:not(:last-child) {
+    border-right: 1px solid #ddd;
+}
+
+/* 토론방 목록 */
+.user-rooms-wrap {}
+
+.user-rooms-wrap>.room {
+    height: 200px;
+    border: 1.5px solid #F2F2F2;
+    margin: 20px 50px;
+    padding: 30px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room-explain,
+.room-img{
+    cursor: pointer;
+}
+
+.room-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.room-name:hover{
+    text-decoration: underline;
+    text-underline-position : under;
+}
+
+.intro {
+    margin: 0 50px 0 5px;
+    padding: 10px 0;
+    font-size: 1.2rem;
+}
+
+.room-bottom-wrap {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.fa-user {
+    padding: 5px;
+    border: 1.5px solid;
+    border-radius: 5px;
+}
+
+.headcount {
+    margin-left: 10px;
+    font-size: 1.1rem;
+}
+
+.room-bottom-wrap>span {
+    margin: 0 4px;
+}
+
+.moderator {
+    font-size: 1.1rem;
+}
+
+
+/* .user-rooms-wrap>ul {
+    display: grid;
+    grid-template-columns: 1fr 6fr 3fr;
+    grid-auto-rows: minmax(40px, auto);
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.user-rooms-wrap>ul:hover {
+    background-color: #F9ECDB;
+}
+
+.user-rooms-wrap>ul>li {
+    display: grid;
+    align-items: center;
+    text-align: center;
+}
+
+.user-rooms-wrap>ul>li:nth-child(2) {
+    cursor: pointer;
+}
+
+.user-rooms-wrap>ul>li:not(:last-child) {
+    border-right: 1px solid #ddd;
+} */
+
+
+
+
+
+/* 토론방 검색, 만들기 */
+.room-search-wrap {
+    width: 100%;
+    max-width: 1020px;
+    display: grid;
+    grid-template-columns: 6fr 1.5fr 2.5fr;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.search-input,
+.room-search-wrap>button {
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 0 3px;
+    padding: 8px 5px;
+    font-size: 1.1rem;
+    background-color: #F9ECDB;
+    border: 1.5px solid #764127;
+}
+
+.room-search-wrap>button:hover {
+    background-color: #F6E3CE;
+}
+
+.search-input {
+    background-color: white;
+    padding: 0 8px;
+}
+
+
+
+/* 지호님 pagination 스타일 가져온 거 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {}
+
+.page-link {
+    color: black;
+}
