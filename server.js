@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const expressLayouts = require('express-ejs-layouts');
 
 const mysql = require("mysql2");
 
@@ -10,6 +11,10 @@ app.use(cors());
 app.use(express.static("./views/css"));   // css
 app.use(express.static("./views/js"));    // js
 app.use(express.static("./views/img"));   // image
+
+app.set("layout extractScripts", true);   // script 불러오기
+app.set('layout', 'page/common/layout');  // layout 경로
+app.use(expressLayouts);
 
 // MySQL 접속 주소를 기반으로 연결 정보 설정
 const connection = mysql.createConnection({
@@ -60,6 +65,11 @@ process.on("SIGINT", () => {
     process.exit(); // 서버 종료
   });
 });
+
+app.get("/test", (req, res) => {
+  res.render("./page/main_page/test");
+});
+
 
 
 // 라우터

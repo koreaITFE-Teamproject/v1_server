@@ -1,33 +1,13 @@
-@font-face {
-  font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'HakgyoansimWoojuR';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-* {
-  margin: 0;
-}
-
-span {
-  font-family: 'HakgyoansimWoojuR';
-}
-
 footer {
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin-top: 43px;
+  width: 100%;
+  min-width: 900px;
+  height: 70px;
   text-align: center;
   font-size: 20px;
   background-color: #F9ECDB;
   color: #764127;
+  font-family: 'HakgyoansimWoojuR';
 }
 
 footer span {
@@ -40,7 +20,7 @@ footer>div {
   font-family: 'GmarketSansMedium';
 }
 
-footer a{
+footer a {
   color: #764127;
   text-decoration: none;
 }

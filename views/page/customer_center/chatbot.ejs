@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>챗봇</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- daisyUi 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
     <!-- 탬플릿을 어떻게 연결할껀지 봐야 이 페이지는 마무리 될듯. -->
-    <script src="/common/common.js"></script>
     <link rel="stylesheet" href="/customer_center/chatbot.css">
     <script src="/customer_center/chatbot.js"></script>
 </head>
+
 <body>
-    <header id="header"></header>
-    <main>
-        <div class="outline">
-            <div class="top_div">
-                <h1 class="page_title">CHAT BOT</h1>
+    <div class="outline">
+        <div class="top_div">
+            <h1 class="page_title">CHAT BOT</h1>
+        </div>
+        <div class="main_div">
+            <div class="chat_q_list">
+                <div class="chat_q">회원 정보 변경 </div>
+                <div class="chat_q">칼럼 작성</div>
+                <div class="chat_q">토론방</div>
+                <div class="chat_q">구독</div>
+                <div class="chat_q">탈퇴</div>
+                <div class="chat_q" id="one_by_one"><a
+                        href="/customer/center">1:1 고객상담</a></div>
             </div>
-            <div class="main_div">
-                <div class="chat_q_list">
-                    <div class="chat_q">회원 정보 변경 </div>
-                    <div class="chat_q">칼럼 작성</div>
-                    <div class="chat_q">토론방</div>
-                    <div class="chat_q">구독</div>
-                    <div class="chat_q">탈퇴</div>
-                    <div class="chat_q" id="one_by_one"><a href="/project/views/customer_center_page/customer_center.html">1:1 고객상담</a></div>
+            <div class="chat_talk">
+                <!-- 하드로 임의로 박습니다. 퍼블리싱 일뿐 이건 서버로 구현해야해요. -->
+                <div class="chat chat-start">
+                    <div class="chat-bubble">안녕하세요? 무엇을 도와드릴까요? <br />아래에서 선택해 주세요</div>
+                    <!-- 회원 정보 변경을 예로 -->
+                    <div class="chat-bubble">1. 이름 변경</div>
+                    <div class="chat-bubble">2. 인증번호 이메일이 오지 않아요.</div>
+                    <div class="chat-bubble">3. 인증번호 이메일을 더이상 쓰지 않아요</div>
                 </div>
-                <div class="chat_talk">
-                    <!-- 하드로 임의로 박습니다. 퍼블리싱 일뿐 이건 서버로 구현해야해요. -->
-                    <div class="chat chat-start">
-                        <div class="chat-bubble">안녕하세요? 무엇을 도와드릴까요? <br/>아래에서 선택해 주세요</div>
-                        <!-- 회원 정보 변경을 예로 -->
-                        <div class="chat-bubble">1. 이름 변경</div>
-                        <div class="chat-bubble">2. 인증번호 이메일이 오지 않아요.</div>
-                        <div class="chat-bubble">3. 인증번호 이메일을 더이상 쓰지 않아요</div>
-                      </div>
-                      <div class="chat chat-end">
-                        <div class="chat-bubble">3. 인증번호 이메일을 더 이상 쓰지 않아요.</div>
-                      </div>
-                    
+                <div class="chat chat-end">
+                    <div class="chat-bubble">3. 인증번호 이메일을 더 이상 쓰지 않아요.</div>
                 </div>
+
             </div>
         </div>
-    </main>
+    </div>
 </body>
+
 </html>

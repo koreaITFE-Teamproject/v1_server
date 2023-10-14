@@ -4,8 +4,8 @@ const express = require("express");
 const router = express.Router();
 
 // 메인
-router.get("/main", (req, res) => {
-    res.render("./page/main_page/main");
+router.get("/home", (req, res) => {
+    res.render("./page/main_page/home");
 });
 
 // 개인정보처리방침

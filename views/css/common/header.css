@@ -14,21 +14,46 @@
 
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    height: auto;
+    margin-top: 143px;
+    min-height: calc(100vh - 143px - 70px - 43px);
+    font-family: 'HakgyoansimWoojuR';
+}
+
+a {
+    text-decoration: none;
+    color: #764127;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #764127;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul,
+li {
+    list-style: none;
 }
 
 /* 헤더 태그 */
 header {
     background-color: #F9ECDB;
     width: 100%;
+    min-width: 900px;
     height: 100px;
     position: fixed;
     top: 0;
     transition: top 0.2s ease-in-out;
     z-index: 3;
-}
-
-/* 따로 분리해야지 적용됨 */
-#header {
     display: flex;
     align-items: center;
     font-family: 'HakgyoansimWoojuR';
@@ -42,11 +67,6 @@ header {
     display: inline-block;
     padding: 10px;
     font-family: 'GmarketSansMedium';
-}
-
-.site_name a {
-    color: #764127;
-    text-decoration: none;
 }
 
 .bi {
@@ -72,7 +92,6 @@ header {
     position: relative;
     display: flex;
     justify-content: flex-start;
-
 }
 
 .menu_bar_item {
@@ -130,6 +149,6 @@ header {
     width: 64px;
 }
 
-a{
+a {
     color: #764127;
 }

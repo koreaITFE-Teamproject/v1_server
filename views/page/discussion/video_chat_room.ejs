@@ -2,98 +2,84 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>화상채팅</title>
     <link rel="stylesheet" href="/discussion/video_chat_room.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/7a79c7be2a.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="/common/common.js"></script>
     <script src="/discussion/video_chat_room.js"></script>
 </head>
 
 <body>
-    <header id="header"></header>
-
-    <main>
-        <div class="chating-room-wrap">
-            <div class="room-head">
-                <h1>토론방 이름</h1> <!-- 방장이 지정한 토론방 이름 -->
+    <div class="chating-room-wrap">
+        <div class="room-head">
+            <h1>토론방 이름</h1> <!-- 방장이 지정한 토론방 이름 -->
+        </div>
+        <div class="room-body">
+            <div class="user-list">
+                <p>인원: <span class="participant-count">5</span></p>
+                <ul class="users-nickname">
+                    <li>p941260</li>
+                    <li>장성훈</li>
+                    <li>jang</li>
+                    <li>seong</li>
+                    <li>hun</li>
+                </ul>
             </div>
-            <div class="room-body">
-                <div class="user-list">
-                    <p>인원: <span class="participant-count">5</span></p>
-                    <ul class="users-nickname">
-                        <li>p941260</li>
-                        <li>장성훈</li>
-                        <li>jang</li>
-                        <li>seong</li>
-                        <li>hun</li>
-                    </ul>
-                </div>
-                <div class="user-video">
-                    <!-- 유저 스크린 화면 -->
-                    <div class="video-container">
-                        <!-- 유저 한명당 user-video-screen 추가 -->
-                        <div class="user-video-screen">
-                            <div class="screen">본인화면</div>
-                            <p>p941260</p>
-                        </div>
-
-                        <div class="user-video-screen">
-                            <div class="screen">화상화면</div>
-                            <p>장성훈</p>
-                        </div>
-
-                        <div class="user-video-screen">
-                            <div class="screen">화상화면</div>
-                            <p>jang</p>
-                        </div>
-
-                        <div class="user-video-screen">
-                            <div class="screen">화상화면</div>
-                            <p>seong</p>
-                        </div>
-
-                        <div class="user-video-screen">
-                            <div class="screen">화상화면</div>
-                            <p>hun</p>
-                        </div>
+            <div class="user-video">
+                <!-- 유저 스크린 화면 -->
+                <div class="video-container">
+                    <!-- 유저 한명당 user-video-screen 추가 -->
+                    <div class="user-video-screen">
+                        <div class="screen">본인화면</div>
+                        <p>p941260</p>
                     </div>
 
-                    <!-- 화상캠, 마이크 on/off -->
-                    <div class="options">
-                        <!-- 화상캠 -->
-                        <div class="room-video">
-                            <i class="fa-solid fa-video"></i> <!-- on -->
-                            <p>on</p>
-                            <input type="checkbox" class="toggle-checkbox" hidden>
-                            <label for="toggle" id="notification-toggle-switch-1" class="toggle-swt">
-                                <span class="toggle-btn"></span>
-                            </label>
-                            <p>off</p>
-                        </div>
+                    <div class="user-video-screen">
+                        <div class="screen">화상화면</div>
+                        <p>장성훈</p>
+                    </div>
 
-                        <!-- 마이크 -->
-                        <div class="room-microphone">
-                            <i class="fa-solid fa-microphone"></i> <!-- on -->
-                            <p>on</p>
-                            <input type="checkbox" class="toggle-checkbox" hidden>
-                            <label for="toggle" id="notification-toggle-switch-2" class="toggle-swt">
-                                <span class="toggle-btn"></span>
-                            </label>
-                            <p>off</p>
-                        </div>
+                    <div class="user-video-screen">
+                        <div class="screen">화상화면</div>
+                        <p>jang</p>
+                    </div>
+
+                    <div class="user-video-screen">
+                        <div class="screen">화상화면</div>
+                        <p>seong</p>
+                    </div>
+
+                    <div class="user-video-screen">
+                        <div class="screen">화상화면</div>
+                        <p>hun</p>
+                    </div>
+                </div>
+
+                <!-- 화상캠, 마이크 on/off -->
+                <div class="options">
+                    <!-- 화상캠 -->
+                    <div class="room-video">
+                        <i class="fa-solid fa-video"></i> <!-- on -->
+                        <p>on</p>
+                        <input type="checkbox" class="toggle-checkbox" hidden>
+                        <label for="toggle" id="notification-toggle-switch-1" class="toggle-swt">
+                            <span class="toggle-btn"></span>
+                        </label>
+                        <p>off</p>
+                    </div>
+
+                    <!-- 마이크 -->
+                    <div class="room-microphone">
+                        <i class="fa-solid fa-microphone"></i> <!-- on -->
+                        <p>on</p>
+                        <input type="checkbox" class="toggle-checkbox" hidden>
+                        <label for="toggle" id="notification-toggle-switch-2" class="toggle-swt">
+                            <span class="toggle-btn"></span>
+                        </label>
+                        <p>off</p>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </body>
 
 </html>

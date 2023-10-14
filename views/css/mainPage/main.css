@@ -5,12 +5,6 @@
     font-style: normal;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 main {
     font-family: 'HakgyoansimWoojuR';
     padding: 0 5px;
@@ -119,20 +113,21 @@ h3 {
     animation: blink .5s infinite, typing 2s steps(30), stop-cursor 1s forwards;
     white-space: nowrap;
     overflow: hidden;
-    
+
 }
 
 @keyframes blink {
-    50%{
+    50% {
         border-color: transparent;
     }
 }
 
 @keyframes typing {
-    from{
+    from {
         width: 0;
     }
-    to{
+
+    to {
         width: 701px;
     }
 }
@@ -211,9 +206,14 @@ hr {
     background-color: rgba(246, 227, 206, 0.5);
 }
 
-.bi-chevron-left::before,
-.bi-chevron-right::before {
+.bi-chevron-left::before {
     content: "\f284";
+    font-family: bootstrap-icons;
+    font-size: 40px;
+    padding: 7px;
+}
+
+.bi-chevron-right::before {
     content: "\f285";
     font-family: bootstrap-icons;
     font-size: 40px;

@@ -2,58 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 찾기</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/user/passwd/passwd.css">
-    <script src="/passwd/passwd.js"></script>
-    <script src="/common/common.js"></script>
+    <script src="/user/passwd/passwd.js"></script>
 </head>
 
 <body>
-    <header id="header"></header>
-    <main>
-        <div class="main_div">
-            <h1>비밀번호 찾기</h1>
-            <div class="contents">
-                <div class="division_name" id="name_div">이름</div>
-                <input type="text" class="name_input" id="name_input">
-            </div>
-            <div class="contents">
-                <div class="division_name">아이디</div>
-                <input type="text" class="name_input" id="id_input">
-            </div>
-            <div class="contents">
-                <tr class="user-email">
-                    <td>
-                        <div class="division_name"><span class="required">*</span>이메일</div>
-                    </td>
-                    <td>
-                        <input type="text" class="user-email-input">
-                        <span>@</span>
-                        <input type="text" class="custom-input">
-                        <select name="" id="select-email-option">
-                            <option value="none">==선택==</option>
-                            <option value="userInput">직접입력</option>
-                            <option value="google.com">google.com</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="naver.com">nate.com</option>
-                            <option value="">카카오</option>
-                        </select>
-                    </td>
-                    <td class="validation-message"></td>
-                </tr>
-            </div>
-            <div class="contents" id="ck_num">
-                <input type="text" class="name_input" id="ck_num_input" placeholder="인증번호 6자리 입력해 주세요">
-                <div class="division_name" id="ck_num_box">인증번호 확인</div>
-            </div>
-            <div class="contents" id="ck_button_outdiv">
-                <div class="division_name" id="ck_button">확인</div>
-            </div>
+    <div class="main_div">
+        <h1>비밀번호 찾기</h1>
+        <div class="contents">
+            <div class="division_name" id="name_div">이름</div>
+            <input type="text" class="name_input" id="name_input">
         </div>
-    </main>
+        <div class="contents">
+            <div class="division_name">아이디</div>
+            <input type="text" class="name_input" id="id_input">
+        </div>
+        <div class="contents">
+            <tr class="user-email">
+                <td>
+                    <div class="division_name"><span class="required">*</span>이메일</div>
+                </td>
+                <td>
+                    <input type="text" class="user-email-input">
+                    <span>@</span>
+                    <input type="text" class="custom-input">
+                    <select name="" id="select-email-option">
+                        <option value="none">==선택==</option>
+                        <option value="userInput">직접입력</option>
+                        <option value="google.com">google.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="naver.com">nate.com</option>
+                        <option value="">카카오</option>
+                    </select>
+                </td>
+                <td class="validation-message"></td>
+            </tr>
+        </div>
+        <div class="contents" id="ck_num">
+            <input type="text" class="name_input" id="ck_num_input" placeholder="인증번호 6자리 입력해 주세요">
+            <div class="division_name" id="ck_num_box">인증번호 확인</div>
+        </div>
+        <div class="contents" id="ck_button_outdiv">
+            <div class="division_name" id="ck_button">확인</div>
+        </div>
+    </div>
 </body>
 
 </html>

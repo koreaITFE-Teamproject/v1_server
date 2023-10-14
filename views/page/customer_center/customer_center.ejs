@@ -3,45 +3,37 @@
 
 <head>
     <title>고객상담</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/customer_center/customer_center.css">
     <script src="/customer_center/customer_center.js"></script>
-    <script src="/common/common.js"></script>
 </head>
+
 <body>
-    <header id="header"></header>
-    <main>
-        <div class="container">
-            <div class="border">
-                <h1>1:1고객센터</h1>
-                <div class="customer_box_inner">
-                    <div class="row">
-                        <div class="name"><span class="red">*</span>제목</div>
-                        <input class="div_input"></input>
-                    </div>
-                    <div class="row">
-                        <div class="name"><span class="red">*</span>내용</div>
-                        <textarea class="content_input"></textarea>
-                    </div>
-                    <div class="count_bar"><span class="textCount">0</span>/1000</div>
-                    <div class="row">
-                        <div class="name">첨부사진</div>
-                        <div class="file_input"></div>
-                        <div class="name file_btn">파일선택</div>
-                        <div class="name file_btn">삭제</div>
-                    </div>
-                    <div class="btn_bar">
-                            <div class="name check_btn">취소</div>
-                            <div class="name check_btn" id="check">확인</div>
-                    </div>
+    <div class="container">
+        <div class="border">
+            <h1>1:1고객센터</h1>
+            <div class="customer_box_inner">
+                <div class="rows">
+                    <div class="name"><span class="red">*</span>제목</div>
+                    <input class="div_input"></input>
+                </div>
+                <div class="rows">
+                    <div class="name"><span class="red">*</span>내용</div>
+                    <textarea class="content_input"></textarea>
+                </div>
+                <div class="count_bar"><span class="textCount">0</span>/1000</div>
+                <div class="rows">
+                    <div class="name">첨부사진</div>
+                    <div class="file_input"></div>
+                    <div class="name file_btn">파일선택</div>
+                    <div class="name file_btn">삭제</div>
+                </div>
+                <div class="btn_bar">
+                    <div class="name check_btn" onclick="location.href='/customer/chatbot'">취소</div>
+                    <div class="name check_btn" id="check">확인</div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </body>
 
 </html>
