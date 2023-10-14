@@ -14,12 +14,8 @@ html 파일- views/page/∙∙∙
 ## url
 기본형태 - (localhost):3000/
 
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
-
 1. 메인
+
 | 페이지 | /router | /page | `전체` |
 | ------ | ------- | ----- | ------ |
 | 메 인 | /main | /home | `/main/home` |
@@ -28,6 +24,7 @@ html 파일- views/page/∙∙∙
 | 사이트 소개 | /main | /site_introduction | `/main/site_introduction` |
 
 2. 유저
+
 | 페이지 | /router | /page | `전체` |
 | --- | --- | --- | --- |
 | 회원가입 | /user | /join | `/user/join` |
@@ -45,6 +42,7 @@ html 파일- views/page/∙∙∙
 | 컬럼읽기 | /user | /read_column | `/user/read_column` |
 
 3. 토론방
+
 | 페이지 | /router | /page | `전체` |
 | --- | --- | --- | --- |
 | 토론방 목록 | /discussion | /room_list | `/discussion/room_list` |
@@ -53,6 +51,7 @@ html 파일- views/page/∙∙∙
 | 토론방 생성 | /discussion | /create_room | `/discussion/create_room` |
 
 4. 고객센터
+
 | 페이지 | /router | /page | `전체` |
 | --- | --- | --- | --- |
 | 챗 봇 | /customer | /chatbot | `/customer/chatbot` |
