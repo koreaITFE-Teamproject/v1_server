@@ -16,7 +16,7 @@ html 파일- views/page/∙∙∙
 
 1. 메인
 | 페이지 | /router | /page | `전체` |
-|---|---|---|---|
+| ------ | ------- | ----- | ------ |
 | 메 인 | /main | /home | `/main/home` |
 | 개인정보처리방침 | /main | /privacy_policy | `/main/privacy_policy` |
 | 검 색 | /main | /search | `/main/search` |
