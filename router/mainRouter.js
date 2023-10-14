@@ -23,6 +23,4 @@ router.get("/site_introduction", (req, res) => {
     res.render("./page/main_page/site_introduction");
 });
 
-
-
 module.exports = router;

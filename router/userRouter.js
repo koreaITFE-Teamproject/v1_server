@@ -60,14 +60,14 @@ router.get("/like_column", (req, res) => {
     res.render("./page/user/column/maincolumn/likeColumn");
 });
 
-// 컬럼 읽기
-router.get("/read_column", (req, res) => {
-    res.render("./page/user/column/maincolumn/read_column_comment");
-});
-
 // 컬럼 작성
 router.get("/write_column", (req, res) => {
     res.render("./page/user/column/writeColumn/writeColumn");
+});
+
+// 컬럼 읽기
+router.get("/read_column", (req, res) => {
+    res.render("./page/user/column/maincolumn/read_column_comment");
 });
 
 module.exports = router;

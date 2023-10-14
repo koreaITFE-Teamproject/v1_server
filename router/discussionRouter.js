@@ -23,6 +23,4 @@ router.get("/create_room", (req, res) => {
     res.render("./page/discussion/newRoom");
 });
 
-
-
 module.exports = router;

@@ -13,6 +13,4 @@ router.get("/center", (req, res) => {
     res.render("./page/customer_center/customer_center");
 });
 
-
-
 module.exports = router;
