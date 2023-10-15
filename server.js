@@ -8,12 +8,12 @@ const mysql = require("mysql2");
 app.set("view engine", "ejs");      // EJS 설정
 
 app.use(cors());
-app.use(express.static("./views/css"));   // css
-app.use(express.static("./views/js"));    // js
-app.use(express.static("./views/img"));   // image
+app.use(express.static("./public/css"));   // css
+app.use(express.static("./public/js"));    // js
+app.use(express.static("./public/img"));   // image
 
 app.set("layout extractScripts", true);   // script 불러오기
-app.set('layout', 'page/common/layout');  // layout 경로
+app.set('layout', 'common/layout');  // layout 경로
 app.use(expressLayouts);
 
 // MySQL 접속 주소를 기반으로 연결 정보 설정
@@ -64,10 +64,6 @@ process.on("SIGINT", () => {
     }
     process.exit(); // 서버 종료
   });
-});
-
-app.get("/test", (req, res) => {
-  res.render("./page/main_page/test");
 });
 
 
