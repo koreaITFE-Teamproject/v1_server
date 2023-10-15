@@ -72,17 +72,17 @@ app.get("/test", (req, res) => {
 
 
 
-// 라우터
-const mainRouter = require("./router/mainRouter");
-const userRouter = require("./router/userRouter");
-const discussionRouter = require("./router/discussionRouter");
-const customerRouter = require("./router/customerRouter");
+// routes
+const mainRoute = require("./routes/main");
+const userRoute = require("./routes/user");
+const discussionRoute = require("./routes/discussion");
+const customerRoute = require("./routes/customer");
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
 
-app.use("/main", mainRouter);
-app.use("/user", userRouter);
-app.use("/discussion", discussionRouter);
-app.use("/customer", customerRouter);
+app.use("/main", mainRoute);
+app.use("/user", userRoute);
+app.use("/discussion", discussionRoute);
+app.use("/customer", customerRoute);
