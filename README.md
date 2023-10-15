@@ -1,9 +1,9 @@
 ## router
 - get, post 방식은 각자 페이지 수정하면서 변경해야합니다. 현재는 페이지만 연결해둔 상태입니다.
-1. mainRouter.js        메인
-2. userRouter.js        유저
-3. discussionRouter.js  토론방
-4. customerRouter.js    고객센터
+1. main.js        메인
+2. user.js        유저
+3. discussion.js  토론방
+4. customer.js    고객센터
 
 ## 폴더 경로
 1. css- views/css
