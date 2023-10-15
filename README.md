@@ -6,10 +6,10 @@
 4. customer.js    고객센터
 
 ## 폴더 경로
-1. css- views/css
-2. js - views/js
-3. img- views/img
-4. html 파일- views/page/∙∙∙
+1. css- public/css
+2. js - public/js
+3. img- public/img
+4. html 파일- views/
 
 ## url
 기본형태 - (localhost):3000/
