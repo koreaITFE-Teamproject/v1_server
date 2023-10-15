@@ -51,4 +51,4 @@
 | 페이지 | /router | /page | `전체` |
 | --- | --- | --- | --- |
 | 챗 봇 | /customer | /chatbot | `/customer/chatbot` |
-| 1:1 고객센 | /customer | /center | `/customer/center` |
+| 1:1 고객센터 | /customer | /center | `/customer/center` |
