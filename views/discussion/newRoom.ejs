@@ -10,20 +10,22 @@
 <body>
     <div class="room-setting-container">
         <h1>토론방 생성</h1>
-        <div class="box-head">
-            <div class="room-name">토론방 이름</div>
-            <input type="text" name="기타" class="text-field" placeholder=" 20자 이내 작성" maxlength="20">
-        </div>
-        <div class="box-body">
-            <select class="select-box">
-                <option value="chat" selected>채팅</option>
-                <option value="videoChat">화상회의</option>
-            </select>
-            <div class="add-room-btn-wrap">
-                <button type="button" class='add-btn'>만들기</button>
-                <button type="button" class='cancel-btn' onclick="location.href='/discussion/room_list'">취소</button>
+        <form id="create-room-form" action="/discussion/create_room" method="post">
+            <div class="box-head">
+                <div class="room-name">토론방 이름</div>
+                <input type="text" name="room_name" class="text-field" placeholder=" 20자 이내 작성" maxlength="20">
             </div>
-        </div>
+            <div class="box-body">
+                <select name="chatType" class="select-box">
+                    <option value="0" selected>채팅</option>     <!-- 0 -->
+                    <option value="1">화상회의</option>     <!-- 1 -->
+                </select>
+                <div class="add-room-btn-wrap">
+                    <button type="submit" class='add-btn'>만들기</button>
+                    <button type="button" class='cancel-btn' onclick="location.href='/discussion/room_list'">취소</button>
+                </div>
+            </div>
+        </form>
     </div>
 </body>
 

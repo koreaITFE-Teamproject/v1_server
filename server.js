@@ -5,6 +5,9 @@ const expressLayouts = require('express-ejs-layouts');
 
 const mysql = require("mysql2");
 
+const bodyParser = require("body-parser");            // body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.set("view engine", "ejs");      // EJS 설정
 
 app.use(cors());
@@ -66,7 +69,7 @@ process.on("SIGINT", () => {
   });
 });
 
-
+module.exports = connection;    // 라우터에서도 mysql 사용하기 위해 exports
 
 // routes
 const mainRoute = require("./routes/main");

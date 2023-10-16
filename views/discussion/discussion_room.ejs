@@ -28,16 +28,6 @@
             <button class="add-room-btn" onclick="location.href='/discussion/create_room'">토론방 생성</button>
         </div>
 
-        <!-- 토론방 타이틀 모음 -->
-        <!-- <div class="room-title-wrap">
-                <ul>
-                    <li class="room-number">No</li>
-                    <li class="room-name">토론방 이름</li>
-                    <li class="room-manager">방장</li>
-                </ul>
-            </div> -->
-
-
         <!-- 토론방 목록 -->
         <div class="discussion-rooms-list">
             <div class="user-rooms-wrap">
@@ -72,7 +62,29 @@
                     </div>
                 </div>
                 <!-- 테스트용 -->
-
+                <% for(var i=0; i < rooms.length; i++){ %>
+                    <div class="room">
+                        <div class="room-explain">
+                            <p class="room-name">
+                                <%= rooms[i].dscsn_room_nm %>
+                            </p>
+                            <p class="intro">DB 소개글 부분 칼럼 추가해야할듯함</p>
+                            <div class="room-bottom-wrap">
+                                <i class="fa-solid fa-user"></i>
+                                <p class="headcount">
+                                    ?명
+                                </p>
+                                <span>•</span> <!-- • ∙ -->
+                                <p class="moderator">
+                                    <%= rooms[i].ncnm %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="room-img">
+                            <img src="http://placehold.it/120x120" alt=""></img>
+                        </div>
+                    </div>
+                    <% } %>
             </div>
         </div>
     </article>

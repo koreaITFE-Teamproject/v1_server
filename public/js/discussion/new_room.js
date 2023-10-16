@@ -1,10 +1,13 @@
 $(function () {
-    $(".add-btn").click(function () {
-        if (!$(".text-field").val().trim()) {
+    $("#create-room-form").submit(function (event) {
+        isBlank(event, $(".text-field").val());
+    });
+
+    function isBlank(event, roomName) {
+        if (!roomName.trim()) {
             alert("제목을 입력하세요.");
             $(".text-field").val("");
-        } else {
-            alert("토론방 생성 완료");
+            return event.preventDefault();
         }
-    });
+    }
 });
