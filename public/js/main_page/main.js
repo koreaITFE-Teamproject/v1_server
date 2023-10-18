@@ -1,4 +1,38 @@
 $(document).ready(function () {
+    // 타이핑 효과
+    var typingTxt = $(".part").text().split(",");
+
+    $(".part").text('');
+
+    var i = 0;
+    var j = 0;
+    var content = "";
+    var partWrapheight = parseInt($(".part_wrap").css("height"));
+
+    function typing() {
+        if (i < typingTxt.length) {
+            if (i !== 0 && j == 0) {
+                $(".blink").css("font-size", "32px");
+                partWrapheight += 53;
+                $(".part_wrap").css("height", partWrapheight);
+            }
+            if (j < typingTxt[i].length) {
+                $(".blink").eq(i).show();
+                var text = typingTxt[i][j];
+                content += text;
+                $(".part").eq(i).text(content);
+                j++;
+            } else {    // 초기화
+                content = "";
+                $(".blink").eq(i).hide();
+                i++;
+                j = 0;
+            }
+        }
+    }
+    setInterval(typing, 70);
+
+
     var carouselIdx = 0;                                                                // 각 캐러셀의 인덱스
     var indicatorsIdx = [0, 0, 0];                                                      // 각 슬라이드의 지표 인덱스, 각 슬라이드 위치
 
