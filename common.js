@@ -7,10 +7,10 @@ function getRegistDt() {
 }
 
 function checkLoginStatus(req) {
-    if (typeof req.session.is_logined === 'undefined') {        // 세션에 is_logined가 없을 때
-        return false;                                           // true
-    } else {                                                    // 있을때
-        return true;                                            // true
+    if (typeof req.session.isLogined === 'undefined') {                 // 세션에 is_logined가 없을 때
+        return { isLogined: false, nickname: "" };                      // false, 공백
+    } else {                                                            // 있을때
+        return { isLogined: true, nickname: req.session.nickname };     // true, 닉네임
     }
 }
 

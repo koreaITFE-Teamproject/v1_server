@@ -18,6 +18,7 @@ main {
 
 .recomm_outline {
     width: 50%;
+    min-width: 800px;
     height: 60%;
     margin: 0 auto;
 }

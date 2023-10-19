@@ -13,7 +13,11 @@ router.get("/join", (req, res) => {
 
 // 로그인 get
 router.get("/login", (req, res) => {
-    res.render("./user/login");
+    if (typeof req.session.is_logined === 'undefined') {        // 세션 정보에 is_logined가 없을 때
+        res.render("./user/login");
+    } else {
+        res.send(`<script type="text/javascript">alert("이미 로그인 되어있습니다."); document.location.href="../main/home";</script>`);
+    }
 });
 
 // 로그인 post
@@ -21,17 +25,17 @@ router.post("/login", (req, res) => {
     const loginId = req.body.loginId;
     const loginPw = req.body.loginPw;
 
-    const query = `SELECT user_id, passwd from USER_INFO WHERE user_id='${loginId}' AND passwd='${loginPw}'`;
+    const query = `SELECT user_id, ncnm from USER_INFO WHERE user_id='${loginId}' AND passwd='${loginPw}'`;
     connection.query(query, (queryErr, results) => {        // db 체크
         if (queryErr) throw queryErr;
 
         if (results.length > 0) {                           // db 유저 정보와 일치한 데이터가 있을 때
-            req.session.is_logined = true;                  // 세션 정보 갱신
-            req.session.userId = loginId;
+            req.session.isLogined = true;                   // 세션 정보 갱신, 로그인 여부
+            req.session.userId = loginId;                   // 아이디 저장
+            req.session.nickname = results[0].ncnm;         // 닉네임 저장
             req.session.save(function () {
                 res.redirect("../main/home");
             });
-            console.log(results[0].user_id, results[0].passwd);
         } else {                                            // 없을 때
             res.send(`<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); document.location.href="login";</script>`);
         }
@@ -102,5 +106,48 @@ router.get("/write_column", (req, res) => {
 router.get("/read_column", (req, res) => {
     res.render("./user/column/maincolumn/read_column_comment");
 });
+
+
+// 유저 정보 조회       /discussion/userInfo
+// router.get("/userInfo", (req, res) => {
+//     const query = "SELECT * FROM USER_INFO";
+//     connection.query(query, (queryErr, results) => {
+//       if (queryErr) {
+//         console.error("Error executing query:", queryErr);
+//         res.status(500).send("Internal Server Error");
+//         return;
+//       }
+
+//       console.log("Database results:", results);
+
+//       res.json(results);
+//     });
+//   });
+
+// 유저 정보 추가
+// router.get("/userInfo", (req, res) => {
+//   const today = new Date();
+//   var year = today.getFullYear();
+//   var month = ('0' + (today.getMonth() + 1)).slice(-2);
+//   var day = ('0' + today.getDate()).slice(-2);
+//   const datePormat = `${year}-${month}-${day}`
+
+//   const query = `
+//     INSERT INTO USER_INFO (user_uniq_id, user_id, passwd, name, ncnm, email, telno, adres, secsn_ennc, srbde, mber_author, secsn_reqstdt)
+//     VALUES('2', 'testId02', 'testPw02!@', '장성현', 'hello', 'test02@gmail.com', 01012340002, '대전', '2', '${datePormat}', 2, '2')
+//   `;
+//   connection.query(query, (queryErr, results) => {
+//     if (queryErr) {
+//       console.error("Error executing query:", queryErr);
+//       res.status(500).send("Internal Server Error");
+//       return;
+//     }
+
+//     console.log("Database results:", results);
+
+//     res.json(results);
+//   });
+// });
+
 
 module.exports = router;

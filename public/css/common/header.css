@@ -20,8 +20,8 @@
 
 main {
     height: auto;
-    margin-top: 143px;
     min-height: calc(100vh - 143px - 70px - 43px);
+    margin-top: 143px;
     font-family: 'HakgyoansimWoojuR';
 }
 
@@ -49,7 +49,6 @@ li {
 header {
     background-color: #F9ECDB;
     width: 100%;
-    min-width: 900px;
     height: 100px;
     position: fixed;
     top: 0;
@@ -60,74 +59,56 @@ header {
     font-family: 'HakgyoansimWoojuR';
 }
 
-#header_wrap {
-    width: 100%;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 6fr 3fr;
-}
-
 .nav-up {
     top: -100px;
 }
 
 .site_name {
+    width: 10%;
     font-family: 'GmarketSansMedium';
     text-align: center;
-}
-
-#search {
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding: 0 40px;
 }
 
 .bi {
     font-size: 30px;
 }
 
-#search_id,
-.bi-bell {
-    margin-left: 15px;
-}
-
 .menu_bar {
-    padding: 10px;
+    width: 40%;
     display: flex;
-    justify-content: flex-start;
 }
 
 .menu_bar_item {
-    font-size: 17px;
-    width: 200px;
-    padding: 10px;
-    display: inline-block;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
     position: relative;
+}
+
+.content-title {
+    /* min-width: 150px; */
     text-align: center;
+    padding: 10px 0;
+    font-size: 17px;
     cursor: pointer;
     color: #764127;
 }
 
 /* 드롭다운 메뉴의 스타일 */
 .dropdown-content {
+    width: 100%;
     display: none;
+    flex-direction: column;
     position: absolute;
-    left: 0;
+    top: 45px;
     background-color: #F9ECDB;
-    border: 1px solid #F9ECDB;
-    width: 200px;
-    margin-top: 10px
-}
-
-.menu_bar_item:hover .dropdown-content {
-    display: block;
+    /* min-width: 150px; */
+    text-align: center;
+    color: #764127;
 }
 
 .dropdown-content a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
+    padding: 8px 0;
     color: #764127;
 }
 
@@ -135,10 +116,28 @@ header {
     background-color: #F6E3CE;
 }
 
+#search {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin-left: 35%;
+}
+
+#search span{
+    margin-left: 5px;
+    min-width: 60px;
+}
+
+#search_id,
+.bi-bell {
+    margin: 5px;
+}
+
 #topStartBrunchButton,
 #topLogoutButton {
     display: flex;
     align-items: center;
+    justify-content: center;
     -webkit-font-smoothing: antialiased;
     text-rendering: inherit;
     background-color: #fff;
@@ -146,9 +145,42 @@ header {
     border: 1px solid #959595;
     border-radius: 15px;
     color: #333;
-    height: 25px;
-    margin-left: 15px;
-    padding: 0 20px;
+    width: 80%;
+    max-width: 100px;
+    min-width: 60px;
+    height: 30px;
+    margin: 0 auto;
     font-family: "Noto Sans Light", sans-serif;
     font-size: 12px;
+}
+
+#nickname-wrap {
+    width: 30%;
+    min-width: 60px;
+    font-size: 16px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.nickname {
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 1280px) {
+    #search {
+        margin-left: 30%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #search {
+        margin-left: 20%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #search {
+        margin-left: 7%;
+    }
 }

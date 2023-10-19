@@ -68,46 +68,4 @@ router.post("/create_room", (req, res) => {
     });
 });
 
-
-// 유저 정보 조회       /discussion/userInfo
-// router.get("/userInfo", (req, res) => {
-//     const query = "SELECT * FROM USER_INFO";
-//     connection.query(query, (queryErr, results) => {
-//       if (queryErr) {
-//         console.error("Error executing query:", queryErr);
-//         res.status(500).send("Internal Server Error");
-//         return;
-//       }
-
-//       console.log("Database results:", results);
-
-//       res.json(results);
-//     });
-//   });
-
-// 유저 정보 추가, 일단 1번만 추가
-// router.get("/userInfo", (req, res) => {
-//   const today = new Date();
-//   var year = today.getFullYear();
-//   var month = ('0' + (today.getMonth() + 1)).slice(-2);
-//   var day = ('0' + today.getDate()).slice(-2);
-//   const datePormat = `${year}-${month}-${day}`
-
-//   const query = `
-//     INSERT INTO USER_INFO (user_uniq_id, user_id, passwd, name, ncnm, email, telno, adres, secsn_ennc, srbde, mber_author, secsn_reqstdt)
-//     VALUES('1', '장성훈', '장성훈', '장성훈', '성훈', 'test@gmail.com', 01012345678, '대전', '1', '${datePormat}', 1, '1')
-//   `;
-//   connection.query(query, (queryErr, results) => {
-//     if (queryErr) {
-//       console.error("Error executing query:", queryErr);
-//       res.status(500).send("Internal Server Error");
-//       return;
-//     }
-
-//     console.log("Database results:", results);
-
-//     res.json(results);
-//   });
-// });
-
 module.exports = router;
