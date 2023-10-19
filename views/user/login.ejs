@@ -22,17 +22,19 @@
     </div>
     <div class="login-form">
         <h1>로그인</h1>
-        <form action="#">
+        <form id="login-form" action="/user/login" method="post">
             <div class="login-wrap">
                 <div class="login-id">아이디</div>
-                <input type="text" name="email" class="text-field" placeholder="아이디를 입력해주세요" maxlength="20">
+                <input type="text" name="loginId" id="login-id" class="text-field" placeholder="아이디를 입력해주세요"
+                    maxlength="20">
             </div>
             <div class="login-wrap">
                 <div class="login-pw">비밀번호</div>
-                <input type="password" name="password" class="text-field" placeholder="비밀번호를 입력해주세요" maxlength="30">
+                <input type="password" name="loginPw" id="login-pw" class="text-field" placeholder="비밀번호를 입력해주세요"
+                    maxlength="30">
             </div>
-            <input type="submit" value="로그인" class="submit-btn">
-            <input type="button" value="QR 로그인" class="qr-btn">
+            <button type="submit" class="submit-btn">로그인</button>
+            <button type="button" class="qr-btn">QR 로그인</button>
 
             <div class="links">
                 <a href="/user/join">회원가입</a>

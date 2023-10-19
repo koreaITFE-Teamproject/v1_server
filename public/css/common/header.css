@@ -60,37 +60,40 @@ header {
     font-family: 'HakgyoansimWoojuR';
 }
 
+#header_wrap {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 6fr 3fr;
+}
+
 .nav-up {
     top: -100px;
 }
 
 .site_name {
-    display: inline-block;
-    padding: 10px;
     font-family: 'GmarketSansMedium';
+    text-align: center;
+}
+
+#search {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 40px;
 }
 
 .bi {
     font-size: 30px;
 }
 
-#search {
-    padding: 10px;
-    position: absolute;
-    right: 0;
+#search_id,
+.bi-bell {
+    margin-left: 15px;
 }
-
-#search_id {
-    font-size: 30px;
-    top: 10px;
-    right: 10px;
-    padding: 10px;
-}
-
 
 .menu_bar {
     padding: 10px;
-    position: relative;
     display: flex;
     justify-content: flex-start;
 }
@@ -132,20 +135,20 @@ header {
     background-color: #F6E3CE;
 }
 
-#topStartBrunchButton {
+#topStartBrunchButton,
+#topLogoutButton {
+    display: flex;
+    align-items: center;
     -webkit-font-smoothing: antialiased;
     text-rendering: inherit;
-    float: right;
     background-color: #fff;
     opacity: .9;
     border: 1px solid #959595;
-    border-radius: 16px;
+    border-radius: 15px;
     color: #333;
+    height: 25px;
+    margin-left: 15px;
+    padding: 0 20px;
     font-family: "Noto Sans Light", sans-serif;
     font-size: 12px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    text-decoration: none;
-    width: 64px;
 }

@@ -1,4 +1,5 @@
-<div class="site_name" id="site_name">
+<div id="header_wrap"">
+    <div class=" site_name" id="site_name">
     <a href="/main/home">Booker <i class="bi bi-book"></i></a>
     <!-- 경로 삽입하실때 아래꺼 지우고, 위에 주석처놓은 거 해제하셔서 쓰면 됩니다! -->
     <!-- <a href="/project/views/main_page/main.html">Booker <i class="bi bi-book"></i></a> -->
@@ -23,7 +24,7 @@
     <div class="menu_bar_item">마이페이지
         <div class="dropdown-content">
             <!-- 로그인 후 보일 마이페이지 창 -->
-            <a href="#">로그아웃</a> <!--페이지 별도로 없음-->
+            <a href="/user/logout">로그아웃</a> <!--페이지 별도로 없음-->
             <a href="/user/modify">회원정보수정</a>
             <a href="/user/delete_account">회원탈퇴</a>
         </div>
@@ -31,9 +32,12 @@
 </div>
 <!-- 이게 로그인 페이지로 넘어가야함. -->
 <div id="search">
-    <a href="/user/login" id="topStartBrunchButton"
-        class="f_r btn_request btn_default #home_join" data-tiara-action-name="TOP > GNB 우측 [시작하기] 버튼 클릭"
-        data-tiara-layer="login">시작하기</a>
     <a href="/main/search"><i class="bi bi-search" id="search_id"></i></a>
     <i class="bi bi-bell"></i>
+    <% if(!isLogined){ %>
+        <a href="/user/login" id="topStartBrunchButton">시작하기</a>
+        <% } else { %>
+            <a href="/user/logout" id="topLogoutButton">로그아웃</a>
+            <% } %>
+</div>
 </div>

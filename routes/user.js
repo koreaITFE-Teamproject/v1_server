@@ -1,6 +1,7 @@
 // 유저페이지 라우터
 
 const express = require("express");
+const connection = require("../server.js");     // mysql 사용하기 위해 require
 const router = express.Router();
 
 // 회원가입
@@ -8,10 +9,42 @@ router.get("/join", (req, res) => {
     res.render("./user/join");
 });
 
-// 로그인
+
+
+// 로그인 get
 router.get("/login", (req, res) => {
     res.render("./user/login");
 });
+
+// 로그인 post
+router.post("/login", (req, res) => {
+    const loginId = req.body.loginId;
+    const loginPw = req.body.loginPw;
+
+    const query = `SELECT user_id, passwd from USER_INFO WHERE user_id='${loginId}' AND passwd='${loginPw}'`;
+    connection.query(query, (queryErr, results) => {        // db 체크
+        if (queryErr) throw queryErr;
+
+        if (results.length > 0) {                           // db 유저 정보와 일치한 데이터가 있을 때
+            req.session.is_logined = true;                  // 세션 정보 갱신
+            req.session.userId = loginId;
+            req.session.save(function () {
+                res.redirect("../main/home");
+            });
+            console.log(results[0].user_id, results[0].passwd);
+        } else {                                            // 없을 때
+            res.send(`<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); document.location.href="login";</script>`);
+        }
+    });
+});
+
+// 로그아웃
+router.get("/logout", (req, res) => {
+    req.session.destroy(function (err) {
+        res.redirect("../main/home");
+    });
+});
+
 
 // 수정
 router.get("/modify", (req, res) => {

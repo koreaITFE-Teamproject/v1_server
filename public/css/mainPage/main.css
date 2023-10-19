@@ -186,10 +186,15 @@ hr {
     background-color: rgba(246, 227, 206, 0.5);
 }
 
-.bi-chevron-left::before,
 .bi-chevron-right::before {
-    content: "\f284";
     content: "\f285";
+    font-family: bootstrap-icons;
+    font-size: 40px;
+    padding: 7px;
+}
+
+.bi-chevron-left::before {
+    content: "\f284";
     font-family: bootstrap-icons;
     font-size: 40px;
     padding: 7px;

@@ -1,11 +1,13 @@
 // 메인페이지 라우터
 
 const express = require("express");
+const commonFunc = require("../common");
 const router = express.Router();
 
 // 메인
 router.get("/home", (req, res) => {
-    res.render("./main_page/home");
+    isLogined = commonFunc.checkLoginStatus(req);
+    res.render("./main_page/home", {isLogined: isLogined});
 });
 
 // 개인정보처리방침
