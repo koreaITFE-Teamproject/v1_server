@@ -1,6 +1,7 @@
 // 유저페이지 라우터
 
 const express = require("express");
+const commonFunc = require("../common");
 const connection = require("../server.js");     // mysql 사용하기 위해 require
 const router = express.Router();
 
@@ -13,7 +14,8 @@ router.get("/join", (req, res) => {
 
 // 로그인 get
 router.get("/login", (req, res) => {
-    if (typeof req.session.is_logined === 'undefined') {        // 세션 정보에 is_logined가 없을 때
+    userInfo = commonFunc.checkLoginStatus(req);
+    if (userInfo === false) {                       // 로그인 여부가 false 일 때
         res.render("./user/login");
     } else {
         res.send(`<script type="text/javascript">alert("이미 로그인 되어있습니다."); document.location.href="../main/home";</script>`);
@@ -52,7 +54,19 @@ router.get("/logout", (req, res) => {
 
 // 수정
 router.get("/modify", (req, res) => {
-    res.render("./user/modify");
+    userInfo = commonFunc.checkLoginStatus(req);
+    if (userInfo === false) {
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다."); document.location.href="login";</script>`);
+    } else {
+        const query = `SELECT * from USER_INFO WHERE ncnm='${userInfo.nickname}'`;
+        connection.query(query, (queryErr, results) => {        // db 체크
+            if (queryErr) throw queryErr;
+
+            console.log(results);
+
+            res.render("./user/modify", { userInfo, userResults: results });
+        });
+    }
 });
 
 // 비밀번호 변경
@@ -108,21 +122,22 @@ router.get("/read_column", (req, res) => {
 });
 
 
-// 유저 정보 조회       /discussion/userInfo
+// 유저 정보 조회       /user/userInfo
 // router.get("/userInfo", (req, res) => {
-//     const query = "SELECT * FROM USER_INFO";
+//     const query = "SELECT * FROM USER_INFO";        // 조회
+//     // const query = "UPDATE USER_INFO SET telno = '01012340002' where user_uniq_id = 2";       // 수정
 //     connection.query(query, (queryErr, results) => {
-//       if (queryErr) {
-//         console.error("Error executing query:", queryErr);
-//         res.status(500).send("Internal Server Error");
-//         return;
-//       }
+//         if (queryErr) {
+//             console.error("Error executing query:", queryErr);
+//             res.status(500).send("Internal Server Error");
+//             return;
+//         }
 
-//       console.log("Database results:", results);
+//         console.log("Database results:", results);
 
-//       res.json(results);
+//         res.json(results);
 //     });
-//   });
+// });
 
 // 유저 정보 추가
 // router.get("/userInfo", (req, res) => {

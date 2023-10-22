@@ -6,8 +6,9 @@ const router = express.Router();
 
 // 메인
 router.get("/home", (req, res) => {
-    userInfo = commonFunc.checkLoginStatus(req);    // 객체로 받아서
-    res.render("./main_page/home", userInfo);       // 객체로 바로 넘김
+    userInfo = commonFunc.checkLoginStatus(req);    // 리턴값 받음
+    userInfo === false ? userInfo = { isLogined: false, nickname: "" } : userInfo;
+    res.render("./main_page/home", userInfo);
 });
 
 // 개인정보처리방침

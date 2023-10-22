@@ -13,14 +13,13 @@
     </div>
     <form action="#">
         <article class="user-join-wrap">
-
             <p class="brief"><span class="required">*</span>표시는 필수 기입항목입니다.</p>
             <div>
                 <!-- 이름 -->
                 <div id="user-name" class="editable-info">
                     <div><span class="required">*</span>이름</div>
                     <div>
-                        <input type="text" class="user-name-input" maxlength="10">
+                        <input type="text" class="user-name-input" maxlength="10" value="<%= userResults[0].name %>">
                     </div>
                     <div class="validation-message"></div>
                 </div>
@@ -30,7 +29,7 @@
                     <div>아이디</div>
                     <div>
                         <!-- 보기 전용 readonly -->
-                        <input type="text" class="user-login-id-input" disabled>
+                        <input type="text" class="user-login-id-input" value="<%= userResults[0].user_id %>" disabled>
                     </div>
                 </div>
 
@@ -38,7 +37,8 @@
                 <div id="user-login-pw" class="editable-info">
                     <div><span class="required">*</span>비밀번호</div>
                     <div>
-                        <input type="password" class="user-login-pw-input" maxlength="30">
+                        <input type="password" class="user-login-pw-input" maxlength="30"
+                            value="<%= userResults[0].passwd %>">
                         <!-- <i id="show-eyes" class="fa-solid fa-eye" style="color: #474747;"></i> -->
                         <!-- <i id="hide-eyes" class="fa-solid fa-eye-slash" style="color: #474747;"></i> -->
                     </div>
@@ -49,7 +49,7 @@
                 <div id="user-login-pw-ck" class="editable-info">
                     <div><span class="required">*</span>비밀번호 확인</div>
                     <div>
-                        <input type="password" class="user-login-pw-ck-input">
+                        <input type="password" class="user-login-pw-ck-input" value="<%= userResults[0].passwd %>">
                     </div>
                     <div class="validation-message"></div>
                 </div>
@@ -58,7 +58,7 @@
                 <div id="user-email" class="editable-info">
                     <div><span class="required">*</span>이메일</div>
                     <div>
-                        <input type="text" class="user-email-input">
+                        <input type="text" class="user-email-input" value="<%= userResults[0].email.split('@')[0] %>">
                         <span>@</span>
                         <input type="text" class="custom-input">
                         <select name="" id="select-email-option">
@@ -79,11 +79,14 @@
                     <div>전화번호</div>
                     <div class="input-numbers">
                         <!-- 각 input 패턴 적용 -->
-                        <input type="text" class="user-phone-number-input" maxlength="3">
+                        <input type="text" class="user-phone-number-input" maxlength="3"
+                            value="<%= userResults[0].telno.slice(0, 3) %>">
                         <span>-</span>
-                        <input type="text" class="user-phone-number-input" maxlength="4">
+                        <input type="text" class="user-phone-number-input" maxlength="4"
+                            value="<%= userResults[0].telno.slice(3, 7) %>">
                         <span>-</span>
-                        <input type="text" class="user-phone-number-input" maxlength="4">
+                        <input type="text" class="user-phone-number-input" maxlength="4"
+                            value="<%= userResults[0].telno.slice(7, 11) %>">
                     </div>
                     <div class="validation-message"></div>
                 </div>
@@ -92,7 +95,7 @@
                 <div id="user-address">
                     <div>주소</div>
                     <div>
-                        <input type="text" class="user-address-input">
+                        <input type="text" class="user-address-input" value="<%= userResults[0].adres %>">
                         <button type="button" id="find-postal-code-btn" class="user-join-wrap-btn">우편번호로 찾기</button>
                     </div>
                     <div class="validation-message"></div>

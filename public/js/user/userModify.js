@@ -1,5 +1,5 @@
 $(function () {
-
+    /*
     // 테스트용 생성자 --------
     // 사용자 객체 생성을 위한 생성자 함수 정의
     function User(id, loginId, loginPw, name, nickname, email, phoneNumber, address, isNotificationOn) {
@@ -81,6 +81,7 @@ $(function () {
             }
         }
     }
+    */
 
     // 저장 버튼 클릭 시
     $("#update-btn").click(function(){
