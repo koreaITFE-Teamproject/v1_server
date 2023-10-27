@@ -126,6 +126,7 @@ header {
 #search span{
     margin-left: 5px;
     min-width: 60px;
+    font-size: 16px;
 }
 
 #search_id,
