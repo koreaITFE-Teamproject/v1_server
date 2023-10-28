@@ -87,6 +87,10 @@ process.on("SIGINT", () => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.redirect("./main/home");
+});
+
 module.exports = connection;    // 라우터에서도 mysql 사용하기 위해 exports
 
 // routes

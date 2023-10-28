@@ -37,7 +37,7 @@ $(function () {
 
     // 정규표현식
     const spacePattern = /\s/;                            // 공백 체크
-    const idRegex = /^[A-Za-z0-9]{7,15}$/;                // id, [A~Z, a~z, 0~9] {글자수 7~20 사이}
+    const idRegex = /^[A-Za-z0-9]{7,20}$/;                // id, [A~Z, a~z, 0~9] {글자수 7~20 사이}
     const pwRegex = /^[A-Za-z0-9.,\/?!@#$%^&*]{10,30}$/;  // pw, [A~Z, a~z, 0~9, 특수문자(.,/?!@#$%^&*)] {글자수 10~30 사이}
     const nameRegex = /^[가-힣A-Za-z]{2,10}$/;            // name, [한글(가~힣), A~Z, a~z] {글자수 2~10 사이}
     const nicknameRegex = /^[가-힣A-Za-z0-9]{2,15}$/;     // nickname, [한글(가~힣), A~Z, a~z, 0~9] {글자수 2~15 사이}

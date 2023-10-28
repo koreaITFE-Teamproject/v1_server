@@ -3,8 +3,8 @@
 
 <head>
     <title>회원가입</title>
-    <link rel="stylesheet" href="/user/join.css">
-    <script src="/user/userJoin.js"></script>
+    <link rel="stylesheet" href="/user/join copy.css">
+    <script src="/user/userJoin copy.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 api -->
     <script>
         $(function () {
@@ -33,6 +33,7 @@
                 if (confirm) {
                     $(".user-address-input").val("");
                     $(".user-address-detail-input").val("");
+                    addr = "";
                     detailAddr = "";
                 }
                 return;
@@ -53,7 +54,7 @@
 </head>
 
 <body>
-    <form action="#">
+    <form action="/user/join" method="post">
         <article class="user-join-wrap">
             <h1 id="user-join-title">회원가입</h1>
             <p class="brief"><span class="required">*</span>표시는 필수 기입항목입니다.</p>
@@ -62,8 +63,9 @@
                 <div class="user-login-id">
                     <div><span class="required">*</span>아이디</div>
                     <div>
-                        <input type="text" class="user-login-id-input" maxlength="20">
-                        <button id="login-id-duplicate-check-btn" class="user-join-wrap-btn">중복확인</button>
+                        <input name="loginId" type="text" id="user-login-id-input" class="user-input" maxlength="20">
+                        <button type="button" id="login-id-duplicate-check-btn" class="duplicate-btn"
+                            data-btn-idx="0">중복확인</button>
                     </div>
                     <div type="button" class="validation-message"></div>
                 </div>
@@ -72,7 +74,8 @@
                 <div class="user-login-pw">
                     <div><span class="required">*</span>비밀번호</div>
                     <div>
-                        <input type="password" class="user-login-pw-input" maxlength="30">
+                        <input name="loginPw" type="password" id="user-login-pw-input" class="user-input"
+                            maxlength="30">
                         <!-- <i id="show-eyes" class="fa-solid fa-eye" style="color: #474747;"></i> -->
                         <!-- <i id="hide-eyes" class="fa-solid fa-eye-slash" style="color: #474747;"></i> -->
                     </div>
@@ -83,7 +86,7 @@
                 <div class="user-login-pw-ck">
                     <div><span class="required">*</span>비밀번호 확인</div>
                     <div>
-                        <input type="password" class="user-login-pw-ck-input">
+                        <input type="password" id="user-login-pw-ck-input" class="user-input">
                     </div>
                     <div class="validation-message"></div>
                 </div>
@@ -92,7 +95,7 @@
                 <div class="user-name">
                     <div><span class="required">*</span>이름</div>
                     <div>
-                        <input type="text" class="user-name-input" maxlength="10">
+                        <input name="name" type="text" id="user-name-input" class="user-input" maxlength="10">
                     </div>
                     <div class="validation-message"></div>
                 </div>
@@ -101,8 +104,9 @@
                 <div class="user-nickname">
                     <div><span class="required">*</span>닉네임</div>
                     <div>
-                        <input type="text" class="user-nickname-input" maxlength="14">
-                        <button type="button" id="nickname-duplicate-check-btn" class="user-join-wrap-btn">중복확인</button>
+                        <input name="nickname" type="text" id="user-nickname-input" class="user-input" maxlength="14">
+                        <button type="button" id="nickname-duplicate-check-btn" class="duplicate-btn"
+                            data-btn-idx="4">중복확인</button>
                     </div>
                     <!-- <div class="warning-message">닉네임은 변경할 수 없습니다.</div> -->
                     <div class="validation-message"></div>
@@ -112,13 +116,14 @@
                 <div class="user-email">
                     <div><span class="required">*</span>이메일</div>
                     <div>
-                        <input type="text" class="user-email-input">
+                        <input name="email" type="hidden" id="email">
+                        <input type="text" id="user-email-input" class="user-input">
                         <span>@</span>
                         <input type="text" class="custom-input">
-                        <select name="" id="select-email-option">
+                        <select id="select-email-option">
                             <option value="none">==선택==</option>
                             <option value="userInput">직접입력</option>
-                            <option value="google.com">google.com</option>
+                            <option value="gmail.com">gmail.com</option>
                             <option value="naver.com">naver.com</option>
                             <option value="nate.com">nate.com</option>
                             <option value="daum.net">daum.net</option>
@@ -138,12 +143,14 @@
                         <input type="text" class="user-phone-number-input" maxlength="4">
                         <span>-</span>
                         <input type="text" class="user-phone-number-input" maxlength="4">
+                        <input name="telno" type="hidden" value="">
                     </div>
                     <div class="validation-message"></div>
                 </div>
 
                 <!-- 주소 -->
                 <div class="user-address">
+                    <!-- <input type="hidden"> -->
                     <div>주소</div>
                     <div>
                         <input type="text" class="user-address-input" readonly>
@@ -158,20 +165,21 @@
                     <div>
                         <input type="text" class="user-address-detail-input" placeholder="상세주소입력">
                         <button type="button" id="postal-code-reset-btn" class="user-join-wrap-btn">초기화</button>
+                        <input name="address" type="hidden" value="">
                     </div>
                     <div class="validation-message"></div>
                 </div>
 
                 <!-- 본인인증 -->
-                <div class="user-id-check">
+                <!-- <div class="user-id-check">
                     <div> <span class="required">*</span>본인인증</div>
                     <div>
-                        <input type="text" class="user-id-check-input">
+                        <input type="text" id="user-id-check-input" class="user-input">
                     </div>
                     <div class="validation-message"></div>
-                </div>
+                </div> -->
             </div>
-            <button type="submit" id="user-join-btn" class="user-join-wrap-btn">회원가입</button>
+            <button type="button" id="user-join-btn" class="user-join-wrap-btn">회원가입</button>
         </article>
     </form>
 </body>

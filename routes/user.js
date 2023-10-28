@@ -2,12 +2,51 @@
 
 const express = require("express");
 const commonFunc = require("../common");
-const connection = require("../server.js");     // mysql 사용하기 위해 require
+const connection = require("../server.js");         // mysql 사용하기 위해 require
+const CryptoJS = require("crypto-js");               // CryptoJS, SHA-256 사용위함 -> 비밀번호 암호화
 const router = express.Router();
 
-// 회원가입
+// 회원가입 get
 router.get("/join", (req, res) => {
     res.render("./user/join");
+});
+
+// 회원가입 post
+router.post("/join", (req, res) => {
+    const hashPw = CryptoJS.SHA256(req.body.loginPw).toString();
+
+    const query = `
+        INSERT INTO USER_INFO (user_id, passwd, name, ncnm, email, telno, adres, secsn_ennc, srbde, mber_author, secsn_reqstdt)
+            VALUES ('${req.body.loginId}', '${hashPw}', '${req.body.name}', '${req.body.nickname}',
+            '${req.body.email}', '${req.body.telno}', '${req.body.address}', 0, NOW(), 0, "")
+    `;
+
+    connection.query(query, (queryErr, results) => {
+        if (queryErr) {
+            console.error("Error executing query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+        res.redirect("/user/login");
+    });
+});
+
+// 회원가입 중복 체크
+router.post("/duplicate", (req, res) => {
+    const dbType = req.body.idx == 0 ? 'user_id' : 'ncnm';
+    const inputVal = req.body.val;
+    const query = `SELECT ${dbType} from USER_INFO WHERE ${dbType}='${inputVal}'`;
+    connection.query(query, (queryErr, results) => {        // db 체크
+        if (queryErr) {
+            console.error("Error executing query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        } else if (results.length > 0) {                        // 중복 될 때
+            res.json({ isTrue: true });
+        } else {                                                // 중복 안될 때
+            res.json({ isTrue: false });
+        }
+    });
 });
 
 
@@ -25,9 +64,9 @@ router.get("/login", (req, res) => {
 // 로그인 post
 router.post("/login", (req, res) => {
     const loginId = req.body.loginId;
-    const loginPw = req.body.loginPw;
+    const hashPw = CryptoJS.SHA256(req.body.loginPw).toString();
 
-    const query = `SELECT user_id, ncnm from USER_INFO WHERE user_id='${loginId}' AND passwd='${loginPw}'`;
+    const query = `SELECT user_id, ncnm from USER_INFO WHERE user_id='${loginId}' AND passwd='${hashPw}'`;
     connection.query(query, (queryErr, results) => {        // db 체크
         if (queryErr) throw queryErr;
 
@@ -120,49 +159,6 @@ router.get("/write_column", (req, res) => {
 router.get("/read_column", (req, res) => {
     res.render("./user/column/maincolumn/read_column_comment");
 });
-
-
-// 유저 정보 조회       /user/userInfo
-// router.get("/userInfo", (req, res) => {
-//     const query = "SELECT * FROM USER_INFO";        // 조회
-//     // const query = "UPDATE USER_INFO SET telno = '01012340002' where user_uniq_id = 2";       // 수정
-//     connection.query(query, (queryErr, results) => {
-//         if (queryErr) {
-//             console.error("Error executing query:", queryErr);
-//             res.status(500).send("Internal Server Error");
-//             return;
-//         }
-
-//         console.log("Database results:", results);
-
-//         res.json(results);
-//     });
-// });
-
-// 유저 정보 추가
-// router.get("/userInfo", (req, res) => {
-//   const today = new Date();
-//   var year = today.getFullYear();
-//   var month = ('0' + (today.getMonth() + 1)).slice(-2);
-//   var day = ('0' + today.getDate()).slice(-2);
-//   const datePormat = `${year}-${month}-${day}`
-
-//   const query = `
-//     INSERT INTO USER_INFO (user_uniq_id, user_id, passwd, name, ncnm, email, telno, adres, secsn_ennc, srbde, mber_author, secsn_reqstdt)
-//     VALUES('2', 'testId02', 'testPw02!@', '장성현', 'hello', 'test02@gmail.com', 01012340002, '대전', '2', '${datePormat}', 2, '2')
-//   `;
-//   connection.query(query, (queryErr, results) => {
-//     if (queryErr) {
-//       console.error("Error executing query:", queryErr);
-//       res.status(500).send("Internal Server Error");
-//       return;
-//     }
-
-//     console.log("Database results:", results);
-
-//     res.json(results);
-//   });
-// });
 
 
 module.exports = router;
