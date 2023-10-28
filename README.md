@@ -1,6 +1,6 @@
 ## 테스트유저 아이디, 비밀번호
-id: testId번호      ex) testId01    , testId05
-pw: testPw번호!@    ex) testPw01!@  , testPw05!@
+1. id: testId번호      ex) testId01    , testId05
+2. pw: testPw번호!@    ex) testPw01!@  , testPw05!@
 
 ## router
 - get, post 방식은 각자 페이지 수정하면서 변경해야합니다. 현재는 페이지만 연결해둔 상태입니다.
