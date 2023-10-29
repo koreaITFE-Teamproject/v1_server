@@ -11,64 +11,67 @@
     <div class="title-wrap">
         <h1 id="user-modify-title">회원 정보</h1>
     </div>
+    <!-- 폼태그 수정, 각 인풋에 name작성 해야함 -->
     <form action="#">
         <article class="user-join-wrap">
-            <p class="brief"><span class="required">*</span>표시는 필수 기입항목입니다.</p>
+            <p class="brief"><span class="required">*</span>표시는 변경 불가 항목입니다.</p>
             <div>
                 <!-- 이름 -->
                 <div id="user-name" class="editable-info">
-                    <div><span class="required">*</span>이름</div>
+                    <div>이름</div>
                     <div>
-                        <input type="text" class="user-name-input" maxlength="10" value="<%= userResults[0].name %>">
+                        <input type="text" class="user-name-input" maxlength="10" value="<%= userResults[0].name %>"
+                            readonly>
                     </div>
                     <div class="validation-message"></div>
                 </div>
 
                 <!-- 아이디 -->
                 <div id="user-login-id">
-                    <div>아이디</div>
+                    <div><span class="required">*</span>아이디</div>
                     <div>
                         <!-- 보기 전용 readonly -->
-                        <input type="text" class="user-login-id-input" value="<%= userResults[0].user_id %>" disabled>
+                        <input type="text" class="user-login-id-input" value="<%= userResults[0].user_id %>" readonly>
                     </div>
                 </div>
 
                 <!-- 비밀번호 -->
                 <div id="user-login-pw" class="editable-info">
-                    <div><span class="required">*</span>비밀번호</div>
+                    <div>비밀번호</div>
                     <div>
-                        <input type="password" class="user-login-pw-input" maxlength="30"
-                            value="<%= userResults[0].passwd %>">
+                        <button type="button" id="change-pw-btn" onclick="location.href='/user/passwd_reset'">비밀번호
+                            변경</button>
                         <!-- <i id="show-eyes" class="fa-solid fa-eye" style="color: #474747;"></i> -->
                         <!-- <i id="hide-eyes" class="fa-solid fa-eye-slash" style="color: #474747;"></i> -->
                     </div>
                     <div class="validation-message"></div>
                 </div>
 
-                <!-- 비밀번호 확인 -->
-                <div id="user-login-pw-ck" class="editable-info">
-                    <div><span class="required">*</span>비밀번호 확인</div>
+                <!-- 닉네임 -->
+                <div class="user-nickname">
+                    <div><span class="required">*</span>닉네임</div>
                     <div>
-                        <input type="password" class="user-login-pw-ck-input" value="<%= userResults[0].passwd %>">
+                        <input name="nickname" type="text" id="user-nickname-input" class="user-input" maxlength="14"
+                            value="<%= userResults[0].ncnm %>" readonly>
                     </div>
                     <div class="validation-message"></div>
                 </div>
 
                 <!-- 이메일 -->
                 <div id="user-email" class="editable-info">
-                    <div><span class="required">*</span>이메일</div>
+                    <div>이메일</div>
                     <div>
                         <input type="text" class="user-email-input" value="<%= userResults[0].email.split('@')[0] %>">
                         <span>@</span>
                         <input type="text" class="custom-input">
-                        <select name="" id="select-email-option">
-                            <option value="none">==선택==</option>
-                            <option value="userInput">직접입력</option>
-                            <option value="google.com">google.com</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="nate.com">nate.com</option>
-                            <option value="daum.net">daum.net</option>
-                            <!-- <option value="">카카오</option> -->
+                        <select id="select-email-option">
+                            <% var options=['선택', 'userInput' , 'gmail.com' , 'naver.com' , 'nate.com' , 'daum.net' ];
+                                for(var i=0; i < options.length; i++){%>
+                                <option value="<%= options[i] %>" <%=userResults[0].email.split('@')[1]==options[i]
+                                    ? "selected" : "" %>>
+                                    <%= options[i]=='userInput' ? '직접입력' : options[i] %>
+                                </option>
+                                <% } %>
                         </select>
                     </div>
                     <div class="validation-message"></div>
@@ -102,7 +105,7 @@
                 </div>
 
                 <!-- 알림설정 -->
-                <div id="user-id-check">
+                <!-- <div id="user-id-check">
                     <div>알림설정</div>
                     <div>
                         <input type="checkbox" id="toggle" hidden>
@@ -110,12 +113,12 @@
                             <span id="toggle-btn" class="toggle-btn"></span>
                         </label>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="btn-wrap">
-                <button type="button" id="cancle-button" onclick="location.href='/main/home'">취소</button>
                 <button type="submit" id="update-btn">저장</button>
+                <button type="button" id="cancle-button" onclick="location.href='/main/home'">취소</button>
             </div>
 
         </article>

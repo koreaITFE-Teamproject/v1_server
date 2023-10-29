@@ -64,19 +64,11 @@ $(document).ready(function () {
 
     // 이메일 체크 (직접입력일때)
     var userEmail;
+
     $(".custom-input").hide();
+
     $("#select-email-option").change(function () {
-        if ($(this).val() == "userInput") {
-            $(".custom-input").show();
-        } else {
-            $(".custom-input").hide();
-            $(".custom-input").val("");
-            userEmail = `${$(".user-email-input").val()}@${$(this).val()}`;
-        }
+        $(".custom-input").val("");
+        $(this).val() !== "userInput" ? $(".custom-input").hide() : $(".custom-input").show();
     });
-
-    $(".custom-input").change(function () {
-        userEmail = `${$(".user-email-input").val()}@${$(".custom-input").val()}`;
-    });
-
 })

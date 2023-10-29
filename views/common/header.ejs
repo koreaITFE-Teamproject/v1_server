@@ -27,7 +27,7 @@
         <div class="dropdown-content">
             <!-- 로그인 후 보일 마이페이지 창 -->
             <% if(userInfo.isLogined){ %>
-                <a href="/user/logout">로그아웃</a> <!--페이지 별도로 없음-->
+                <a class="topLogoutButton" href="/user/logout">로그아웃</a> <!--페이지 별도로 없음-->
                 <a href="/user/modify">회원정보수정</a>
                 <a href="/user/delete_account">회원탈퇴</a>
                 <% } else { %>
@@ -40,7 +40,7 @@
 <!-- 이게 로그인 페이지로 넘어가야함. -->
 <div id="search">
     <a href="/main/search"><i class="bi bi-search" id="search_id"></i></a>
-    <i class="bi bi-bell"></i>
+    <!-- <i class="bi bi-bell"></i> -->
     <% if(!userInfo.isLogined){ %>
         <span>로그인 해주세요</span>
         <a href="/user/login" id="topStartBrunchButton">시작하기</a>
@@ -48,6 +48,6 @@
             <div id="nickname-wrap"><span class="nickname">
                     <%= userInfo.nickname %>
                 </span>님</div>
-            <a href="/user/logout" id="topLogoutButton">로그아웃</a>
+            <a href="/user/logout" class="topLogoutButton">로그아웃</a>
             <% } %>
 </div>

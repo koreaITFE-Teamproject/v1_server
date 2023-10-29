@@ -120,22 +120,21 @@ header {
     width: 20%;
     display: flex;
     align-items: center;
-    margin-left: 35%;
+    margin-left: 50%;
 }
 
-#search span{
+#search span {
     margin-left: 5px;
     min-width: 60px;
     font-size: 16px;
 }
 
-#search_id,
-.bi-bell {
+#search_id {
     margin: 5px;
 }
 
 #topStartBrunchButton,
-#topLogoutButton {
+.topLogoutButton:last-child {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -146,7 +145,7 @@ header {
     border: 1px solid #959595;
     border-radius: 15px;
     color: #333;
-    width: 80%;
+    width: 50%;
     max-width: 100px;
     min-width: 60px;
     height: 30px;

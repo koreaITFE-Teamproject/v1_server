@@ -66,7 +66,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#topLogoutButton").click(function(e){
+    $(".topLogoutButton").click(function(e){
         if(!confirm("로그아웃 하시겠습니까?")){
             e.preventDefault();
         }

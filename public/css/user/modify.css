@@ -19,7 +19,7 @@ button {
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background-color: #F6E3CE;
 }
 
@@ -28,6 +28,7 @@ button:hover{
     border-left-color: white;
 } */
 
+/*  */
 .title-wrap {
     width: 50%;
     min-width: 500px;
@@ -118,6 +119,15 @@ button:hover{
     color: black;
 }
 
+/* 비밀번호 */
+#user-login-pw>div:nth-child(2) {
+    width: 30%;
+}
+
+#change-pw-btn {
+    margin-left: 0;
+}
+
 /* 이메일 */
 #user-email>div:nth-child(2)>span {
     padding: 0 10px;
@@ -152,17 +162,17 @@ button:hover{
     width: 30%;
 }
 
-
-/* 알림 토글 스위치 */
+/* 
+알림 토글 스위치
 #user-id-check>div:last-child {
-    /* 토글 스위치 위치 */
+    토글 스위치 위치
     padding: 0 20px;
     justify-self: left;
 }
 
-/* 토글 스위치 체크 전 */
+토글 스위치 체크 전
 .toggle-swt {
-    /* 스위치의 길이 */
+    스위치의 길이
     width: 80px;
     height: 40px;
     display: block;
@@ -174,9 +184,9 @@ button:hover{
     transition: all .3s;
 }
 
-/* 토글 버튼 체크 전 */
+토글 버튼 체크 전
 .toggle-btn {
-    /* 버튼의 길이 */
+    버튼의 길이
     width: 30px;
     height: 30px;
     position: absolute;
@@ -188,16 +198,16 @@ button:hover{
     transition: all .3s;
 }
 
-/* 토글 스위치 체크 후 */
+토글 스위치 체크 후
 .toggle-swt-checked {
     background-color: #F9ECDB;
 }
 
-/* 토글 버튼 체크 후 */
+토글 버튼 체크 후
 .toggle-btn-checked {
     left: calc(100% - 34px);
     background-color: #fff;
-}
+} */
 
 
 /* 취소, 저장 버튼 */
