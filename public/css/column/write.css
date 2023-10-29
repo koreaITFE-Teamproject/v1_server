@@ -31,19 +31,19 @@ a:hover {
 
 .buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
   grid-gap: 10px;
 }
 
-.buttons>button {
+.buttons > button {
   width: 100%;
-  background-color: #F9ECDB;
+  background-color: #f9ecdb;
   border-radius: 5px;
   border: 1.5px solid #764127;
 }
 
-.buttons>button:hover {
-  background-color: #F6E3CE;
+.buttons > button:hover {
+  background-color: #f6e3ce;
 }
 
 .name {

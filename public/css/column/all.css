@@ -6,7 +6,7 @@
   padding-top: 40px;
 }
 
-.path{
+.path {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -21,44 +21,44 @@
 
 .option_bar {
   padding-top: 20px;
-  border-top: 3px solid #F6E3CE;
-  border-bottom: 2px solid #F6E3CE;
+  border-top: 3px solid #f6e3ce;
+  border-bottom: 2px solid #f6e3ce;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.option_bar>ul {
+.option_bar > ul {
   margin: 0;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.option_bar>ul>li {
+.option_bar > ul > li {
   margin: 0 15px;
   font-size: 1.2rem;
   margin-bottom: 10px;
   cursor: pointer;
 }
 
-.option_bar>ul>li:first-child {
+.option_bar > ul > li:first-child {
   font-weight: bold;
   border-bottom: 2px solid #764127;
 }
 
 .all {
-  width: 200px; 
+  width: 200px;
   border-radius: 4px;
 }
 
 .sub {
-  width: 400px; 
+  width: 400px;
   border-radius: 4px;
 }
 
 .like {
-  width: 400px; 
+  width: 400px;
   border-radius: 4px;
 }
 
@@ -69,7 +69,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
@@ -110,21 +111,20 @@ th:nth-child(4) {
   margin-top: 30px;
 }
 
-.column-search-wrap>p,
+.column-search-wrap > p,
 .search-input,
-.column-search-wrap>button {
+.column-search-wrap > button {
   border: 1px solid;
   border-radius: 5px;
   margin: 0 3px;
   padding: 8px 5px;
   font-size: 1.1rem;
-  background-color: #F9ECDB;
+  background-color: #f9ecdb;
   border: 1.5px solid #764127;
 }
 
-.column-search-wrap>button:hover{
-  background-color: #F6E3CE;
-
+.column-search-wrap > button:hover {
+  background-color: #f6e3ce;
 }
 
 .search-input {
@@ -133,15 +133,14 @@ th:nth-child(4) {
   padding: 0 8px;
 }
 
-
 /* 페이지네이션 스타일 */
 /* 나중에 게시글 테이블 완성되면 하단고정으로 만들어야함. */
 /* 하....... 버튼 배치를 못하면 어쩌자는거야... */
 /* 일단 요소 위치 설정은 나중에 다시 하고 페이지네이션 옆에 버튼 붙히는걸로 */
 .pagination-container {
   display: flex;
-  justify-content: center; 
-  font-family: 'HakgyoansimWoojuR';
+  justify-content: center;
+  font-family: "HakgyoansimWoojuR";
 }
 
 /* .pagination{
