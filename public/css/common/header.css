@@ -26,12 +26,19 @@ main {
 }
 
 a,
-.bi {
+a:hover {
     text-decoration: none;
-    color: #764127;
+    color: black;
 }
 
-a:hover {
+p {
+    margin: 0;
+    margin-bottom: 0;
+}
+
+.bi,
+.pages,
+.pages:hover {
     text-decoration: none;
     color: #764127;
 }
@@ -67,6 +74,11 @@ header {
     width: 10%;
     font-family: 'GmarketSansMedium';
     text-align: center;
+    font-size: 17px;
+}
+
+.site_name>a {
+    color: #764127;
 }
 
 .bi {
@@ -117,52 +129,64 @@ header {
 }
 
 #search {
-    width: 25%;
     display: flex;
     align-items: center;
-    margin-left: 50%;
+    justify-content: space-around;
+    margin-left: 35%;
 }
 
-#search span {
-    margin-left: 5px;
-    min-width: 60px;
-    font-size: 16px;
-}
-
-#search_id {
-    margin: 5px;
+.bi-search {
+    margin: 0 5px;
 }
 
 #topStartBrunchButton,
 .topLogoutButton:last-child {
+    width: 100%;
+    min-width: 100px;
+    height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: inherit;
     background-color: #fff;
     opacity: .9;
     border: 1px solid #959595;
     border-radius: 15px;
     color: #333;
-    width: 50%;
-    max-width: 100px;
-    min-width: 60px;
-    height: 30px;
-    margin: 0 auto;
     font-family: "Noto Sans Light", sans-serif;
     font-size: 12px;
 }
 
-#nickname-wrap {
-    width: 30%;
-    min-width: 60px;
+.nickname-wrap {
+    width: 100%;
+    min-width: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 25px;
     font-size: 16px;
-    padding: 0 10px;
-    text-align: center;
 }
 
-.nickname {
+.nickname-wrap>.nickname {
+    font-weight: bold;
+}
+
+
+/* 경로 표시 */
+.path-wrap {
+    position: relative;
+    width: 50%;
+    max-width: 1020px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.path {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#change-path {
     font-weight: bold;
 }
 
@@ -173,7 +197,7 @@ header {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
     #search {
         margin-left: 20%;
     }

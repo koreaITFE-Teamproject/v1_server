@@ -98,11 +98,13 @@ const mainRoute = require("./routes/main");
 const userRoute = require("./routes/user");
 const discussionRoute = require("./routes/discussion");
 const customerRoute = require("./routes/customer");
+const columnRoute = require("./routes/column");
 
 app.use("/main", mainRoute);
 app.use("/user", userRoute);
 app.use("/discussion", discussionRoute);
 app.use("/customer", customerRoute);
+app.use("/column", columnRoute);
 
 
 app.listen(3000, () => {

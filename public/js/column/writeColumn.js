@@ -65,16 +65,19 @@ $(document).ready(function () {
 
   $("#save-column").on("click", function () {
     if (confirm("게시하시겠습니까?")) {
-      let sj = $("#sj").val();
+      let sj = $("#sj").val();                    // 제목
+      let nm = $(".nickname").text().trim();             // 작성자 닉네임
+      let cn = $(".note-editable").html();        // 내용
+
       $.ajax({
-        url: `http://localhost:3000/user/saveColumn`,
+        url: `http://localhost:3000/column/saveColumn`,
         method: "POST",
-        data: { sj: sj },
+        data: { sj: sj, cn: cn, nm: nm },
         dataType: "json",
         success: function (data) {
           if (data.status == "SUCCESS") {
             alert("저장이 완료되었습니다.");
-            window.location.href = "/user/all_column";
+            window.location.href = "/column/all";
           }
         },
         error: function (err) {

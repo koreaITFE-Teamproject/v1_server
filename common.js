@@ -1,9 +1,13 @@
-function getRegistDt() {
-    const today = new Date();
-    var year = today.getFullYear();
-    var month = ('0' + (today.getMonth() + 1)).slice(-2);
-    var day = ('0' + today.getDate()).slice(-2);
-    return `${year}-${month}-${day}`
+function formatDt(dt) {
+    const date = new Date(dt);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, 0);
+    const day = String(date.getDate()).padStart(2, 0);
+    const hours = String(date.getHours()).padStart(2, 0);
+    const minutes = String(date.getMinutes()).padStart(2, 0);
+
+    console.log(`${year}-${month}-${day} ${hours}:${minutes}`);
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
 
 function checkLoginStatus(req) {
@@ -15,6 +19,6 @@ function checkLoginStatus(req) {
 }
 
 module.exports = {
-    getRegistDt,
+    formatDt,
     checkLoginStatus
 }

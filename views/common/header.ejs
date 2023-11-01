@@ -9,12 +9,12 @@
         <div class="dropdown-content">
             <!-- 로그인 후 보일 마이페이지 창 -->
             <% if(userInfo.isLogined){ %>
-                <a href="/user/all_column">전체 칼럼</a>
-                <a href="/user/sub_column">구독한 작가 칼럼</a>
-                <a href="/user/like_column">좋아요 한 칼럼</a>
-                <a href="/user/write_column">칼럼작성</a>
+                <a class="pages" href="/column/all">전체 칼럼</a>
+                <a class="pages" href="/column/sub">구독한 작가 칼럼</a>
+                <a class="pages" href="/column/like">좋아요 한 칼럼</a>
+                <a class="pages" href="/column/write">칼럼작성</a>
                 <% } else { %>
-                    <a href="/user/all_column">전체 칼럼</a>
+                    <a class="pages" href="/column/all">전체 칼럼</a>
                     <% } %>
         </div>
     </div>
@@ -23,12 +23,12 @@
         <div class="dropdown-content">
             <!-- 로그인 후 보일 마이페이지 창 -->
             <% if(userInfo.isLogined){ %>
-                <a href="/discussion/room_list">전체 토론방</a>
-                <a href="/discussion/room_list">추천 토론방</a>
-                <a href="/discussion/room_list">내 토론방</a>
-                <a href="/discussion/create_room">새로운 토론방 만들기</a>
+                <a class="pages" href="/discussion/room_list">전체 토론방</a>
+                <a class="pages" href="/discussion/room_list">추천 토론방</a>
+                <a class="pages" href="/discussion/room_list">내 토론방</a>
+                <a class="pages" href="/discussion/create_room">새로운 토론방 만들기</a>
                 <% } else { %>
-                    <a href="/discussion/room_list">전체 토론방</a>
+                    <a class="pages" href="/discussion/room_list">전체 토론방</a>
                     <% } %>
         </div>
     </div>
@@ -37,12 +37,12 @@
         <div class="dropdown-content">
             <!-- 로그인 후 보일 마이페이지 창 -->
             <% if(userInfo.isLogined){ %>
-                <a class="topLogoutButton" href="/user/logout">로그아웃</a> <!--페이지 별도로 없음-->
-                <a href="/user/modify">회원정보수정</a>
-                <a href="/user/delete_account">회원탈퇴</a>
+                <a class="pages" class="topLogoutButton" href="/user/logout">로그아웃</a> <!--페이지 별도로 없음-->
+                <a class="pages" href="/user/modify">회원정보수정</a>
+                <a class="pages" href="/user/delete_account">회원탈퇴</a>
                 <% } else { %>
-                    <a href="/user/join">회원가입</a>
-                    <a href="/user/login">로그인</a>
+                    <a class="pages" href="/user/join">회원가입</a>
+                    <a class="pages" href="/user/login">로그인</a>
                     <% } %>
         </div>
     </div>
@@ -52,12 +52,14 @@
     <a href="/main/search"><i class="bi bi-search" id="search_id"></i></a>
     <!-- <i class="bi bi-bell"></i> -->
     <% if(!userInfo.isLogined){ %>
-        <span>로그인 해주세요</span>
+        <span class="nickname-wrap">
+            로그인시<br>이용가능
+        </span>
         <a href="/user/login" id="topStartBrunchButton">시작하기</a>
         <% } else { %>
-            <div id="nickname-wrap"><span class="nickname">
+            <div class="nickname-wrap"><span class="nickname">
                     <%= userInfo.nickname %>
-                </span>님</div>
+                </span><span>님</span></div>
             <a href="/user/logout" class="topLogoutButton">로그아웃</a>
             <% } %>
 </div>

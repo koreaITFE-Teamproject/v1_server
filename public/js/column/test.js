@@ -8,7 +8,7 @@ $(document).ready(function () {
     $("#postBody").text("");
 
     $.ajax({
-      url: `http://localhost:3000/user/getList?page=${page}&search=${searchQuery}`,
+      url: `http://localhost:3000/column/getList?page=${page}&search=${searchQuery}`,
       method: "GET",
       dataType: "json",
       success: function (data) {
@@ -19,7 +19,7 @@ $(document).ready(function () {
           var postBody = $("#postBody");
           var postBodyData = "<tr>";
           postBodyData += `<td>${resultData[i].ROW_NUM}</td>`;
-          postBodyData += `<td>${resultData[i].SJ}</td>`;
+          postBodyData += `<td><a class="column-title" href="/column/read/${resultData[i].ROW_NUM}">${resultData[i].SJ}</a></td>`;
           postBodyData += `<td>${resultData[i].COLMN_WRTER}</td>`;
           postBodyData += `<td>${resultData[i].WRITNG_TIME}</td>`;
           postBodyData += "</tr>";
@@ -107,9 +107,5 @@ $(document).ready(function () {
 
       $("#search-column").trigger("click");
     }
-  });
-
-  $("#add-column-btn").on("click", function () {
-    window.location.href = "/user/write_column";
   });
 });

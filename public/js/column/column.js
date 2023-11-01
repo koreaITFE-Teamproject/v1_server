@@ -3,7 +3,7 @@
 $(function () {
 
     $(".option_bar li").click(function () {
-        discussPath($(this).index(), $(this).text());;
+        discussPath($(this).text());;
   
         $(".option_bar li").css({
             "fontWeight": "normal",
@@ -15,22 +15,10 @@ $(function () {
         });
     });
   
-    discussPath(0, "전체 칼럼");
+    discussPath("전체 칼럼");
   
-    function discussPath(idx, $text) {
-        var discuss = "#";
-        var rooms = "#";
-  
-        var pathText = `<i class="fa-solid fa-house"></i> > <a href='${discuss}'>칼럼</a> > ${$text}`;
-        if (idx == 0) {
-            discuss = "#";
-        } else if (idx == 1) {
-            discuss = "#";
-        } else {
-            discuss = "#";
-        }
-  
-        $(".path").html(pathText);
+    function discussPath($text) {
+        $("#change-path").text($text);
     }
   
     // var listHeight = parseInt($(".discussion-rooms-list").css("maxHeight"));

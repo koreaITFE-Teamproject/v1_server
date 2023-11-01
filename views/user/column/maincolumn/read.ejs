@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>칼럼 읽기</title>
+    <link rel="stylesheet" href="/column/read.css">
+    <script src="/column/read.js"></script>
+</head>
+<!-- +이 페이지 푸터 위치 문제-->
+
+<!-- 이 페이지는 서버랑 연동하고 백이랑 프론트 같이 들어가야해서 퍼블리싱 까지만 했습니다! -->
+
+<body>
+    <div class="path-wrap">
+        <p class="path"> <a href="/main/home"><i class="fa-solid fa-house"></i></a> >
+            <span>칼럼</span> >
+            <span>
+                <% if(column.cs==0){ %>
+                    전체컬럼
+                    <% } else if(column.cs==1) { %>
+                        구독한 작가 컬럼
+                        <% } else { %>
+                            좋아요 한 컬럼
+                            <% } %>
+            </span> >
+            <span id="change-path">
+                <%= column.sj %>
+            </span>
+        </p>
+    </div>
+
+    <div class="title_bar">
+        <!-- 제목  input 길이 50자로 지정 -->
+        <div class="title">
+            <p id="col_no">
+                <%= column.c_id %>.
+            </p>
+            <span></span>
+            <p>
+                <%= column.sj %>
+            </p>
+        </div>
+        <p id="writer">
+            <i class="fa-solid fa-circle-user"></i>
+            <%= column.nm %>
+        </p>
+    </div>
+    <div class="contents_bar">
+        <div id="col-info">
+            <div id="col-info-dt">
+                <i class="fa-regular fa-clock"></i>
+                <%= column.wt %>
+            </div>
+            <div id="col-info-icon-wrap">
+                <div>
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span id="comment_count">0</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="like_count">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="column_contents" id="column_contents">
+            <input id="getContent" type="hidden" value="<%=column.cn%>">
+            <div id="content">
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-thumbs-up" style="color: #c4c4c4;"></i>
+                <p id="like">좋아요</p>
+                <p class="like_count">0</p>
+            </div>
+        </div>
+        <!-- 댓글 부분, 위치 색깔 하늘색-->
+        <div class="comment_bar">
+            <div class="comment_num">댓글 수 : <span class="server_num">0</span></div>
+            <!-- 부모 댓글 textarea, 위치 색깔 파란색-->
+            <div class="comment_input">
+                <textarea class="textarea"></textarea>
+                <div class="input_div">
+                    <div class="limit_text"><span class="js_num">0</span>/300</div>
+                    <div class="input_btn">등록</div>
+                </div>
+            </div>
+            <!-- 부모 textarea로 받은 내용이 들어올 위치-->
+            <div class="input_text_bar">
+                <div class="user_time"><span>유저정보</span><span>입력한 시간</span></div>
+                <div class="recommnet_bar">
+                    <!-- 위치 색깔 분홍색 -->
+                    <div class="input_text">
+                        위의 댓글에서 입력한거 받는 부분
+                    </div>
+                    <span class="recomment_write">답글 쓰기</span>
+                </div>
+                <!-- 답글 쓰기를 누르면 나오는 자식 댓글 -->
+                <!-- 자식 textarea로 받은 내용이 들어올 위치 -->
+                <!-- <div class="user_time"><span>유저정보</span><span>입력한 시간</span></div>
+                <div class="recommnet_bar">
+                    <div class="input_text">
+                        아래의 대댓글쓰기에서 입력한거 받는 부분
+                    </div>
+                    자식 댓글 Textarea부분, 위치 색깔 파란색
+                    <div class="comment_input">
+                        <textarea class="textarea"></textarea>
+                        <div class="input_div">
+                            <div class="limit_text"><span class="js_num">0</span>/300</div>
+                            <div class="input_btn">등록</div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

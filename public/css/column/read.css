@@ -1,0 +1,203 @@
+.title_bar {
+    width: 50%;
+    border-top: 3px solid #ddd;
+    padding: 5px 0;
+    margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    /* background-color: #fff8ef; */
+}
+
+#col_no {
+    font-family: none;
+}
+
+.title>p {
+    text-align: left;
+    font-size: 30px;
+    padding: 0 0 0 20px;
+}
+
+.title>p:last-child {
+    font-size: 28px;
+}
+
+/* 번호와 제목 사이 칸 표시 용 */
+.title span {
+    margin: 0;
+}
+
+#writer {
+    margin: 0;
+    padding: 5px 0 0 20px;
+    font-size: 18px;
+}
+
+#writer>i {
+    padding-right: 5px;
+}
+
+.contents_bar {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#col-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f6f6f6;
+    margin-top: 5px;
+    padding: 5px 10px;
+    border: 1.5px solid #f6f6f6;
+    border-top: 3px solid #ddd;
+}
+
+#col-info-dt {
+    display: flex;
+    align-items: center;
+}
+
+#col-info-dt>i {
+    margin-right: 7px;
+}
+
+#col-info-icon-wrap {
+    display: flex;
+}
+
+#col-info-icon-wrap>div {
+    display: flex;
+    align-items: center;
+}
+
+#col-info-icon-wrap>div:first-child {
+    margin-right: 12px;
+}
+
+#col-info-icon-wrap span {
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+/* 칼럼 들어올 자리 */
+.column_contents {
+    margin: 0 auto;
+    padding: 10px;
+    /* 구분선. db들어오고 글 들어오면 없어질 border */
+    border: 1.5px solid #f6f6f6;
+    border-top: 0;
+    position: relative;
+}
+
+.icon {
+    width: 130px;
+    height: 45px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+}
+
+.icon>i {
+    font-size: 24px;
+}
+
+.icon>i,
+.icon>p {
+    padding: 0 3px;
+    color: #3d3d3d;
+}
+
+/* 댓글 창 부분 */
+/* 큰 틀 */
+.comment_bar {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid #764127;
+}
+
+.comment_bar>div {
+    margin: 5px;
+}
+
+.comment_num {
+    width: 15%;
+    background-color: #F9ECDB;
+    color: #764127;
+    padding: 5px;
+}
+
+.comment_input {
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid #764127;
+}
+
+.user_time {
+    display: flex;
+    flex-direction: row;
+}
+
+.recommnet_bar {
+    display: flex;
+    flex-direction: column;
+    /* 구분 색 */
+    border: 3px solid pink;
+}
+
+.input_text {
+    display: inline-block;
+}
+
+.js_num {
+    display: inline-block;
+}
+
+.server_num {
+    width: 20%;
+}
+
+.input_div {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1.5px solid #764127;
+}
+
+.limit_text {
+    padding: 5px 10px;
+    border-right: 1.5px solid #764127;
+}
+
+.input_btn {
+    padding: 5px 20px;
+    background-color: #F9ECDB;
+    color: #764127;
+    border-left: 1.5px solid #764127;
+    /* border-radius: 5px; */
+}
+
+.input_btn:hover {
+    background-color: #F6E3CE;
+    cursor: pointer;
+}
+
+.textarea {
+    border: none;
+    resize: none;
+    height: 80px;
+    padding: 5px;
+}
+
+.textarea:focus {
+    outline: none;
+}
