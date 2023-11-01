@@ -59,4 +59,21 @@ $(function () {
     function checkLessThanTen(time) {
         return time < 10 ? `0${time}` : time;
     }
+
+
+    // 비밀번호 표시
+    $("#show-eyes").click(function () {
+        showIconToggle();
+        $("#login-pw").attr("type", "password");
+    });
+
+    $("#hide-eyes").click(function () {
+        showIconToggle();
+        $("#login-pw").attr("type", "text");
+    });
+
+    function showIconToggle(){
+        $("#show-eyes").toggle();
+        $("#hide-eyes").toggle();
+    }
 });

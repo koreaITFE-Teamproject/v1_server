@@ -7,19 +7,29 @@
     <div class="menu_bar_item">
         <div class="content-title">칼럼</div>
         <div class="dropdown-content">
-            <a href="/user/all_column">전체 칼럼</a>
-            <a href="/user/sub_column">구독한 작가 칼럼</a>
-            <a href="/user/like_column">좋아요 한 칼럼</a>
-            <a href="/user/write_column">칼럼작성</a>
+            <!-- 로그인 후 보일 마이페이지 창 -->
+            <% if(userInfo.isLogined){ %>
+                <a href="/user/all_column">전체 칼럼</a>
+                <a href="/user/sub_column">구독한 작가 칼럼</a>
+                <a href="/user/like_column">좋아요 한 칼럼</a>
+                <a href="/user/write_column">칼럼작성</a>
+                <% } else { %>
+                    <a href="/user/all_column">전체 칼럼</a>
+                    <% } %>
         </div>
     </div>
     <div class="menu_bar_item">
         <div class="content-title">토론방</div>
         <div class="dropdown-content">
-            <a href="/discussion/room_list">전체 토론방</a>
-            <a href="/discussion/room_list">추천 토론방</a>
-            <a href="/discussion/room_list">내 토론방</a>
-            <a href="/discussion/create_room">새로운 토론방 만들기</a>
+            <!-- 로그인 후 보일 마이페이지 창 -->
+            <% if(userInfo.isLogined){ %>
+                <a href="/discussion/room_list">전체 토론방</a>
+                <a href="/discussion/room_list">추천 토론방</a>
+                <a href="/discussion/room_list">내 토론방</a>
+                <a href="/discussion/create_room">새로운 토론방 만들기</a>
+                <% } else { %>
+                    <a href="/discussion/room_list">전체 토론방</a>
+                    <% } %>
         </div>
     </div>
     <div class="menu_bar_item">

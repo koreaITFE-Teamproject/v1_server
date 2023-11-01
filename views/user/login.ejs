@@ -24,14 +24,16 @@
         <h1>로그인</h1>
         <form id="login-form" action="/user/login" method="post">
             <div class="login-wrap">
-                <div class="login-id">아이디</div>
+                <i class="fa-solid fa-user"></i>
                 <input type="text" name="loginId" id="login-id" class="text-field" placeholder="아이디를 입력해주세요"
                     maxlength="20">
             </div>
             <div class="login-wrap">
-                <div class="login-pw">비밀번호</div>
+                <i class="fa-solid fa-lock"></i>
                 <input type="password" name="loginPw" id="login-pw" class="text-field" placeholder="비밀번호를 입력해주세요"
                     maxlength="30">
+                <i id="show-eyes" class="fa-solid fa-eye" style="color: #474747;"></i>
+                <i id="hide-eyes" class="fa-solid fa-eye-slash" style="color: #474747;"></i>
             </div>
             <button type="submit" class="submit-btn">로그인</button>
             <button type="button" class="qr-btn">QR 로그인</button>
