@@ -8,29 +8,35 @@
 </head>
 
 <body>
-    <div class="main_div">
-        <div class="contents">
-            <h1>비밀번호 변경</h1>
-            <p>새로운 비밀번호를 설정해 주세요</p>
-        </div>
-        <div class="contents">
-            <div class="division_name" id="newpw_input">새 비밀번호</div>
-            <input type="password" class="name_input" id="newpw">
-            <div class="message-outline">
-                <div class="validation-message">test 문구</div>
+    <form action="#">
+        <div class="main_div">
+            <div class="contents">
+                <h1>비밀번호 변경</h1>
+                <p>새로운 비밀번호를 설정해 주세요</p>
+            </div>
+            <div>
+                <div class="input-contents">
+                    <div class="division_name" id="current_pw">기존 비밀번호</div>
+                    <input type="password" class="name_input" id="newpw">
+                    <div class="validation-message"></div>
+                </div>
+                <div class="input-contents">
+                    <div class="division_name" id="newpw_input">새 비밀번호</div>
+                    <input type="password" class="name_input" id="newpw">
+                    <div class="validation-message"></div>
+                </div>
+                <div class="input-contents">
+                    <div class="division_name">새 비밀번호 확인</div>
+                    <input type="password" class="name_input" id="newpw_ck">
+                    <div class="validation-message"></div>
+                </div>
+            </div>
+
+            <div class="contents" id="ck_button_outdiv">
+                <button type="button" id="ck_button">확인</button>
             </div>
         </div>
-        <div class="contents">
-            <div class="division_name">새 비밀번호 확인</div>
-            <input type="password" class="name_input" id="newpw_ck">
-            <div class="message-outline">
-                <div class="validation-message"></div>
-            </div>
-        </div>
-        <div class="contents" id="ck_button_outdiv">
-            <div class="division_name" id="ck_button">확인</div>
-        </div>
-    </div>
+    </form>
 </body>
 
 </html>

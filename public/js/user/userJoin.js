@@ -1,347 +1,291 @@
 $(function () {
-    /* 회원가입 시 전화번호 입력 값이 올바르지 않을 떄 회원가입 불가능 하도록 수정예정 */
+    let requiredInputs = $(".user-input");                          // 필수기입항목 input
+    let isCheckDuplicate = [false, false];                          // 중복확인 했는지 배열, [아이디, 닉네임]
+    let userEmail = "";                                             // 이메일
+    let telNo = "";                                                 // 전화번호
 
-    // 테스트용 생성자 --------
-    // 사용자 객체 생성을 위한 생성자 함수 정의
-    function User(id, loginId, loginPw, name, nickname, email, phoneNumber, address) {
-        this.id = id;
-        this.loginId = loginId;
-        this.loginPw = loginPw;
-        this.name = name;
-        this.nickname = nickname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
-
-    // 사용자 객체 생성
-    var id = 1;
-    var user1 = new User(id++, "testId01", "testPw01", "testName01", "testNickname01", "test01@test.com", "010 1234 5671", "대전");
-    var user2 = new User(id++, "testId02", "testPw02", "testName02", "testNickname02", "test02@test.com", "010 1234 5672", "서울");
-
-    // 사용자 배열에 추가
-    var users = [user1, user2];
-
-    console.log(users);
-    // 테스트용 --------
-
-
-
-
-    // [*아이디, *비밀번호, *비밀번호 확인, *이름, *닉네임, *이메일, 전화번호, 주소, *본인인증]
-    // [0        1         2              3      4       5        7        8     9      ]
-    var inputs = [$(".user-login-id-input"), $(".user-login-pw-input"), $(".user-login-pw-ck-input"), $(".user-name-input"),
-    $(".user-nickname-input"), $(".user-email-input"), $(".user-phone-number-input"), $(".user-address-input"), $(".user-id-check-input")];
-
-    var $joinBtn = $("#user-join-btn");         // 회원가입 버튼
 
     // 정규표현식
-    const spacePattern = /\s/;                            // 공백 체크
-    const idRegex = /^[A-Za-z0-9]{7,20}$/;                // id, [A~Z, a~z, 0~9] {글자수 7~20 사이}
-    const pwRegex = /^[A-Za-z0-9.,\/?!@#$%^&*]{10,30}$/;  // pw, [A~Z, a~z, 0~9, 특수문자(.,/?!@#$%^&*)] {글자수 10~30 사이}
-    const nameRegex = /^[가-힣A-Za-z]{2,10}$/;            // name, [한글(가~힣), A~Z, a~z] {글자수 2~10 사이}
-    const nicknameRegex = /^[가-힣A-Za-z0-9]{2,15}$/;     // nickname, [한글(가~힣), A~Z, a~z, 0~9] {글자수 2~15 사이}
+    const idRegex = /^[A-Za-z0-9]{7,20}$/;                  // id, [A~Z, a~z, 0~9] {글자수 7~20 사이}
+    const pwRegex = /^[A-Za-z0-9.,\/?!@#$%^&*]{10,30}$/;    // pw, [A~Z, a~z, 0~9, 특수문자(.,/?!@#$%^&*)] {글자수 10~30 사이}
+    const nameRegex = /^[가-힣A-Za-z]{2,10}$/;              // name, [한글(가~힣), A~Z, a~z] {글자수 2~10 사이}
+    const nicknameRegex = /^[가-힣A-Za-z0-9]{2,15}$/;       // nickname, [한글(가~힣), A~Z, a~z, 0~9] {글자수 2~15 사이}
     const emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;     // 이메일 형식 확인
-    const pnRegex = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/       // pn, ooo-oooo-oooo 형태와 일치해야함 (숫자로만 구성)
+    const telRegex = /^010[0-9]{4}[0-9]{4}$/           // pn, 010oooooooo 형태와 일치해야함 (숫자로만 구성)
 
 
-    // 작성한 입력란의 내용이 바뀔 시
-    $(".user-join-wrap>div>div>div:nth-child(2)>input").change(function () {
-        var idx = 0;
-        var val = $(this).val().trim();           // 입력값 양옆 공백 제거
-        var msg = $(this).parent().next();        // 해당 인풋 부모의 다음 형제 (확인 메시지 출력 -> .validation-message)
 
-        for (var input of inputs) {
-            if ($(this).is(input)) {
-                isValid(input, val, msg, idx);
-            }
-            idx++;
+    // 각 인풋값이 변할 시
+    $(".user-input").change(function () {
+        checkValidity($(this).parent().parent().index());
+    });
+
+    // 회원가입 버튼 클릭 시 필수기입 목록 작성했는지
+    $("#user-join-btn").click(function () {
+        if (!confirm("가입하시겠습니까?")) {
+            return alert("취소합니다.");
         }
+
+        let isProblem = false;                                  // 가입버튼 클릭시 문제가 없는지 확인용
+
+        for (let i = 0; i < requiredInputs.length; i++) {       // 전체 유효성 검사
+            if (checkValidity(i)) {                             // 문제가 있을때(true 일때)
+                isProblem = true;
+            }
+        }
+
+        if (hastelNoInput()) {                                    // 전화번호 검사 시 문제있을 때
+            isProblem = true;
+        }
+
+        // 유효성 검사 한개라도 실패 시
+        if (isProblem) {
+            isCheckDuplicate = [false, false];
+            return alert("작성하신 부분을 다시 확인해주세요.");
+        }
+
+        // 전체 유효성 검사 성공 시 중복 검사
+        for (let i = 0; i < isCheckDuplicate.length; i++) {
+            if (!isCheckDuplicate[i]) {                         // 중복검사 한개라도 안했을 때, 둘다 초기화
+                validMsgCss($(".validation-message").eq(0), 5, 0);
+                validMsgCss($(".validation-message").eq(4), 5, 0);
+                isCheckDuplicate = [false, false];
+                isProblem = true;
+                return alert("중복확인을 해주세요.");
+            }
+        }
+
+
+        alert("가입되었습니다");
+        $("form").submit();
     });
 
-    // 비밀번호, 비밀번호 확인 같은지 체크
-    $(".user-login-pw-ck-input").change(function () {
-        isSamePw($(this), $(this).parent().next());
+    // 중복확인 버튼 클릭 시
+    $(".duplicate-btn").click(function () {
+        const btnIdx = parseInt($(this).attr("data-btn-idx"));
+        if (checkValidity(btnIdx)) {                                            // 유효성 검사 실패시
+            return;
+        }
+        checkDuplicate(requiredInputs[btnIdx].value, btnIdx);
     });
 
+    // 유효성 검사 함수
+    function checkValidity(idx) {
+        let isProblem = true;
+        if (!requiredInputs[idx].value.trim()) {                            // 공백체크
+            validMsgCss($(".validation-message").eq(idx), 0, idx);
+        } else if (isRegexValid(requiredInputs[idx].value, idx)) {          // 정규식 체크 문제 없을 때
+            validMsgCss($(".validation-message").eq(idx), 1, idx);
+            isProblem = false;
+        } else {                                                            // 그외 문제 있을 떄
+            validMsgCss($(".validation-message").eq(idx), 2, idx);
+        }
+        return isProblem;
+    }
+
+    // 정규식 검사 함수
+    function isRegexValid(input, idx) {
+        switch (idx) {
+            case 0:
+                return idRegex.test(input) ? 1 : 0;
+            case 1:
+                return pwRegex.test(input) ? 1 : 0;
+            case 2:
+                return input === requiredInputs[idx - 1].value ? 1 : 0;
+            case 3:
+                return nameRegex.test(input) ? 1 : 0;
+            case 4:
+                return nicknameRegex.test(input) ? 1 : 0;
+            case 5:
+                return emailRegex.test(userEmail) ? 1 : 0;
+            default:
+                return;
+        }
+    }
+
+    // 유효메시지 CSS 적용 함수, (메시지, 메시지타입-> 0: 공백, 1: 문제없음, 2: 문제있음, 3: 사용가능. 4: 사용불가능, 5: 중복검사 안했을 때)
+    function validMsgCss(msg, msgType, idx) {
+        switch (msgType) {
+            case 0:
+                wrongInput(msg);
+                msg.text("*빈칸을 채워주세요.");
+                break;
+            case 1:             // 문제 없을 때
+                msg.prev().children('input').css("border", "1.5px solid black");
+                msg.text("");
+                msg.hide();
+                break;
+            case 2:             // 문제 있을 때
+                wrongInput(msg);
+                validMsg(msg, idx);
+                break;
+            case 3:             // 중복검사시 사용가능 할 때
+                msg.css({ "display": "grid", "color": "green" });
+                msg.prev().children('input').css("border", "1.5px solid black");
+                return msg.text("사용가능합니다.");
+            case 4:
+                wrongInput(msg);
+                return msg.text("중복됩니다.");
+            case 5:
+                wrongInput(msg);
+                return msg.text("중복확인을 해주세요.");
+            default:
+                break;
+        }
+    }
+
+    // 문제있을때 스타일 변경 함수
+    function wrongInput(msg) {
+        msg.css({ "display": "grid", "color": "red" });
+        msg.prev().children('input').css("border", "1.5px solid red");
+    }
+
+    // 문제 있을 시 해당 기입란에 맞는 메시지 출력
+    function validMsg(msg, idx) {
+        switch (idx) {
+            case 0:
+                return msg.text("*길이제한: 7 ~ 20, 한글x, 특수문자x");
+            case 1:
+                return msg.text("*길이제한: 10 ~ 30, 한글x, 특수문자 (.,/?!@#$%^&*) 허용");
+            case 2:
+                return msg.text("*비밀번호가 다릅니다.");
+            case 3:
+                return msg.text("*길이제한: 2 ~ 10, 숫자x");
+            case 4:
+                return msg.text("*길이제한: 2 ~ 15");
+            case 5:
+                return msg.text("*이메일 형식을 확인해주세요. ex) test@test.com");
+            case 6:
+                return msg.text("*전화번호 형식을 확인해주세요. ex) 010-1234-5678");
+            default:
+                return;
+        }
+    }
+
+
+    // 중복 검사, ajax 사용해서 db체크후 반환
+    function checkDuplicate(val, btnIdx) {
+        $.ajax({
+            url: '/user/duplicate',
+            method: 'POST',
+            data: { val: val, idx: btnIdx },
+            dataType: 'json',
+            success: function (data) {
+                if (data.isTrue) {                                                          // 중복일 때
+                    btnIdx === 0 ? isCheckDuplicate[0] = false : isCheckDuplicate[1] = false;
+                    return validMsgCss($(".validation-message").eq(btnIdx), 4, btnIdx);
+                } else {                                                                    // 중복 아닐 때
+                    btnIdx === 0 ? isCheckDuplicate[0] = true : isCheckDuplicate[1] = true;
+                    return validMsgCss($(".validation-message").eq(btnIdx), 3, btnIdx);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("에러: ", error);
+            }
+        });
+    }
+
+
+
+    /* 이메일 */
     // 이메일 옵션 바꿀 시
-    var userEmail = "";      // 이메일
-    $(".user-email-input").change(function () {
+    $("#user-email-input").change(function () {
         // 직접입력 일때
         if ($("#select-email-option").val() === "userInput") {
-            userEmail = `${$(".user-email-input").val()}@${$(".custom-input").val()}`;
+            userEmail = `${$("#user-email-input").val()}@${$(".custom-input").val()}`;
         } else {
-            userEmail = `${$(".user-email-input").val()}@${$("#select-email-option").val()}`;
+            userEmail = `${$("#user-email-input").val()}@${$("#select-email-option").val()}`;
         }
-        console.log(userEmail);
-        isValid(inputs[5], $(this).val(), $(this).parent().next(), 5);
+        $("#email").val(userEmail);
+        checkValidity(5);
     });
 
     $("#select-email-option").change(function () {
         if ($(this).val() == "userInput") {
             $(".custom-input").show();
-            userEmail = `${$(".user-email-input").val()}@${$(this).val()}`;
+            userEmail = `${$("#user-email-input").val()}@${$(this).val()}`;
         } else {
             $(".custom-input").hide();
             $(".custom-input").val("");
-            userEmail = `${$(".user-email-input").val()}@${$(this).val()}`;
+            userEmail = `${$("#user-email-input").val()}@${$(this).val()}`;
         }
-        isValid(inputs[5], $(this).val(), $(this).parent().next(), 5);
+        $("#email").val(userEmail);
+        checkValidity(5);
     });
 
     // 이메일 직접입력란 값 바뀔 시
     $(".custom-input").change(function () {
-        userEmail = `${$(".user-email-input").val()}@${$(".custom-input").val()}`;
-        isValid(inputs[5], $(this).val(), $(this).parent().next(), 5);
+        userEmail = `${$("#user-email-input").val()}@${$(".custom-input").val()}`;
+        $("#email").val(userEmail);
+        checkValidity(5);
     });
 
 
-    // 전화번호 입력 시
-    var phoneNumber = "";            // 전화번호
-    $(".user-phone-number-input").change(function () {
-        var phoneNumbers = [];  // 각각의 입력란의 번호를 담는 배열
-        var msg = $(this).parent().next();
-        $(".user-phone-number-input").each(function () {
-            phoneNumbers.push($(this).val());
-        });
-
-        phoneNumber = `${phoneNumbers[0]}-${phoneNumbers[1]}-${phoneNumbers[2]}`;
-
-        if (phoneNumber.length == 2) {
-            $(".user-phone-number-input").each(function () {
-                successCss($(this), msg);
-            });
-
-            return true;
-        }
-
-        isValid(inputs[6], $(this).val(), msg, 6);
+    /* 전화번호 */
+    $(".input-numbers>input").change(function () {
+        let telNos = $(".user-phone-number-input");
+        telNo = telNos[0].value + telNos[1].value + telNos[2].value;
+        hastelNoInput();
+        $("#phone-number").val(telNo);
     });
 
-
-    // 중복 확인 버튼 클릭 시
-    var checkDuplicate = [false, false];
-    $("#login-id-duplicate-check-btn").click(function () {
-        if (isValid($(this).prev(), $(this).prev().val(), $(this).parent().next(), 4)) { return; }
-
-        if (isDuplicate($(this).prev(), $(this).prev().val(), $(this).parent().next(), 0)) { return; }
-    });
-
-    $("#nickname-duplicate-check-btn").click(function () {
-        if (isValid($(this).prev(), $(this).prev().val(), $(this).parent().next(), 4)) { return; }
-
-        if (isDuplicate($(this).prev(), $(this).prev().val(), $(this).parent().next(), 4)) { return; }
-    });
-
-
-    $joinBtn.click(function () {
-        var isTrue = false;
-
-        if (!confirm("가입하시겠습니까?")) {
-            return alert("취소합니다.");
+    // 전화번호 입력 여부
+    function hastelNoInput() {
+        // 공백이거나 전화번호 형태일 때, 전화번호는 필수가 아님
+        if (telNo.length == 0 || telRegex.test(telNo)) {
+            validMsgCss($(".validation-message").eq(6), 1, 6);
+            return false;           // 문제 없으니 false
         }
 
-        var idx = 0;
-        for (var input of inputs) {
-            if (idx !== 6) {
-                var val = input.val().trim();
-                var msg = input.parent().next();
-                isValid(input, val, msg, idx) ? isTrue = true : isTrue;
+        // 전화번호 정규식 검사 실패 시
+        validMsgCss($(".validation-message").eq(6), 2, 6);
+        return true;                // 문제 있으니 true
+    }
+
+
+    /* 주소 */
+    let addr = "";                                                                      // 주소 저장 변수
+    let detailAddr = "";                                                                // 주소 + 상세주소 저장 변수
+    $("#find-postal-code-btn").click(() => { postalCodeSearch() });                     // 우편번호 찾기 버튼 클릭 시
+    $("#postal-code-reset-btn").click(() => { addrReset() });                           // 주소 리셋 버튼
+    $(".user-address-detail-input").change((e) => { checkAddr(e.target.value); });      // 상세페이지 작성시, 주소 + 상세주소 함수
+
+
+    // 주소 검색 후 저장
+    function postalCodeSearch() {
+        addrReset();
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // R = roadAddress, J = jibunAddress
+                addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
+                $(".user-address-input").val(addr);
+                $(".validation-message").eq(8).text(addr);
+                $("#address").val(addr);
             }
-            idx++;
-        }
-        if (isTrue) { return alert("작성한 정보를 다시 확인해주세요."); }
-
-        // 전화번호 확인
-        console.log(phoneNumber);
-        if (isValid(inputs[6], phoneNumber, $(".user-phone-number>.validation-message"), 6)) {
-            return alert("전화번호를 확인해주세요.");
-        }
-
-        // 중복 확인 눌렀는지
-        for (var val of checkDuplicate) {
-            if (val == false) {
-                return alert("중복확인을 해주세요");
-            }
-        }
-
-        checkDuplicate[0] = false;
-        checkDuplicate[1] = false;
-
-        var newUser = new User(id++, inputs[0].val(), inputs[1].val(), inputs[3].val(), inputs[4].val(), userEmail, phoneNumber, inputs[7].val());
-        users.push(newUser);
-        console.log(users);
-        alert("가입이 완료되었습니다.");
-    });
-
-
-
-    /* =====함수===== */
-
-
-    // 유효성 검사
-    function isValid($this, val, msg, idx) {
-
-        // 공백 확인
-        if (idx < 6 || idx == 8) {
-            if (isEmpty($this, val, msg)) { return true; }
-        }
-
-        // 비밀번호, 비밀번호 확인 체크
-        if (idx == 2) {
-            if (isSamePw($this, msg)) { return true; }
-        }
-
-
-        /* 정규식 검사 */
-        if (idx < 5 && idx != 2) {                               // 길이가 정해져 있는 input의 정규표현식
-            if (checkMsgPattern($this, val, msg)) { return true; }
-        } else if (idx === 5) {                                  // 이메일 정규표현식
-            if (!emailRegex.test(userEmail)) {                   // 실패 시
-                msg.text("*이메일 형식을 확인해주세요. ex) test@test.com");
-                failCss($this, msg);
-                return true;
-            }
-            successCss($this, msg);                                             // 성공 시
-        } else if (idx === 6) {                                                 // 전화번호 정규표현식
-            if (!pnRegex.test(phoneNumber) || (phoneNumber.length > 2 && phoneNumber.length < 13)) {        // 실패 시
-                msg.text("*전화번호 형식을 확인해주세요. ex) 010-1234-5678");
-                failCss($this, msg);
-                return true;
-            }
-            successCss($this, msg);                                             // 성공 시
-        }
-
-        return false;
+        }).open();
     }
 
-    // 공백 확인
-    function isEmpty($this, val, msg) {
-
-        if (!val || spacePattern.test(val)) {
-            msg.text("*빈칸을 채워주세요.");
-            failCss($this, msg);
-            return true;
-        }
-        successCss($this, msg);
-        return false;
+    // 주소 리셋
+    function addrReset() {
+        $(".user-address-input").val("");
+        $("#address").val("");
+        $(".user-address-detail-input").val("");
+        $(".validation-message").eq(8).text("");
+        addr = "";
+        detailAddr = "";
     }
 
-    // 비밀번호, 비밀번호 확인 검사
-    function isSamePw($this, msg) {
-        if (inputs[1].val() === $this.val()) {
-            return successCss($this, msg);
+    // 상세페이지 합치는 작업
+    function checkAddr(addrVal) {
+        if (!addr.trim()) {
+            alert("주소를 검색해주세요.");
+            addrReset();
+        } else if (!addrVal.trim()) {
+            detailAddr = addr;
+        } else {
+            detailAddr = `${addr} (${addrVal})`;
         }
-        failCss($this, msg);
-        msg.text("비밀번호가 일치하지 않습니다.");
-        return true;
+        $(".validation-message").eq(8).text(detailAddr);
+        $("#address").val(detailAddr);
     }
-
-    // 길이가 정해져 있는 input의 정규표현식
-    function checkMsgPattern($this, val, msg) {
-
-        var userInfo = $this.parent().prev().text();    // 해당 인풋 부모의 이전 형제 (id, pw, name, nickname 같은 유저 정보 입력란 이름)
-
-        // 길이 제한 있는 input의 min, max 따로 가져오기  // 길이 제한 틀릴 시 글씨 제한 수를 나타내기 위함
-        var msgLength = {
-            min: 0,
-            max: 0,
-        }
-
-        if ($this.is(inputs[0])) {
-            msgLength.min = 7;
-            msgLength.max = 20;
-        } else if ($this.is(inputs[1])) {
-            msgLength.min = 10;
-            msgLength.max = 30;
-        } else if ($this.is(inputs[3])) {
-            msgLength.min = 2;
-            msgLength.max = 10;
-        } else if ($this.is(inputs[4])) {
-            msgLength.min = 2;
-            msgLength.max = 14;
-        }
-
-        // 정규표현식
-        if ($this.is(inputs[0]) && idRegex.test(val)) {                 // 아이디: 07 ~ 20, 한글x, 대소영o, 숫자o
-            successCss($this, msg);
-        } else if ($this.is(inputs[1]) && pwRegex.test(val)) {          // 비  번: 10 ~ 30, 한글x, 대소영o, 숫자o, 특수문자(.,/?!@#$%^&*)허용, 
-            successCss($this, msg)
-        } else if ($this.is(inputs[3]) && nameRegex.test(val)) {        // 이  름: 02 ~ 10, 한글o, 대소영o, 숫자x
-            successCss($this, msg)
-        } else if ($this.is(inputs[4]) && nicknameRegex.test(val)) {    // 닉네임: 02 ~ 14, 한글o, 대소영o, 숫자o
-            successCss($this, msg)
-        } else {                                                        // 아닐 시
-            failText(msg, userInfo, msgLength)
-            failCss($this, msg);
-            return true;
-        }
-        return false;
-    }
-
-    // 정규식 검사 실패 메시지 출력 함수
-    function failText(msg, userInfo, msgLength) {
-        var message = `${userInfo} 길이제한: ${msgLength.min} ~ ${msgLength.max}`
-        if (userInfo === "*아이디") {
-            msg.text(`${message}, 한글x, 특수문자x`);
-        } else if (userInfo === "*비밀번호") {
-            msg.text(`${message}, 한글x, 특수문자 (.,/?!@#$%^&*) 허용`);
-        } else if (userInfo === "*이름") {
-            msg.text(`${message}, 숫자x`);
-        } else if (userInfo === "*닉네임") {
-            msg.text(`${message}`);
-        }
-    }
-
-    // 중복 검사
-    function isDuplicate($this, val, msg, idx) {
-        var userInfo = idx === 0 ? "아이디" : "닉네임";
-        var dupIdx = idx === 0 ? 0 : 1;
-
-        for (var user of users) {
-            // 사용 불가 시
-            if ((idx === 0 && user.loginId === val) || (idx === 4 && user.nickname === val)) {
-                msg.text(`*사용할 수 없는 ${userInfo} 입니다.`);
-                failCss($this, msg);
-                checkDuplicate[dupIdx] = false;
-                return true;
-            }
-        }
-
-        // 사용 가능 시
-        msg.css({ "display": "grid", rightMsgStyle });
-        msg.text(`*사용 가능한 ${userInfo} 입니다.`);
-        checkDuplicate[dupIdx] = true;
-
-        return false;
-    }
-
-
-
-    /* ===== css style 변경 ===== */
-    var wrongStyle = { "border": "2px solid red" };     // input 실패 시 스타일
-    var rightStyle = { "border": "1.4px solid black" };   // input 성공 시 스타일
-    var wrongMsgStyle = {                               // validation-message 실패 시 스타일
-        "display": "grid",
-        "color": "red",
-    };
-    var rightMsgStyle = {                               // validation-message 성공 시 스타일
-        "display": "none",
-        "color": "green",
-    };
-
-    // 유효성 검사 성공 시
-    function successCss($this, msg) {
-        $this.css(rightStyle);
-        msg.css(rightMsgStyle);
-        msg.hide();
-    }
-
-    // 유효성 검사 실패 시
-    function failCss($this, msg) {
-        $this.css(wrongStyle);
-        msg.css(wrongMsgStyle);
-    }
-
-
 });

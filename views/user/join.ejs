@@ -3,54 +3,9 @@
 
 <head>
     <title>회원가입</title>
-    <link rel="stylesheet" href="/user/join copy.css">
-    <script src="/user/userJoin copy.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>       <!-- 우편번호검색 api -->
-    <script>
-        $(function () {
-            let addr = "";                                                                      // 주소 저장 변수
-            let detailAddr = "";                                                                // 주소 + 상세주소 저장 변수
-            $("#find-postal-code-btn").click(() => { postalCodeSearch() });                     // 우편번호 찾기 버튼 클릭 시
-            $("#postal-code-reset-btn").click(() => { addrReset() });                           // 주소 리셋 버튼
-            $(".user-address-detail-input").change((e) => { checkAddr(e.target.value); });      // 상세페이지 작성시, 주소 + 상세주소 함수
-
-
-            // 주소 검색 후 저장
-            function postalCodeSearch() {
-                addrReset();
-                new daum.Postcode({
-                    oncomplete: function (data) {
-                        // R = roadAddress, J = jibunAddress
-                        addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
-                        console.log(addr);
-                        $(".user-address-input").val(addr);
-                    }
-                }).open();
-            }
-
-            // 주소 리셋
-            function addrReset() {
-                if (confirm) {
-                    $(".user-address-input").val("");
-                    $(".user-address-detail-input").val("");
-                    addr = "";
-                    detailAddr = "";
-                }
-                return;
-            }
-
-            // 상세페이지 합치는 작업
-            function checkAddr(addrVal) {
-                if (!addr.trim()) {
-                    alert("주소를 검색해주세요.");
-                    addrReset();
-                } else {
-                    detailAddr = `${addr} (${addrVal})`;
-                    console.log(detailAddr);
-                }
-            }
-        })
-    </script>
+    <link rel="stylesheet" href="/user/join.css">
+    <script src="/user/userJoin.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 api -->
 </head>
 
 <body>
@@ -67,7 +22,7 @@
                         <button type="button" id="login-id-duplicate-check-btn" class="duplicate-btn"
                             data-btn-idx="0">중복확인</button>
                     </div>
-                    <div type="button" class="validation-message"></div>
+                    <div class="validation-message"></div>
                 </div>
 
                 <!-- 비밀번호 -->
@@ -143,8 +98,8 @@
                         <input type="text" class="user-phone-number-input" maxlength="4">
                         <span>-</span>
                         <input type="text" class="user-phone-number-input" maxlength="4">
-                        <input name="telno" type="hidden" value="">
                     </div>
+                    <input name="telno" type="hidden" id="phone-number">
                     <div class="validation-message"></div>
                 </div>
 
@@ -165,8 +120,8 @@
                     <div>
                         <input type="text" class="user-address-detail-input" placeholder="상세주소입력">
                         <button type="button" id="postal-code-reset-btn" class="user-join-wrap-btn">초기화</button>
-                        <input name="address" type="hidden" value="">
                     </div>
+                    <input name="address" id="address" type="hidden">
                     <div class="validation-message"></div>
                 </div>
 
@@ -180,6 +135,7 @@
                 </div> -->
             </div>
             <button type="button" id="user-join-btn" class="user-join-wrap-btn">회원가입</button>
+            <button type="button" id="cancel-btn" class="user-join-wrap-btn" onclick="location.href='/main/home'">취소</button>
         </article>
     </form>
 </body>

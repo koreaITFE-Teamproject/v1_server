@@ -14,7 +14,7 @@ select {
     padding: 0 10px;
 }
 
-select{
+select {
     text-align: center;
 }
 
@@ -48,7 +48,7 @@ button:hover {
     padding: 15px 50px;
 }
 
-#user-join-title{
+#user-join-title {
     width: 20%;
     border-radius: 5px;
     padding: 8px 0;
@@ -92,7 +92,7 @@ button:hover {
 /* 유효성 검사 메시지 */
 .validation-message {
     grid-column: 2 / 3;
-    font-size: 12px;
+    font-size: 13px;
     justify-self: left;
     padding: 0 15px;
 }
@@ -118,21 +118,27 @@ button:hover {
 
 
 /* 회원가입 버튼 */
-.user-join-wrap-btn {
+.user-join-wrap-btn,
+.duplicate-btn {
     width: 30%;
     height: 50px;
     margin: 20px 5px;
 }
 
+#user-join-btn,
+#cancel-btn {
+    width: 17%;
+}
+
 
 @media screen and (max-width: 1250px) {
-    .user-join-wrap{
+    .user-join-wrap {
         width: 80%;
     }
 }
 
 @media screen and (min-width: 900px) {
-    .user-join-wrap{
+    .user-join-wrap {
         width: 50%;
     }
 }

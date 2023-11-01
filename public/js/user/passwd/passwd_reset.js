@@ -1,78 +1,122 @@
 $(document).ready(function () {
-    // [*비밀번호, *비밀번호 확인]
-    var inputs = [$("#newpw"), $("#newpw_ck")];
 
-    var $joinBtn = $("#ck_button");         // 확인 버튼
+    let inputs = $(".name_input");
 
-    // 정규표현식
-    const spacePattern = /\s/;                            // 공백 체크
     const pwRegex = /^[A-Za-z0-9.,\/?!@#$%^&*]{10,30}$/;  // pw, [A~Z, a~z, 0~9, 특수문자(.,/?!@#$%^&*)] {글자수 10~30 사이}
 
-    // 작성한 입력란의 내용이 바뀔 시
-    $(".user-join-wrap>div>div>div:nth-child(2)>input").change(function () {
-        var idx = 0;
-        var val = $(this).val().trim();           // 입력값 양옆 공백 제거
-        var msg = $(this).parent().next();        // 해당 인풋 부모의 다음 형제 (확인 메시지 출력 -> .validation-message)
+    $(".validation-message").css("color", "red");
 
-        for (var input of inputs) {
-            if ($(this).is(input)) {
-                isValid(input, val, msg, idx);
+    $("#ck_button").click(function () {
+        if (!confirm("비밀번호를 변경하시겠습니까?")) {
+            return alert("취소합니다.");
+        }
+
+        let isProblem = false;                                  // 버튼 클릭시 문제가 없는지 확인용
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[0].value === inputs[1].value && inputs[1].value.trim()) {          // 새 비밀번호가 기존 비밀번호와 같은지 체크
+                $(".validation-message").eq(1).css("display", "grid");
+                validMsg($(".validation-message").eq(1), 3);
+                isProblem = true;
             }
-            idx++;
+            
+            if(isExist && !inputs[1].value.trim()){
+                $(".validation-message").eq(0).css("display", "grid");
+                $(".validation-message").eq(0).text("이미 사용중인 비밀번호 입니다.");
+                isProblem = true;
+            }
+
+            if (checkValidity(i)) {                             // 문제가 있을때(true 일때)
+                isProblem = true;
+            }
+        }
+
+        if (isProblem) {
+            return alert("작성하신 부분을 다시 확인해주세요.");
         }
     });
 
-    // 비밀번호, 비밀번호 확인 같은지 체크
-    $("#newpw_ck").change(function () {
-        isSamePw($(this), $(this).parent().next());
+    let isExist = false;
+    $(".name_input").change(function () {
+        if ($(this).parent().index() === 0) {
+            existPw();
+        }
     });
 
-    // 비밀번호, 비밀번호 확인 검사
-    function isSamePw($this, msg) {
-        if (inputs[0].val() === $this.val()) {
-            return successCss($this, msg);
+    // 유효성 검사 함수
+    function checkValidity(idx) {
+        let isProblem = true;
+        if (!inputs[idx].value.trim()) {                                        // 공백체크
+            validMsgCss($(".validation-message").eq(idx), 0, idx);
+        } else if (isRegexValid(inputs[idx].value, idx)) {                      // 정규식 체크 문제 없을 때
+            validMsgCss($(".validation-message").eq(idx), 1, idx);
+            isProblem = false;
+        } else {                                                                // 그외 문제 있을 떄
+            validMsgCss($(".validation-message").eq(idx), 2, idx);
         }
-        failCss($this, msg);
-        msg.text("비밀번호가 일치하지 않습니다.");
-        return true;
+
+        return isProblem;
     }
 
-    // "확인" 요소에 마우스 오버 시 커서 모양 변경
-    $('#ck_button').mouseover(function () {
-        $(this).css('cursor', 'pointer');
-    })
-    // 비밀번호 제약 : 공백 입력 금지, 02~30자
-    $('.name_input').on('input', function () {
-        var input = $(this).val()
-        if (input.length >= 30) {
-            alert("비밀번호는 30자이하 입니다.")
-            $(this).val(name.substring(0, 30));
+    function isRegexValid(input, idx) {
+        switch (idx) {
+            case 0:
+                return 1;
+            case 1:
+                return pwRegex.test(input) ? 1 : 0;
+            case 2:
+                return input === inputs[idx - 1].value ? 1 : 0;
         }
-        if (/\s/.test(input)) {
-            alert('공백을 입력할 수 없습니다.');
-            $(this).val(input.replace(/\s/g, ''));
-        }
-    })
+    }
 
+    // 유효메시지 CSS 적용 함수, (메시지, 메시지타입-> 0: 공백, 1: 문제없음, 2: 문제있음)
+    function validMsgCss(msg, msgType, idx) {
+        switch (msgType) {
+            case 0:
+                msg.css("display", "grid");
+                msg.text("*빈칸을 채워주세요.");
+                break;
+            case 1:             // 문제 없을 때
+                msg.text("");
+                msg.hide();
+                break;
+            case 2:             // 문제 있을 때
+                msg.css("display", "grid");
+                validMsg(msg, idx);
+                break;
+        }
+    }
 
-    // 확인 버튼 눌렀을때 동작
-    $('#ck_button').on('click', function () {
-        var newpw = $("#newpw").val()
-        var newpw_ck = $("#newpw_ck").val()
+    function validMsg(msg, idx) {
+        switch (idx) {
+            case 0:
+                return;
+            case 1:
+                return msg.text("*길이제한: 10 ~ 30, 한글x, 특수문자 (.,/?!@#$%^&*) 허용");
+            case 2:
+                return msg.text("*비밀번호가 다릅니다.");
+            case 3:
+                return msg.text("*기존 비밀번호와 같습니다.");
+        }
+    }
 
-        // 공백 여부 확인
-        if (newpw.trim() === '' || newpw_ck.trim() === '') {
-            alert("비밀번호를 입력해주세요")
-            return
+    function existPw() {
+        let data = {
+            ncnm: $(".nickname").text().trim(),
+            pw: inputs[0].value,
         }
-        if (newpw.length < 10 || newpw_ck.length < 10) {
-            alert("비밀번호는 10자 이상 30자 이하입니다.")
-            return
-        }
-        if (newpw != newpw_ck) {
-            alert("비밀번호가 동일하지 않습니다.")
-            return
-        }
-        alert("비밀번호가 동일합니다") // 페이지 완성되면 동일했을때 메인으로 넘어가는걸로 수정
-    })
+
+        $.ajax({
+            url: '/user/existPw',
+            method: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                data.isExist ? isExist = true : isExist = false;
+            },
+            error: function (xhr, status, error) {
+                console.log("에러: ", error);
+            }
+        });
+    }
 })

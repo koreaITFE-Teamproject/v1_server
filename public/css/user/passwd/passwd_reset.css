@@ -3,45 +3,42 @@ div {
     border-radius: 10px;
 }
 
-/* input 요소 */
-input {
-    padding: 10px;
-    display: inline-block;
-}
-/* 제일 문서 내용 */
-main{
-    display: flex;
-    justify-content: center;
-}
 
 /* contents들 모아놓은 div */
 .main_div {
     padding: 20px;
-    margin-top: 30px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     border: 2px solid #764127;
-    width: 60%;
+    width: 50%;
+    margin: 0 auto;
 }
 
 /* main_div 안의 내용들 div */
-.contents {
-    padding: 5px;
-    width: 100%;
+.input-contents {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 50px 30px;
+    grid-gap: 10px;
+}
+
+.validation-message {
+    grid-column: 2 / 3;
+    font-size: 13px;
+    justify-self: left;
+    padding: 0 15px;
 }
 
 /* 이름, 아이디 등 구분하는 div */
-.division_name {
-    display: inline-block;
+.division_name, #ck_button {
     border: 1.5px solid #764127;
-    padding: 10px;
     background-color: #F9ECDB;
-    text-align: center;
-    width: 20%;
     border-radius: 5px;
-    margin-right: 1%;
+}
+
+.division_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 비밀번호 변경 */
@@ -49,52 +46,38 @@ h1 {
     text-align: center;
 }
 
-/* 인증번호 div */
-#ck_num {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* 인증번호 input */
-#ck_num_input {
-    width: 300px;
-    margin-right: 10px;
-}
-
 /* 확인 버튼 div */
 #ck_button {
     width: 50%;
-    padding: 15px;
-    text-align: center;
-    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 0;
 }
 
-#ck_button:hover{
+#ck_button:hover {
     background-color: #F6E3CE;
 }
 
 /* 확인 버튼 위치 가운데로 */
 #ck_button_outdiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 /* 이름, 아이디 input 디자인 크기 맞춤 */
 .name_input {
-    width: 70%;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     border: 1.5px solid #764127;
+    padding: 0 10px;
 }
 
-.validation-message{
+/* .validation-message{
     padding: 5px;
     width: 74%;
-}
+} */
 
-.message-outline{
+/* .message-outline{
     display: flex;
     justify-content: flex-end;
     width: 98%;
-}
+} */
