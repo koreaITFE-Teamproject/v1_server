@@ -1,6 +1,7 @@
 $(document).ready(function () {
     getContent();
 
+    // db에서 컨텐츠 가져오는 작업
     function getContent() {
         const content = $("#getContent").val();
         $("#content").html(content);

@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  // 썸머노트 내용 입력란 높이 = 브라우저 창 높이 - 288
+  // 썸머노트 textarea 높이 = 브라우저 창 높이 - 368
   // ((메인,marginTop:143) - (layout,height:50) - (layout,marginBottom:10) - (noteToolbar,height:40) - (noteToolbar,paddingBottom:5)) -
-  // (note-editable,padding:10 0) - (panel,paddingBottom:20) = 288
-  var noteHeght = window.innerHeight - 288;
+  // (note-editable,padding:10 0) - (panel,paddingBottom:20) - (footer,height:80) = -368
+  var noteHeght = window.innerHeight - 368;
 
   $("#write").summernote({
     focus: true,
@@ -20,6 +20,7 @@ $(document).ready(function () {
       ["para", ["ul", "ol", "paragraph"]], // 문단 스타일, 순서 없는 목록, 순서 있는 목록
       ["table", ["table"]], // 테이블 삽입
       ["insert", ["link", "picture", "video"]], // 링크 삽입
+      // ['view', ['codeview', 'fullscreen', 'help']]  // 코드 보기
     ],
     fontNames: [
       "Arial",
@@ -55,24 +56,32 @@ $(document).ready(function () {
 
   $(".note-toolbar").css("height", "40px"); // 노트툴바 높이 40px 지정
 
-  $(".note-statusbar").hide(); // 썸머노트 입력란의 높이 변경 못하도록 숨김
+  $(".note-statusbar").hide(); // 썸머노트 textarea 높이 변경 못하도록 숨김
 
   $(window).on("resize", function () {
     // 브라우저 창 크기 변경될때 썸머노트 높이 변경
-    noteHeght = window.innerHeight - 288; // 썸머노트 높이
+    noteHeght = window.innerHeight - 368; // 썸머노트 높이
     $(".note-editable").css("height", noteHeght);
   });
 
+  // footer flex 지정, 칼럼 작성부분에서 footer flex가 안되어있음
+  $("footer").css("display", "flex");
+
   $("#save-column").on("click", function () {
+    if ($("#column_type").val() == 0) {
+      return alert("칼럼 유형을 선택해주세요.");
+    }
+
     if (confirm("게시하시겠습니까?")) {
       let sj = $("#sj").val();                    // 제목
-      let nm = $(".nickname").text().trim();             // 작성자 닉네임
       let cn = $(".note-editable").html();        // 내용
+      let ct = $("#column_type").val();           // 칼럼 타입
+      let nm = $(".nickname").text().trim();      // 작성자 닉네임
 
       $.ajax({
         url: `http://localhost:3000/column/saveColumn`,
         method: "POST",
-        data: { sj: sj, cn: cn, nm: nm },
+        data: { sj: sj, cn: cn, ct: ct, nm: nm },
         dataType: "json",
         success: function (data) {
           if (data.status == "SUCCESS") {

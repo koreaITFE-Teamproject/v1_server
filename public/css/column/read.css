@@ -12,7 +12,7 @@
 }
 
 #col_no {
-    font-family: none;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .title>p {
@@ -23,21 +23,24 @@
 
 .title>p:last-child {
     font-size: 28px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* 번호와 제목 사이 칸 표시 용 */
 .title span {
     margin: 0;
+    background-color: #fff;
 }
 
 #writer {
     margin: 0;
     padding: 5px 0 0 20px;
-    font-size: 18px;
+    font-size: 15px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 #writer>i {
-    padding-right: 5px;
+    font-size: 18px;
 }
 
 .contents_bar {
@@ -53,6 +56,7 @@
     padding: 5px 10px;
     border: 1.5px solid #f6f6f6;
     border-top: 3px solid #ddd;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 #col-info-dt {
@@ -92,6 +96,11 @@
     position: relative;
 }
 
+.column_contents p,
+.column_contents span {
+    font-size: 14px;
+}
+
 .icon {
     width: 130px;
     height: 45px;
@@ -105,6 +114,8 @@
     left: 50%;
     bottom: 20px;
     transform: translateX(-50%);
+    font-size: 15px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .icon>i {

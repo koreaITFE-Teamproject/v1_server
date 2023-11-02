@@ -3,7 +3,7 @@
 
 <head>
   <title>컬럼 목록</title>
-  <link rel="stylesheet" href="/column/list.css" />
+  <link rel="stylesheet" href="/column/list copy.css" />
   <script src="/column/test.js"></script>
   <script src="/column/column.js"></script>
 </head>
@@ -32,6 +32,29 @@
 
     <!-- 컬럼 검색,글쓰기 버튼 -->
     <div class="column-search-wrap">
+      <select id="column_type">
+        <option value="0" selected>선택</option>
+        <option value="1">국내 소설</option>
+        <option value="2">해외 소설</option>
+        <option value="3">시/에세이</option>
+        <option value="4">인문</option>
+        <option value="5">가정/육아</option>
+        <option value="6">요리</option>
+        <option value="7">건강</option>
+        <option value="8">취미/실용</option>
+        <option value="9">경제/경영</option>
+        <option value="10">자기계발</option>
+        <option value="11">정치/사회</option>
+        <option value="12">역사/문화</option>
+        <option value="13">종교</option>
+        <option value="14">예술/대중문화</option>
+        <option value="15">기술공학</option>
+        <option value="16">외국어</option>
+        <option value="17">여행</option>
+        <option value="18">컴퓨터/IT</option>
+        <option value="19">잡지</option>
+        <option value="20">만화</option>
+      </select>
       <input class="search-input" id="search-input" type="text" placeholder="검색창" />
       <button class="search-column" id="search-column">검색</button>
       <% if(isLogined.isLogined) { %>
@@ -42,18 +65,7 @@
     </div>
 
     <!-- 게시글 목록 요소 -->
-    <!-- 개시글 요소 생성시 -->
-    <table id="postTable">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>제목</th>
-          <th>글쓴이</th>
-          <th>작성시간</th>
-        </tr>
-      </thead>
-      <tbody id="postBody"></tbody>
-    </table>
+    <div id="postBody"></div>
   </article>
 
   <nav aria-label="Page navigation example" class="pagination-container">

@@ -1,29 +1,53 @@
 $(document).ready(function () {
   var currentPage = 1; // 현재 페이지 초기값
 
-  fetchPageData(currentPage, "");
+  fetchPageData(currentPage, "", "");
 
   // 페이지 데이터를 가져오는 함수
-  function fetchPageData(page, searchQuery) {
+  function fetchPageData(page, searchQuery, columnType) {
     $("#postBody").text("");
 
     $.ajax({
-      url: `http://localhost:3000/column/getList?page=${page}&search=${searchQuery}`,
+      url: `http://localhost:3000/column/getList?page=${page}&search=${searchQuery}&type=${columnType}`,
       method: "GET",
       dataType: "json",
       success: function (data) {
         let resultData = data.data;
         console.log(resultData);
         for (var i = 0; i < resultData.length; i++) {
-          console.log(resultData[i]);
-          var postBody = $("#postBody");
-          var postBodyData = "<tr>";
-          postBodyData += `<td>${resultData[i].ROW_NUM}</td>`;
-          postBodyData += `<td><a class="column-title" href="/column/read/${resultData[i].ROW_NUM}">${resultData[i].SJ}</a></td>`;
-          postBodyData += `<td>${resultData[i].COLMN_WRTER}</td>`;
-          postBodyData += `<td>${resultData[i].WRITNG_TIME}</td>`;
-          postBodyData += "</tr>";
-          postBody.append(postBodyData);
+
+          // 내용 먼저 자르기, <> 태그로 감싸져 있으면 ''로 변환
+          const content = truncateContent(resultData[i].cn.replace(/<[^>]*>/g, ''));
+
+          $("#postBody").append(`
+            <div class="column">
+              <div class="column-top">
+                <p class="column-no">${resultData[i].ROW_NUM}</p>
+                <span></span>
+                <p class="column-date">${resultData[i].WRITNG_TIME}</p>
+                <span></span>
+                <p class="column-hit">${resultData[i].hit} 읽음</p>
+                <span></span>
+                <p class="column-type">${resultData[i].COLMN_CL_NM}</p>
+              </div>
+              <div class="column-mid">
+                <div class="column-info">
+                  <p class="column-title"><a href="/column/read/${resultData[i].ROW_NUM}">${resultData[i].sj}</a></p>
+                  <p class="column-content"><a href="/column/read/${resultData[i].ROW_NUM}">${content}</a></p>
+                </div>
+                <!-- 이미지 -->
+                <a href="/column/read/${resultData[i].ROW_NUM}"><img class="column-img" src="http://placehold.it/130x130" alt=""></img></a>
+              </div>
+              <div class="column-bot">
+                <i class="fa-regular fa-thumbs-up"></i>
+                <p class="column-like">${resultData[i].like_count}</p>
+                <i class="fa-regular fa-comment-dots"></i>
+                <p class="column-reply">${resultData[i].reply_count}</p>
+                <i class="fa-solid fa-circle-user"></i>
+                <p class="column-nickname">${resultData[i].COLMN_WRTER}</p>
+              </div>
+            </div>
+          `);
         }
 
         // 페이지 링크 업데이트
@@ -80,14 +104,15 @@ $(document).ready(function () {
     paginationList.find(".page-link").click(function (event) {
       event.preventDefault();
       var searchQuery = $("#search-input").val();
-
+      var columnType = $("#column_type").val() == '0' ? '' : $("#column_type").val();
       var clickedPage = parseInt($(this).text(), 10);
+
       if (!isNaN(clickedPage)) {
-        fetchPageData(clickedPage, searchQuery);
+        fetchPageData(clickedPage, searchQuery, columnType);
       } else if ($(this).text() === "이전" && prevPage >= 1) {
-        fetchPageData(prevPage, searchQuery);
+        fetchPageData(prevPage, searchQuery, columnType);
       } else if ($(this).text() === "다음" && nextPage <= totalPages) {
-        fetchPageData(nextPage, searchQuery);
+        fetchPageData(nextPage, searchQuery, columnType);
       }
     });
 
@@ -96,16 +121,38 @@ $(document).ready(function () {
 
   $("#search-column").on("click", function () {
     var searchQuery = $("#search-input").val();
+    var columnType = $("#column_type").val() == '0' ? '' : $("#column_type").val();
 
-    // 검색어를 이용하여 데이터를 가져오는 함수 호출
-    fetchPageData(currentPage, searchQuery);
+    // 검색어와 칼럼 타입을 이용하여 데이터를 가져오는 함수 호출
+    fetchPageData(currentPage, searchQuery, columnType);
   });
 
-  $("#search-input").on("keypress", function (event) {
+  $("#search-input").add("#column_type").on("keypress", function (event) {
     if (event.which === 13) {
       event.preventDefault();
 
       $("#search-column").trigger("click");
     }
   });
+
+  // 목록에 보여줄 내용 자르기, 기본 100글자
+  function truncateContent(text) {
+    let tempText = "";
+    let max = 100;
+
+    for (var i = 0; i < text.length; i++) {
+      tempText += text[i];
+
+      // 알파벳 소문자 길이가 한글에 비해 작기 때문에 알파벳 1개당 max + 0.5
+      if (text.charCodeAt(i) >= 97 && text.charCodeAt(i) <= 122) {
+        max += 0.5;
+      }
+
+      if (i >= max) {
+        break;
+      }
+    }
+
+    return tempText;
+  }
 });

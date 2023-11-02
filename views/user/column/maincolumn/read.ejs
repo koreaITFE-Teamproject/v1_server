@@ -14,14 +14,14 @@
     <div class="path-wrap">
         <p class="path"> <a href="/main/home"><i class="fa-solid fa-house"></i></a> >
             <span>칼럼</span> >
-            <span>
-                <% if(column.cs==0){ %>
+            <span>전체컬럼
+                <!-- <% if(column.cs==0){ %>
                     전체컬럼
                     <% } else if(column.cs==1) { %>
                         구독한 작가 컬럼
                         <% } else { %>
                             좋아요 한 컬럼
-                            <% } %>
+                            <% } %> -->
             </span> >
             <span id="change-path">
                 <%= column.sj %>
@@ -53,11 +53,11 @@
             </div>
             <div id="col-info-icon-wrap">
                 <div>
-                    <i class="fa-solid fa-comment-dots"></i>
+                    <i class="fa-regular fa-comment-dots"></i>
                     <span id="comment_count">0</span>
                 </div>
                 <div>
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-regular fa-thumbs-up"></i>
                     <span class="like_count">0</span>
                 </div>
             </div>
