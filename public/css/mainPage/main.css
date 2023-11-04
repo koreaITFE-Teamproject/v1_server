@@ -5,12 +5,6 @@
     font-style: normal;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 main {
     font-family: 'HakgyoansimWoojuR';
     padding: 0 5px;
@@ -51,27 +45,72 @@ main {
     height: 150px;
     margin-bottom: 10px;
     justify-content: center;
-
 }
 
 /* 분야별 칼럼 분류를 제외한 3가지 item div */
 .bar_item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* 가운데 정렬 */
-    height: 100%;
-    width: 50%;
+    width: 100%;
     text-align: center;
-    vertical-align: middle;
-    line-height: 100px;
+    display: grid;
+    grid-template-rows: 8fr 2fr;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
 }
 
 .bar_item:hover {
     cursor: pointer;
-    border: 0.5px solid #D3B396;
+
+    .column_img {
+        transform: scale(1.15);
+    }
+
+    .column_title {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
 }
 
+.column_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(1);
+    width: 380px;
+    height: 300px;
+    z-index: 3;
+    transition: transform 1s;
+}
+
+.column_title {
+    width: 135px;
+    height: 185px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 5;
+    padding: 5px;
+    transition: background-color 1s;
+}
+
+.column_writer {
+    width: 100%;
+    height: 73px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 0.5px solid #D3B396;
+}
 
 /* 분야별 칼럼 분류 item div */
 .class_item {
@@ -136,11 +175,6 @@ main {
 
 /* 칼럼 디자인 웹 퍼블리싱 */
 
-.column_title {
-    font-size: 30px;
-
-}
-
 .bar_item>a>img,
 .bar_item>a {
     width: 100%;
@@ -163,13 +197,13 @@ hr {
 .bi-chevron-left,
 .bi-chevron-right {
     position: absolute;
-    top: 50%;
+    top: 40%;
     margin-top: -25px;
     cursor: pointer;
     z-index: 2;
     transition: color 0.3s, background-color 0.3s;
-    color: #F6E3CE;
-    background-color: rgba(246, 227, 206, 0.3);
+    color: #5d360b;
+    background-color: rgba(246, 199, 149, 0.3);
     border-radius: 50%;
 }
 
@@ -184,7 +218,7 @@ hr {
 .bi-chevron-left:hover,
 .bi-chevron-right:hover {
     color: #764127;
-    background-color: rgba(246, 227, 206, 0.5);
+    background-color: rgba(182, 166, 150, 0.5);
 }
 
 .bi-chevron-right::before {
@@ -219,14 +253,20 @@ hr {
 }
 
 .slide-indicators {
+    width: 30%;
+    height: 13px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     left: 50%;
     transform: translate(-50%, 0);
+    z-index: 8;
+    display: flex;
 }
 
 .indicators-label {
-    margin: 5px 7px;
-    padding: 3px 22px;
+    width: 27%;
+    border-radius: 50px;
+    margin: 0 auto;
     cursor: pointer;
 }

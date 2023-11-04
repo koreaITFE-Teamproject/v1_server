@@ -29,7 +29,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 .nanumgothic * {
- font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 * {
@@ -71,6 +71,7 @@ ul,
 li {
     list-style: none;
 }
+
 
 /* 헤더 태그 */
 header {

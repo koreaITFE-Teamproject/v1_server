@@ -17,6 +17,54 @@ a:hover {
   color: #764127;
 }
 
+/* #upload-title, #imgFile, #uploadBtn, #imgDelBtn, #uploadMsg, #img-preview, #uploadImg */
+#file-upload-wrap {
+  width: 50%;
+  height: 50px;
+  min-width: 800px;
+  display: grid;
+  grid-template-columns: 2fr 2.9fr .8fr .8fr 2.5fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+#img-preview>div {
+  display: none;
+  flex-direction: column;
+}
+
+.fa-image {
+  font-size: 20px;
+}
+
+.fa-sort-down {
+  font-size: 15px;
+  margin-top: -5px;
+}
+
+main {
+  position: relative;
+}
+
+.fa-image,
+.fa-sort-down {
+  cursor: pointer;
+}
+
+#uploadImg {
+  padding: 3px;
+  position: absolute;
+  top: 115px;
+  right: 450px;
+  z-index: 5;
+  height: 300px;
+}
+
+
 .layouts {
   width: 50%;
   min-width: 800px;
@@ -35,14 +83,14 @@ a:hover {
   grid-gap: 10px;
 }
 
-.buttons > button {
+.buttons>button {
   width: 100%;
   background-color: #f9ecdb;
   border-radius: 5px;
   border: 1.5px solid #764127;
 }
 
-.buttons > button:hover {
+.buttons>button:hover {
   background-color: #f6e3ce;
 }
 

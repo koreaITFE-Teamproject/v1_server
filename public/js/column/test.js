@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
   var currentPage = 1; // 현재 페이지 초기값
 
   fetchPageData(currentPage, "", "");
@@ -36,7 +37,9 @@ $(document).ready(function () {
                   <p class="column-content"><a href="/column/read/${resultData[i].ROW_NUM}">${content}</a></p>
                 </div>
                 <!-- 이미지 -->
-                <a href="/column/read/${resultData[i].ROW_NUM}"><img class="column-img" src="http://placehold.it/130x130" alt=""></img></a>
+                <a class="column-img-wrap" href="/column/read/${resultData[i].ROW_NUM}">
+                <img class="column-img" src="${!resultData[i].cip ? 'http://placehold.it/130x130' : resultData[i].cip}" alt=""></img>
+                </a>
               </div>
               <div class="column-bot">
                 <i class="fa-regular fa-thumbs-up"></i>
@@ -49,9 +52,45 @@ $(document).ready(function () {
             </div>
           `);
         }
-
         // 페이지 링크 업데이트
         updatePaginationUI(page, data.totalPages);
+
+        $(".pagination-container").hide();
+
+
+        let count = 0;
+        let columns = $(".column").length;
+        let time = 150;
+
+        columns > 1 && columns <= 10 ? $("footer").hide() : $("footer").show();
+
+        $("#postBody").css("height", `${208.5 * columns}`);
+
+        var interval = setInterval(() => {
+          // if (count < 2) {
+          //   $("main").css("width", parseFloat(screen.width));
+          // } else {
+          //   $("main").css("width", parseFloat(screen.width - 17));
+          // }
+
+          $(".column").eq(count).css({
+            "display": "grid",
+            "-webkit-animation": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+            "animation": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
+          });
+          count++;
+          if (count == columns + 1) {
+            $(".pagination-container").css({
+              "display": "flex",
+              "-webkit-animation": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+              "animation": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
+            });
+          } else if (count == columns + 2) {
+            clearInterval(interval);
+            $("footer").show();
+          }
+        }, time);
+
       },
       error: function (err) {
         console.error("Error:", err);
@@ -102,6 +141,11 @@ $(document).ready(function () {
 
     // 페이지 링크를 클릭할 때 해당 페이지 데이터 가져오기
     paginationList.find(".page-link").click(function (event) {
+      $('html').scrollTop(0);
+
+      $("header").removeClass("header nav-up");
+      $("header").addClass("header nav-down");
+
       event.preventDefault();
       var searchQuery = $("#search-input").val();
       var columnType = $("#column_type").val() == '0' ? '' : $("#column_type").val();
@@ -135,10 +179,10 @@ $(document).ready(function () {
     }
   });
 
-  // 목록에 보여줄 내용 자르기, 기본 100글자
+  // 목록에 보여줄 내용 자르기, 기본 110글자
   function truncateContent(text) {
     let tempText = "";
-    let max = 100;
+    let max = 110;
 
     for (var i = 0; i < text.length; i++) {
       tempText += text[i];

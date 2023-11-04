@@ -5,6 +5,7 @@
 <head>
     <title>Booker</title>
     <link rel="stylesheet" href="/mainPage/main.css">
+    <script src="/main_page/fetchMainData.js"></script>
     <script src="/main_page/main.js"></script>
 </head>
 
@@ -21,36 +22,11 @@
 
     <div class="recomm_outline">
         <input type="text" value="0" hidden>
-        <div class="recomm" id="recomm_coumn">추천 칼럼</div>
+        <div class="recomm" id="recomm_coumn">최신 칼럼</div>
         <div class="carousel-wrapper">
             <i class="bi bi-chevron-left" id="column_left"></i>
             <i class="bi bi-chevron-right" id="column_right"></i>
-            <div class="slide_bar" id="column_slide_bar">
-                <div class="cut_div">
-                    <div class="bar_item"><!-- 칼럼 제목이 들어갈 디자인 예시 -->
-                        <div class="column_title">경차가 뭐 어때서</div>
-                        <div class="column_writer">책마음</div>
-                    </div>
-                    <div class="bar_item">칼럼 이름2</div>
-                    <div class="bar_item">칼럼 이름3</div>
-                    <div class="bar_item">칼럼 이름4</div>
-                    <div class="bar_item">칼럼 이름5</div>
-                </div>
-                <div class="cut_div">
-                    <div class="bar_item">칼럼 이름6</div>
-                    <div class="bar_item">칼럼 이름7</div>
-                    <div class="bar_item">칼럼 이름8</div>
-                    <div class="bar_item">칼럼 이름9</div>
-                    <div class="bar_item">칼럼 이름10</div>
-                </div>
-                <div class="cut_div">
-                    <div class="bar_item">칼럼 이름11</div>
-                    <div class="bar_item">칼럼 이름12</div>
-                    <div class="bar_item">칼럼 이름13</div>
-                    <div class="bar_item">칼럼 이름14</div>
-                    <div class="bar_item">칼럼 이름15</div>
-                </div>
-            </div>
+            <div class="slide_bar" id="column_slide_bar"></div>
 
             <div class="slide-indicators">
                 <!-- 이전, 다음 버튼과 슬라이드 지표 클릭 시에 라디오 체크 제대로 되는지 확인하시려면 hidden 제거하시면 됩니다! -->

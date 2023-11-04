@@ -1,61 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>글쓰기</title>
-    <!-- 썸머노트 부트스트랩 코드-->
-    <!-- include libraries(jQuery, bootstrap) -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- include summernote css/js -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <!-- 썸머노트 부트스트랩 코드 -->
-    <script src="/column/writeColumn.js"></script>
-    <link rel="stylesheet" href="/column/write.css" />
-  </head>
 
-  <body>
-    <!-- 저장하기 버튼, 컬럼 분류(select 태그 사용해서 만들기)  -->
-    <div class="layouts">
-      <input type="text" class="name" placeholder="제목을 입력하세요" id="sj" />
+<head>
+  <title>글쓰기</title>
+  <!-- 썸머노트 부트스트랩 코드-->
+  <!-- include libraries(jQuery, bootstrap) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- include summernote css/js -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <!-- 썸머노트 부트스트랩 코드 -->
+  <script src="/column/writeColumn.js"></script>
+  <link rel="stylesheet" href="/column/write.css" />
+</head>
 
-      <select name="column_type" id="column_type">
-        <option value="0" selected> == 선택 == </option>
-        <option value="1">국내 소설</option>
-        <option value="2">해외 소설</option>
-        <option value="3">시/에세이</option>
-        <option value="4">인문</option>
-        <option value="5">가정/육아</option>
-        <option value="6">요리</option>
-        <option value="7">건강</option>
-        <option value="8">취미/실용</option>
-        <option value="9">경제/경영</option>
-        <option value="10">자기계발</option>
-        <option value="11">정치/사회</option>
-        <option value="12">역사/문화</option>
-        <option value="13">종교</option>
-        <option value="14">예술/대중문화</option>
-        <option value="15">기술공학</option>
-        <option value="16">외국어</option>
-        <option value="17">여행</option>
-        <option value="18">컴퓨터/IT</option>
-        <option value="19">잡지</option>
-        <option value="20">만화</option>
-      </select>
+<body>
+  <div class="layouts">
+    <input type="text" class="name" placeholder="제목을 입력하세요" id="sj" />
 
-      <div class="buttons">
-        <button id="save-column">게시하기</button>
+    <select name="column_type" id="column_type">
+      <option value="0" selected> == 선택 == </option>
+      <option value="1">국내 소설</option>
+      <option value="2">해외 소설</option>
+      <option value="3">시/에세이</option>
+      <option value="4">인문</option>
+      <option value="5">가정/육아</option>
+      <option value="6">요리</option>
+      <option value="7">건강</option>
+      <option value="8">취미/실용</option>
+      <option value="9">경제/경영</option>
+      <option value="10">자기계발</option>
+      <option value="11">정치/사회</option>
+      <option value="12">역사/문화</option>
+      <option value="13">종교</option>
+      <option value="14">예술/대중문화</option>
+      <option value="15">기술공학</option>
+      <option value="16">외국어</option>
+      <option value="17">여행</option>
+      <option value="18">컴퓨터/IT</option>
+      <option value="19">잡지</option>
+      <option value="20">만화</option>
+    </select>
+
+    <div class="buttons">
+      <button id="save-column">게시하기</button>
+    </div>
+  </div>
+
+  <div id="file-upload-wrap">
+    <div id="upload-title">칼럼 배경 이미지 업로드</div>
+    <input type="file" name="imgFile" id="imgFile" accept=".jpg, .png, .jpeg" />
+    <button type="button" id="uploadBtn">업로드</button>
+    <button type="button" id="imgDelBtn">지우기</button>
+    <div id="uploadMsg"></div>
+    <div id="img-preview">
+      <div>
+        <i class="fa-regular fa-image"></i>
+        <i class="fa-solid fa-sort-down"></i>
       </div>
     </div>
+  </div>
+  <img id="uploadImg" hidden>
 
-    <div id="write-wrap">
-      <div id="write"></div>
-    </div>
-  </body>
+  <div id="write-wrap">
+    <div id="write"></div>
+  </div>
+</body>
+
 </html>
