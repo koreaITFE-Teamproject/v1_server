@@ -59,11 +59,16 @@ main {
   padding: 3px;
   position: absolute;
   top: 115px;
-  right: 450px;
+  right: 20%;
   z-index: 5;
   height: 300px;
 }
 
+@media screen and (max-width: 1250px) {
+  #uploadImg {
+    right: 5%;
+  }
+}
 
 .layouts {
   width: 50%;

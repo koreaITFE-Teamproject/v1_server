@@ -197,6 +197,7 @@ header {
     position: relative;
     width: 50%;
     max-width: 1020px;
+    min-width: 800px;
     margin: 0 auto;
     padding-top: 40px;
 }

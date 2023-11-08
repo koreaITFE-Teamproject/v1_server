@@ -44,10 +44,11 @@ router.post("/uploadImg", upload.single('imgFile'), (req, res) => {
 // 이미지 지우기
 router.post("/deleteImg", upload.single('imgFile'), (req, res) => {
     const imgFn = req.body.imgFn;
+    console.log(imgFn);
     if (!imgFn) {
         res.json({ msg: "선택된 이미지 파일이 없습니다." });
     } else {
-        fs.unlink(`./public/img/columnImg/${imgFn}`, (err) => {
+        fs.unlink(`./public/img${imgFn}`, (err) => {
             if (err) {
                 return console.log("파일 삭제 오류: ", err);
             } else {
@@ -79,15 +80,74 @@ router.get("/like", (req, res) => {
 
 // 컬럼 작성
 router.get("/write", (req, res) => {
-    res.render("./user/column/writeColumn/writeColumn");
+    if (req.session.isLogined === undefined) {
+        res.send(`<script>alert("로그인 후 이용 가능합니다."); document.location.href="../user/login";</script>`);
+    } else {
+        res.render("./user/column/writeColumn/writeColumn", { colInfo: false });
+    }
+});
+
+// 칼럼 수정
+router.get("/modify/:id", (req, res) => {
+    if (req.session.isLogined === undefined) {
+        res.send(`<script>alert("로그인 후 이용 가능합니다."); window.location.href="../../../user/login";</script>`);
+    } else {
+
+        const colId = req.params.id;
+
+        const query = `
+        SELECT sj, cn, colmn_cl_setup as ccs, colmn_img_path as \`cip\`
+        from BK_COLUMN
+        WHERE colmn_uniqu_id = ${colId}
+    `;
+
+        connection.query(query, (queryErr, results) => {
+            if (queryErr) {
+                console.error("Error executing query:", queryErr);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            // console.log(results);
+
+            res.render("./user/column/writeColumn/writeColumn", { colInfo: results[0], colId });
+        });
+    }
+});
+
+// 칼럼 업데이트
+router.post("/update", (req, res) => {
+    const { sj, cn, ct, imgFn, colNo } = req.body;
+
+    console.log(imgFn);
+
+    const query = `
+        UPDATE BK_COLUMN 
+        SET sj = ?, cn = ?, colmn_cl_setup = ?, colmn_img_path = ?
+        WHERE colmn_uniqu_id = ?
+    `;
+
+    connection.query(query, [sj, cn, ct, imgFn, colNo], (queryErr, results) => {
+        if (queryErr) {
+            console.error("Error executing query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+
+        console.log(results);
+
+        res.json({ status: "SUCCESS", message: "Data updated successfully" });
+    });
 });
 
 // 컬럼 읽기
 router.get("/read/:colNo", (req, res) => {
+
     const columnNo = parseInt(req.params.colNo);
 
     const query = `
-        SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt, BC.cn, BC.colmn_cl_setup as cs, UI.ncnm as nm
+        SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt, BC.cn,
+        BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
         FROM BK_COLUMN as BC
         inner join USER_INFO as UI
         WHERE colmn_uniqu_id = ${columnNo} and UI.user_id = BC.colmn_wrter
@@ -102,7 +162,7 @@ router.get("/read/:colNo", (req, res) => {
 
         // console.log(results);
 
-        res.render("./user/column/maincolumn/read", { column: results[0] });
+        res.render("./user/column/maincolumn/read", { column: results[0], userNo: req.session.userNo });
     });
 });
 
@@ -179,7 +239,7 @@ router.get("/getList", (req, res) => {
 
 // 칼럼 저장
 router.post("/saveColumn", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const { sj, cn, ct, nm } = req.body;    // 클라이언트에서 전달된 데이터 'sj', 'cn', 'nm', 'ct 값을 가져옵니다.
 
     const insertQuery = `

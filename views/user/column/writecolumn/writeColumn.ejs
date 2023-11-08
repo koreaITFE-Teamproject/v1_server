@@ -17,34 +17,32 @@
 
 <body>
   <div class="layouts">
-    <input type="text" class="name" placeholder="제목을 입력하세요" id="sj" />
+    <input type="text" class="name" placeholder="제목을 입력하세요" id="sj" value="<%= !colInfo ? '' : colInfo.sj %>"
+      maxlength="30" />
 
     <select name="column_type" id="column_type">
-      <option value="0" selected> == 선택 == </option>
-      <option value="1">국내 소설</option>
-      <option value="2">해외 소설</option>
-      <option value="3">시/에세이</option>
-      <option value="4">인문</option>
-      <option value="5">가정/육아</option>
-      <option value="6">요리</option>
-      <option value="7">건강</option>
-      <option value="8">취미/실용</option>
-      <option value="9">경제/경영</option>
-      <option value="10">자기계발</option>
-      <option value="11">정치/사회</option>
-      <option value="12">역사/문화</option>
-      <option value="13">종교</option>
-      <option value="14">예술/대중문화</option>
-      <option value="15">기술공학</option>
-      <option value="16">외국어</option>
-      <option value="17">여행</option>
-      <option value="18">컴퓨터/IT</option>
-      <option value="19">잡지</option>
-      <option value="20">만화</option>
+      <% var options=['==선택==', ' 국내 소설' , '해외 소설' , '시/에세이' , '인문' , '가정/육아' , '요리' , '건강' , '취미/실용' , '경제/경영' , '자기계발'
+        , '정치/사회' , '역사/문화' , '종교' , '예술/대중문화' , '기술공학' , '외국어' , '여행' , '컴퓨터/IT' , '잡지' , '만화' ]; for(var i=0; i <
+        options.length; i++){%>
+        <% if(!colInfo) { %>
+          <option value="<%= i %>" <%=colInfo.ccs==0 ? "selected" : "" %>>
+            <%= options[i] %>
+          </option>
+          <% } else { %>
+            <option value="<%= i %>" <%=colInfo.ccs==i ? "selected" : "" %>>
+              <%= options[i] %>
+            </option>
+            <% } %>
+              <% } %>
     </select>
 
     <div class="buttons">
-      <button id="save-column">게시하기</button>
+      <% if(!colInfo){ %>
+        <button id="save-column">게시하기</button>
+        <% } else { %>
+          <input type="hidden" id="col_no" value="<%= colId %>">
+          <button id="update-column">수정하기</button>
+          <% } %>
     </div>
   </div>
 
@@ -55,15 +53,18 @@
     <button type="button" id="imgDelBtn">지우기</button>
     <div id="uploadMsg"></div>
     <div id="img-preview">
-      <div>
-        <i class="fa-regular fa-image"></i>
-        <i class="fa-solid fa-sort-down"></i>
-      </div>
+      <input id="img-path" type="hidden" value="<%= !colInfo ? '' : colInfo.cip %>" />
+        <div>
+          <i class="fa-regular fa-image"></i>
+          <i class="fa-solid fa-sort-down"></i>
+        </div>
     </div>
   </div>
   <img id="uploadImg" hidden>
 
+
   <div id="write-wrap">
+    <input id="content" type="hidden" value="<%= !colInfo ? '' : colInfo.cn %>">
     <div id="write"></div>
   </div>
 </body>

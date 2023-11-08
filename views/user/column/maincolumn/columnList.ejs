@@ -57,11 +57,7 @@
       </select>
       <input class="search-input" id="search-input" type="text" placeholder="검색창" />
       <button class="search-column" id="search-column">검색</button>
-      <% if(isLogined.isLogined) { %>
-        %><button class="add-column-btn" id="add-column-btn" onclick="location.href='/column/write'">글쓰기</button>
-        <% } else { %>
-          <button class="add-column-btn" id="add-column-btn" onclick="alert('로그인 후 이용 가능합니다.')">글쓰기</button>
-          <% } %>
+      <button class="add-column-btn" id="add-column-btn" onclick="location.href='/column/write'">글쓰기</button>
     </div>
 
     <!-- 게시글 목록 요소 -->

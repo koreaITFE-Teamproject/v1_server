@@ -98,10 +98,7 @@ $(document).ready(function () {
           imgFilename = filename.fn;
           // 업로드가 성공하면 서버의 응답 데이터를 처리합니다.
           uploadMsg.text("이미지 업로드 및 저장 완료");
-          $("#uploadImg").prop("src", filename.imgPath);
-          $("#imgFile").prop("disabled", true);
-          $("#uploadBtn").prop("disabled", true);
-          $("#img-preview>div").css("display", "flex");     // 미리보기 보이기
+          setImg(filename.imgPath);
         },
         error: function (xhr, status, error) {
           // 오류가 발생한 경우 처리합니다.
@@ -122,6 +119,7 @@ $(document).ready(function () {
   // 이미지 삭제 함수
   function deleteImgFile() {
     isClicked = false;
+    console.log(imgFilename);
     $.ajax({
       url: `http://localhost:3000/column/deleteImg`,
       method: "POST",
@@ -130,11 +128,7 @@ $(document).ready(function () {
       success: function (data) {
         uploadMsg.text(data.msg);
         imgFilename = "";
-        $("#uploadImg").prop("src", "");
-        $("#imgFile").val('');
-        $("#imgFile").prop("disabled", false);
-        $("#uploadBtn").prop("disabled", false);
-        $("#img-preview>div").hide();     // 미리보기 숨기기
+        setImg(imgFilename);
       },
       error: function (xhr, status, error) {
         // 오류가 발생한 경우 처리합니다.
@@ -146,7 +140,6 @@ $(document).ready(function () {
 
   // 이미지 미리보기 기능
   $(".fa-image").add(".fa-sort-down").click(function () {
-    console.log(!isClicked);
     if (!isClicked || isClicked) {
       isClicked = !isClicked
       let imgHt = parseFloat($("#uploadImg").css("width")) <= 900 ? 350 : 450;
@@ -154,6 +147,17 @@ $(document).ready(function () {
       $("#uploadImg").css("height", imgHt);
     }
   });
+
+  // 이미지 있는지 확인
+  function setImg(fnip) {
+    console.log(fnip);
+    let isEmpty = !fnip ? false : true;
+    imgFilename = fnip;
+    $("#uploadImg").prop("src", fnip);
+    $("#imgFile").prop("disabled", isEmpty);
+    $("#uploadBtn").prop("disabled", isEmpty);
+    $("#img-preview>div").css("display", `${!isEmpty ? 'none' : 'flex'}`);   // 미리보기 기능
+  }
 
 
   // 게시 버튼
@@ -176,8 +180,50 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
           if (data.status == "SUCCESS") {
-            alert("저장이 완료되었습니다.");
+            alert("게시되었습니다.");
             window.location.href = "/column/all";
+          }
+        },
+        error: function (err) {
+          console.error("Error:", err);
+        },
+      });
+    }
+  });
+
+
+  // 수정 시 내용 넣기
+  getContent();
+  function getContent() {
+    !$("#img-path").val() ? '' : setImg($("#img-path").val());
+
+    const content = $("#content").val()
+    $(".note-placeholder").hide();
+    $(".note-editable").html(content);
+  }
+
+  // 수정 버튼
+  $("#update-column").on("click", function () {
+    if ($("#column_type").val() == 0) {
+      return alert("칼럼 유형을 선택해주세요.");
+    }
+
+    if (confirm("수정하시겠습니까?")) {
+      let sj = $("#sj").val();                    // 제목
+      let cn = $(".note-editable").html();        // 내용
+      let ct = $("#column_type").val();           // 칼럼 타입
+      let colNo = $("#col_no").val();             // 칼럼 번호
+      let imgFn = imgFilename;                    // 이미지 경로
+
+      $.ajax({
+        url: `http://localhost:3000/column/update`,
+        method: "POST",
+        data: { sj: sj, cn: cn, ct: ct, imgFn: imgFn, colNo: colNo },
+        dataType: "json",
+        success: function (data) {
+          if (data.status == "SUCCESS") {
+            alert("수정되었습니다.");
+            window.location.href = `/column/read/${colNo}`;
           }
         },
         error: function (err) {

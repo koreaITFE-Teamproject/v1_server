@@ -3,7 +3,6 @@ $(function () {
 
     fetchMainData();
 
-    // 페이지 데이터를 가져오는 함수
     function fetchMainData() {
         $.ajax({
             url: `http://localhost:3000/main/fetchColum`,
@@ -68,7 +67,7 @@ $(function () {
                     <div class="column_writer">${rd[0 + columnI++].COLMN_WRTER}</div>
                 </a>
             </div>
-        </div>
-    `);
+        </div >
+        `);
     }
 });

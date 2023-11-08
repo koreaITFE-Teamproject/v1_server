@@ -1,5 +1,6 @@
 .title_bar {
     width: 50%;
+    min-width: 800px;
     border-top: 3px solid #ddd;
     padding: 5px 0;
     margin: 0 auto;
@@ -43,8 +44,17 @@
     font-size: 18px;
 }
 
+#writer>button {
+    float: right;
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 4px;
+    border: 1px solid #c4c4c4;
+}
+
 .contents_bar {
     width: 50%;
+    min-width: 800px;
     margin: 0 auto;
 }
 
@@ -116,17 +126,35 @@
     transform: translateX(-50%);
     font-size: 15px;
     font-family: 'Nanum Gothic', sans-serif;
+    transition: border .2s, background-color .2s;
 }
 
-.icon>i {
-    font-size: 24px;
-}
-
-.icon>i,
 .icon>p {
     padding: 0 3px;
     color: #3d3d3d;
+    transition: color .2s;
 }
+
+.icon>i {
+    padding: 0 3px;
+    font-size: 24px;
+    color: #c4c4c4;
+    transition: color .2s;
+}
+
+
+.icon:hover {
+    border: 1px solid #a2a2a2;
+    /* efefef */
+    background-color: #c5c5c5;
+}
+
+.icon:hover>p,
+.icon:hover>i {
+    color: white;
+}
+
+
 
 /* 댓글 창 부분 */
 /* 큰 틀 */

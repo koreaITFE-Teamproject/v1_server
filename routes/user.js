@@ -70,16 +70,17 @@ router.post("/login", (req, res) => {
     const loginId = req.body.loginId;
     const hashPw = CryptoJS.SHA256(req.body.loginPw).toString();
 
-    const query = `SELECT user_id, ncnm from USER_INFO WHERE user_id='${loginId}' AND passwd='${hashPw}'`;
+    const query = `SELECT user_uniq_id as u_id, user_id, ncnm from USER_INFO WHERE user_id='${loginId}' AND passwd='${hashPw}'`;
     connection.query(query, (queryErr, results) => {
         // db 체크
         if (queryErr) throw queryErr;
 
         if (results.length > 0) {
             // db 유저 정보와 일치한 데이터가 있을 때
-            req.session.isLogined = true; // 세션 정보 갱신, 로그인 여부
-            req.session.userId = loginId; // 아이디 저장
-            req.session.nickname = results[0].ncnm; // 닉네임 저장
+            req.session.isLogined = true;           // 세션 정보 갱신, 로그인 여부
+            req.session.userNo = results[0].u_id;   // 유저 고유번호 저장
+            req.session.userId = loginId;           // 유저 아이디 저장
+            req.session.nickname = results[0].ncnm; // 유저 닉네임 저장
             req.session.save(function () {
                 res.redirect("../main/home");
             });

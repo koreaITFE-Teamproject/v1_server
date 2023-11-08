@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="/column/read.css">
     <script src="/column/read.js"></script>
 </head>
-<!-- +이 페이지 푸터 위치 문제-->
-
-<!-- 이 페이지는 서버랑 연동하고 백이랑 프론트 같이 들어가야해서 퍼블리싱 까지만 했습니다! -->
 
 <body>
     <div class="path-wrap">
@@ -30,19 +27,23 @@
     </div>
 
     <div class="title_bar">
-        <!-- 제목  input 길이 50자로 지정 -->
+        <!-- 제목  input 길이 30자로 지정 -->
         <div class="title">
             <p id="col_no">
                 <%= column.c_id %>.
             </p>
             <span></span>
-            <p>
+            <p id="col_title">
                 <%= column.sj %>
             </p>
         </div>
         <p id="writer">
             <i class="fa-solid fa-circle-user"></i>
             <%= column.nm %>
+                <% if(column.u_no==userNo){ %>
+                    <button type="button" id="modify-btn"
+                        onclick="location.href='../modify/<%=column.c_id%>'">수정하기</button>
+                    <% } %>
         </p>
     </div>
     <div class="contents_bar">
@@ -63,15 +64,16 @@
             </div>
         </div>
         <div class="column_contents" id="column_contents">
-            <input id="getContent" type="hidden" value="<%=column.cn%>">
+            <input name="content" id="getContent" type="hidden" value="<%=column.cn%>">
             <div id="content">
             </div>
             <div class="icon">
-                <i class="fa-solid fa-thumbs-up" style="color: #c4c4c4;"></i>
+                <i class="fa-solid fa-thumbs-up"></i>
                 <p id="like">좋아요</p>
                 <p class="like_count">0</p>
             </div>
         </div>
+
         <!-- 댓글 부분, 위치 색깔 하늘색-->
         <div class="comment_bar">
             <div class="comment_num">댓글 수 : <span class="server_num">0</span></div>

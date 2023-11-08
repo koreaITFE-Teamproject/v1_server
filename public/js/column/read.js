@@ -28,4 +28,5 @@ $(document).ready(function () {
     });
 
     // 좋아요 눌렀을때 숫자 오르게
+
 })
