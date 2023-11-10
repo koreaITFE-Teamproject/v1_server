@@ -81,6 +81,11 @@
   font-family: 'Nanum Gothic', sans-serif;
 }
 
+/* 칼럼 없을때 메시지 스타일 */
+.none-column {
+  text-align: center;
+}
+
 /* 칼럼 디자인 */
 .column {
   width: 100%;

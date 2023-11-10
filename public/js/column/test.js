@@ -2,7 +2,9 @@ $(document).ready(function () {
 
   var currentPage = 1; // 현재 페이지 초기값
 
-  fetchPageData(currentPage, "", "");
+  var colType = $("#col-type").val();
+
+  fetchPageData(currentPage, "", colType);
 
   // 페이지 데이터를 가져오는 함수
   function fetchPageData(page, searchQuery, columnType) {
@@ -15,6 +17,10 @@ $(document).ready(function () {
       success: function (data) {
         let resultData = data.data;
         console.log(resultData);
+        if(resultData.length == 0){
+          return $("#postBody").append(`<div class="none-column">해당 분야의 칼럼이 없습니다. 칼럼을 작성해주세요.</div>`)
+        }
+
         for (var i = 0; i < resultData.length; i++) {
 
           // 내용 먼저 자르기, <> 태그로 감싸져 있으면 ''로 변환
@@ -67,11 +73,6 @@ $(document).ready(function () {
         $("#postBody").css("height", `${208.5 * columns}`);
 
         var interval = setInterval(() => {
-          // if (count < 2) {
-          //   $("main").css("width", parseFloat(screen.width));
-          // } else {
-          //   $("main").css("width", parseFloat(screen.width - 17));
-          // }
 
           $(".column").eq(count).css({
             "display": "grid",

@@ -126,7 +126,7 @@ main {
     border: 0.5px solid #D3B396;
 }
 
-.class_frame {
+#class_frame {
     width: 100%;
     margin: 0 auto;
 }

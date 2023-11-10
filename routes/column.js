@@ -65,7 +65,16 @@ router.get("/all", (req, res) => {
     userInfo = commonFunc.checkLoginStatus(req);        // 리턴값 받음
     userInfo === false ? isLogined = { isLogined: false, nickname: "" } : userInfo;
 
-    res.render("./user/column/maincolumn/columnList", { isLogined: userInfo });
+    res.render("./user/column/maincolumn/columnList", { isLogined: userInfo, type: '' });
+});
+
+// 메인에서 칼럼 유형 선택하고 들어올 때
+router.get("/all/:id", (req, res) => {
+
+    userInfo = commonFunc.checkLoginStatus(req);        // 리턴값 받음
+    userInfo === false ? isLogined = { isLogined: false, nickname: "" } : userInfo;
+
+    res.render("./user/column/maincolumn/columnList", { isLogined: userInfo, type: req.params.id });
 });
 
 // 구독 컬럼
@@ -141,18 +150,60 @@ router.post("/update", (req, res) => {
 });
 
 // 컬럼 읽기
-router.get("/read/:colNo", (req, res) => {
+let views = [];
 
+router.get("/read/:colNo", (req, res) => {
     const columnNo = parseInt(req.params.colNo);
 
-    const query = `
-        SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt, BC.cn,
-        BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
-        FROM BK_COLUMN as BC
-        inner join USER_INFO as UI
-        WHERE colmn_uniqu_id = ${columnNo} and UI.user_id = BC.colmn_wrter
-    `;
+    const hitQuery = `SELECT colmn_uniqu_id as id, hit from BK_COLUMN WHERE colmn_uniqu_id = ${columnNo}`;
+    connection.query(hitQuery, (queryErr, hitResults) => {
+        if (queryErr) {
+            console.error("Error executing query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
 
+        console.log(hitResults[0]);
+
+        let columnTemp = null;
+
+        if (!!req.session.isLogined) {
+            columnTemp = views.find((colId) => colId.id === columnNo) === undefined ? views.push(hitResults[0]) : undefined;
+
+            if (columnTemp === undefined) {
+                return getColumn(res, req, columnNo);
+            }
+
+            const updateQuery = `
+                UPDATE BK_COLUMN SET hit = hit + 1 WHERE colmn_uniqu_id = ${columnNo};
+            `;
+
+            connection.query(updateQuery, (queryErr, results) => {
+                if (queryErr) {
+                    console.error("Error executing query:", queryErr);
+                    res.status(500).send("Internal Server Error");
+                    return;
+                }
+
+                console.log(views);
+                getColumn(res, req, columnNo);
+            });
+        } else {
+            views = [];
+            console.log(views, "초기화");
+            getColumn(res, req, columnNo);
+        }
+    });
+});
+
+function getColumn(res, req, columnNo) {
+    const query = `
+    SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt, BC.cn,
+    BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
+    FROM BK_COLUMN as BC
+    inner join USER_INFO as UI
+    WHERE colmn_uniqu_id = ${columnNo} and UI.user_id = BC.colmn_wrter
+`;
     connection.query(query, (queryErr, results) => {
         if (queryErr) {
             console.error("Error executing query:", queryErr);
@@ -164,7 +215,7 @@ router.get("/read/:colNo", (req, res) => {
 
         res.render("./user/column/maincolumn/read", { column: results[0], userNo: req.session.userNo });
     });
-});
+}
 
 router.get("/getList", (req, res) => {
     // 페이지 번호와 페이지 크기를 쿼리 파라미터로부터 가져옵니다.
@@ -220,7 +271,7 @@ router.get("/getList", (req, res) => {
             // 쿼리 매개변수로 pageSize와 offset을 전달합니다.
             connection.query(
                 dataQuery,
-                [!searchQuery, !columnType, searchQuery ? `%${searchQuery}%` : '%%', columnType ? `${columnType}` : '', pageSize, offset],
+                [!searchQuery, !columnType, searchQuery ? `%${searchQuery}%` : '%%', columnType ? `${columnType}` : '%%', pageSize, offset],
                 (queryErr, results) => {
                     if (queryErr) {
                         console.error("Error executing data query:", queryErr);
