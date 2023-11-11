@@ -196,9 +196,11 @@ router.get("/read/:colNo", (req, res) => {
     });
 });
 
+// 칼럼 유형 추가하려면 ,(SELECT colmn_cl_nm from COLMN_CL WHERE colmn_cl_id = 3) as col_type      이거 추가하면됨
 function getColumn(res, req, columnNo) {
     const query = `
-    SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt, BC.cn,
+    SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt,
+    BC.cn, BC.hit, BC.reply_count, BC.like_count,
     BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
     FROM BK_COLUMN as BC
     inner join USER_INFO as UI
@@ -216,6 +218,63 @@ function getColumn(res, req, columnNo) {
         res.render("./user/column/maincolumn/read", { column: results[0], userNo: req.session.userNo });
     });
 }
+
+
+// 댓글 저장
+router.post("/saveReply", (req, res) => {
+
+    const { colNo, replyText } = req.body;
+    const userNm = req.session.nickname;
+
+    console.log(colNo);
+
+    const insertQuery = `
+        INSERT INTO REPLY (reply_cn, frst_reg_id, frst_reg_dt, colmn_id)
+        VALUES (?, ?, NOW(), ?)
+    `;
+
+    connection.query(insertQuery, [replyText, userNm, colNo], (queryErr, insertResults) => {
+        if (queryErr) {
+            console.error("Error executing data query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+
+        const updateQuery = `
+            UPDATE BK_COLUMN 
+            SET reply_count = (select COUNT(*) from REPLY WHERE COLMN_id = ${colNo}})
+            WHERE colmn_uniqu_id = ${colNo}
+        `
+
+        connection.query(updateQuery, (queryErr, updateResults) => {
+
+            res.json({ status: "SUCCESS", message: "Data inserted successfully" });
+        });
+    });
+});
+
+// 댓글 가져오기
+router.post("/getReply", (req, res) => {
+    const colNo = req.body.colNo;
+
+    const selectQuery = `
+        SELECT reply_cn, frst_reg_id, DATE_FORMAT(frst_reg_dt, '%y.%m.%d.') as wt, reply_delete_ennc as del
+        from REPLY
+        WHERE colmn_id = ${colNo};
+    `;
+
+    connection.query(selectQuery, (queryErr, Results) => {
+        if (queryErr) {
+            console.error("Error executing data query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+        console.log(Results);
+
+        res.json(Results);
+    });
+});
+
 
 router.get("/getList", (req, res) => {
     // 페이지 번호와 페이지 크기를 쿼리 파라미터로부터 가져옵니다.

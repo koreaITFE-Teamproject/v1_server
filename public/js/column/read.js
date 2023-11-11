@@ -1,5 +1,6 @@
 $(document).ready(function () {
     getContent();
+    getReply();
 
     // db에서 컨텐츠 가져오는 작업
     function getContent() {
@@ -11,22 +12,91 @@ $(document).ready(function () {
         $(".column_contents").css("height", contentheight);
     }
 
-    // 현재 댓글 다는부분 구분 안되고 둘다 들어감. 백 들어오면 구분 되게 해야함.
-    var bodyTextarea = $('.textarea');
-    var characterCountDisplay = $('.js_num');
-    var maxCharacterCount = 300;
+    // 좋아요 눌렀을때 숫자 오르게
 
-    bodyTextarea.on('input', function () {
-        var text = bodyTextarea.val();
-        var currentCharacterCount = text.length;
 
-        if (currentCharacterCount > maxCharacterCount) {
-            bodyTextarea.val(text.slice(0, maxCharacterCount));
-            currentCharacterCount = maxCharacterCount;
+    // 댓글 가져오기
+    function getReply() {
+        $("#input_text_bar").text("");
+
+        // 칼럼 번호
+        let colNo = $("#col_no").text().trim().replace(/\./g, '');
+
+        $.ajax({
+            url: `http://localhost:3000/column/getReply`,
+            method: "POST",
+            data: { colNo: colNo },
+            dataType: "json",
+            success: function (data) {
+                $(".reply_count").text(data.length);
+
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].del == 1) {
+                        $("#input_text_bar").append(`
+                            <div id="reply"><span>${i + 1}. </span>삭제한 댓글입니다.</div>
+                            <p>-----------------------------------------</p>
+                        `)
+                    } else {
+                        $("#input_text_bar").append(`
+                            <div id="reply">
+                                <span>${i + 1}. </span>
+                                <span>[${data[i].frst_reg_id}]</span>
+                                <span>[${data[i].wt}]</span>
+                                <div id="get_reply_text">- ${data[i].reply_cn}</div>
+                            <p>-----------------------------------------</p>
+                        `);
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                // 오류가 발생한 경우 처리합니다.
+                console.error("오류:", error);
+            },
+        });
+    }
+
+    // 댓글 추가
+    $(".reply_save_btn").click(function () {
+        if (!confirm("댓글을 등록하시겠습니까?")) {
+            return alert("취소합니다.");
         }
-        characterCountDisplay.text(currentCharacterCount);
+
+        let colNo = $("#col_no").text().trim().replace(/\./g, '');
+        let replyText = $(".reply_text").val().trim();
+
+        if (!replyText) {
+            $(".reply_text").val("");
+            return alert("댓글을 입력하세요.");
+        }
+
+        const data = {
+            colNo: colNo,
+            replyText: replyText,
+        }
+
+        $.ajax({
+            url: `http://localhost:3000/column/saveReply`,
+            method: "POST",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                $(".reply_text").val("");
+                getReply();
+            },
+            error: function (xhr, status, error) {
+                // 오류가 발생한 경우 처리합니다.
+                console.error("오류:", error);
+            },
+        });
     });
 
-    // 좋아요 눌렀을때 숫자 오르게
+    // 댓글 줄바꿈이 원래 있나?
+    // $(".reply_text").on("keypress", function (event) {
+    //     if (event.which === 13) {
+    //         event.preventDefault();
+
+    //         $(".reply_save_btn").trigger("click");
+    //     }
+    // });
 
 })

@@ -30,6 +30,7 @@
         <!-- 제목  input 길이 30자로 지정 -->
         <div class="title">
             <p id="col_no">
+                <input id="colNo" type="hidden" value="<%= column.c_id %>">
                 <%= column.c_id %>.
             </p>
             <span></span>
@@ -39,11 +40,12 @@
         </div>
         <p id="writer">
             <i class="fa-solid fa-circle-user"></i>
-            <%= column.nm %>
-                <% if(column.u_no==userNo){ %>
-                    <button type="button" id="modify-btn"
-                        onclick="location.href='../modify/<%=column.c_id%>'">수정하기</button>
-                    <% } %>
+            <span class="writer">
+                <%= column.nm %>
+            </span>
+            <% if(column.u_no==userNo){ %>
+                <button type="button" id="modify-btn" onclick="location.href='../modify/<%=column.c_id%>'">수정하기</button>
+                <% } %>
         </p>
     </div>
     <div class="contents_bar">
@@ -51,15 +53,26 @@
             <div id="col-info-dt">
                 <i class="fa-regular fa-clock"></i>
                 <%= column.wt %>
+                    <!-- <p class="column-type">${resultData[i].COLMN_CL_NM}</p> -->
             </div>
             <div id="col-info-icon-wrap">
                 <div>
+                    <i class="fa-regular fa-eye"></i>
+                    <span id="hits_count">
+                        <%=column.hit %>
+                    </span>
+                </div>
+                <div>
                     <i class="fa-regular fa-comment-dots"></i>
-                    <span id="comment_count">0</span>
+                    <span class="reply_count">
+                        <%=column.reply_count %>
+                    </span>
                 </div>
                 <div>
                     <i class="fa-regular fa-thumbs-up"></i>
-                    <span class="like_count">0</span>
+                    <span class="like_count">
+                        <%=column.like_count %>
+                    </span>
                 </div>
             </div>
         </div>
@@ -76,42 +89,21 @@
 
         <!-- 댓글 부분, 위치 색깔 하늘색-->
         <div class="comment_bar">
-            <div class="comment_num">댓글 수 : <span class="server_num">0</span></div>
+            <div class="comment_num">댓글 수 : <span class="reply_count">0</span></div>
             <!-- 부모 댓글 textarea, 위치 색깔 파란색-->
             <div class="comment_input">
-                <textarea class="textarea"></textarea>
-                <div class="input_div">
-                    <div class="limit_text"><span class="js_num">0</span>/300</div>
-                    <div class="input_btn">등록</div>
-                </div>
-            </div>
-            <!-- 부모 textarea로 받은 내용이 들어올 위치-->
-            <div class="input_text_bar">
-                <div class="user_time"><span>유저정보</span><span>입력한 시간</span></div>
-                <div class="recommnet_bar">
-                    <!-- 위치 색깔 분홍색 -->
-                    <div class="input_text">
-                        위의 댓글에서 입력한거 받는 부분
-                    </div>
-                    <span class="recomment_write">답글 쓰기</span>
-                </div>
-                <!-- 답글 쓰기를 누르면 나오는 자식 댓글 -->
-                <!-- 자식 textarea로 받은 내용이 들어올 위치 -->
-                <!-- <div class="user_time"><span>유저정보</span><span>입력한 시간</span></div>
-                <div class="recommnet_bar">
-                    <div class="input_text">
-                        아래의 대댓글쓰기에서 입력한거 받는 부분
-                    </div>
-                    자식 댓글 Textarea부분, 위치 색깔 파란색
-                    <div class="comment_input">
-                        <textarea class="textarea"></textarea>
+                <% if(!userNo){ %>
+                    <textarea class="reply_text" placeholder="로그인 후 이용가능합니다." readonly></textarea>
+                    <%} else { %>
+                        <textarea class="reply_text" placeholder="댓글을 입력하세요."></textarea>
                         <div class="input_div">
                             <div class="limit_text"><span class="js_num">0</span>/300</div>
-                            <div class="input_btn">등록</div>
+                            <button type="button" class="reply_save_btn">등록</button>
                         </div>
-                    </div>
-                </div> -->
+                        <% } %>
             </div>
+
+            <div id="input_text_bar"></div>
         </div>
     </div>
 </body>

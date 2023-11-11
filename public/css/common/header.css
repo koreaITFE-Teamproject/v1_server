@@ -82,7 +82,8 @@ header {
     top: 0;
     transition: top 0.2s ease-in-out;
     z-index: 3;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 6fr 3fr;
     align-items: center;
     font-family: 'HakgyoansimWoojuR';
 }
@@ -92,10 +93,10 @@ header {
 }
 
 .site_name {
-    width: 10%;
     font-family: 'GmarketSansMedium';
     text-align: center;
     font-size: 17px;
+    margin-left: 10px;
 }
 
 .site_name>a {
@@ -107,19 +108,17 @@ header {
 }
 
 .menu_bar {
-    width: 40%;
+    /* width: 40%; */
     display: flex;
 }
 
 .menu_bar_item {
-    width: 80%;
     display: flex;
-    flex-direction: column;
     position: relative;
 }
 
 .content-title {
-    /* min-width: 150px; */
+    width: 150px;
     text-align: center;
     padding: 10px 0;
     font-size: 17px;
@@ -135,7 +134,6 @@ header {
     position: absolute;
     top: 45px;
     background-color: #F9ECDB;
-    /* min-width: 150px; */
     text-align: center;
     color: #764127;
 }
@@ -152,8 +150,8 @@ header {
 #search {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    margin-left: 35%;
+    justify-content: end;
+    margin-right: 30px;
 }
 
 .bi-search {
@@ -162,14 +160,13 @@ header {
 
 #topStartBrunchButton,
 .topLogoutButton:last-child {
-    width: 100%;
+    /* width: 100%; */
     min-width: 100px;
     height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    opacity: .9;
     border: 1px solid #959595;
     border-radius: 15px;
     color: #333;
@@ -178,8 +175,7 @@ header {
 }
 
 .nickname-wrap {
-    width: 100%;
-    min-width: 20px;
+    width: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -213,7 +209,7 @@ header {
 }
 
 
-@media screen and (max-width: 1280px) {
+/* @media screen and (max-width: 1280px) {
     #search {
         margin-left: 30%;
     }
@@ -229,4 +225,4 @@ header {
     #search {
         margin-left: 7%;
     }
-}
+} */
