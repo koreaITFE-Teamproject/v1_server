@@ -25,26 +25,45 @@ $(document).ready(function () {
         $('.js_num').text(currentCharacterCount);
     });
 
+    getLikes();
     // 좋아요 눌렀을때 숫자 오르게
-    var isLiked = false; 
+    // var isLiked = false;
 
     $(".icon").on('click', function () {
 
-        isLiked = !isLiked;
-        
+        // isLiked = !isLiked;
+
+        updateLikes();
+    });
+
+    function getLikes() {
         $.ajax({
             type: 'POST',
-            url: '/likeColumn', 
-            data: { columnId: $("#colNo").val() }, 
+            url: `http://localhost:3000/column/getLikeColumn`,
+            data: { columnId: $("#colNo").val() },
             success: function (data) {
-                console.log(data);
-                $(".like_count").text(isLiked ? 1 : 0);
+                $(".like_count").text(data.like_count);
             },
             error: function (error) {
                 console.error('Error updating like status:', error);
             }
         });
-    });
+    }
+
+    // 업데이트
+    function updateLikes() {
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:3000/column/updateLikeColumn`,
+            data: { columnId: $("#colNo").val() },
+            success: function (data) {
+                getLikes();
+            },
+            error: function (error) {
+                console.error('Error updating like status:', error);
+            }
+        });
+    }
 
     // 댓글 가져오기
     function getReply() {
@@ -63,19 +82,23 @@ $(document).ready(function () {
 
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].del == 1) {
-                        $("#input_text_bar").append(`
-                            <div id="reply"><span>${i + 1}. </span>삭제한 댓글입니다.</div>
-                            <p>-----------------------------------------</p>
-                        `)
+                        $("#input_text_bar").append(` 
+                        <div class="reply" style="height:78px;"><span></span></span>삭제된 댓글입니다.</div>
+                    `)
                     } else {
+                        // <span>${i + 1}. </span>
                         $("#input_text_bar").append(`
-                            <div id="reply">
-                                <span>${i + 1}. </span>
-                                <span>[${data[i].frst_reg_id}]</span>
-                                <span>[${data[i].wt}]</span>
-                                <div id="get_reply_text">- ${data[i].reply_cn}</div>
-                            <p>-----------------------------------------</p>
-                        `);
+                        <div class="reply">
+                            <i class="fa-regular fa-circle-user"></i>
+                            <div>
+                                <div class="reply_write_info">
+                                    <span>${data[i].frst_reg_id}</span>
+                                    <span>${data[i].wt}</span>
+                                </div>
+                                <div class="get_reply_text">${data[i].reply_cn}</div>
+                            </div>
+                        </div>
+                    `);
                     }
                 }
             },

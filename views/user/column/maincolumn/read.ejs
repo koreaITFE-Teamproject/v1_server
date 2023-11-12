@@ -80,32 +80,36 @@
             <input name="content" id="getContent" type="hidden" value="<%=column.cn%>">
             <div id="content">
             </div>
-            <div class="icon">
-                <i class="fa-solid fa-thumbs-up"></i>
-                <p id="like">좋아요</p>
-                <p class="like_count">0</p>
-            </div>
-        </div>
-
-        <!-- 댓글 부분, 위치 색깔 하늘색-->
-        <div class="comment_bar">
-            <div class="comment_num">댓글 수 : <span class="reply_count">0</span></div>
-            <!-- 부모 댓글 textarea, 위치 색깔 파란색-->
-            <div class="comment_input">
-                <% if(!userNo){ %>
-                    <textarea class="reply_text" placeholder="로그인 후 이용가능합니다." readonly></textarea>
+            <% if(!userNo){ %>
+                <div class="icon" style="pointer-events: none;">
                     <%} else { %>
-                        <textarea class="reply_text" placeholder="댓글을 입력하세요."></textarea>
-                        <div class="input_div">
-                            <div class="limit_text"><span class="js_num">0</span>/300</div>
-                            <button type="button" class="reply_save_btn">등록</button>
+                        <div class="icon">
+                            <% } %>
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <p id="like">좋아요</p>
+                                <p class="like_count">0</p>
                         </div>
-                        <% } %>
-            </div>
+                </div>
 
-            <div id="input_text_bar"></div>
+                <!-- 댓글 부분, 위치 색깔 하늘색-->
+                <div class="comment_bar">
+                    <div class="comment_num">댓글 수 : <span class="reply_count">0</span></div>
+                    <!-- 부모 댓글 textarea, 위치 색깔 파란색-->
+                    <div class="comment_input">
+                        <% if(!userNo){ %>
+                            <textarea class="reply_text" placeholder="로그인 후 이용가능합니다." readonly></textarea>
+                            <%} else { %>
+                                <textarea class="reply_text" placeholder="댓글을 입력하세요."></textarea>
+                                <div class="input_div">
+                                    <div class="limit_text"><span class="js_num">0</span>/300</div>
+                                    <button type="button" class="reply_save_btn">등록</button>
+                                </div>
+                                <% } %>
+                    </div>
+
+                    <div id="input_text_bar"></div>
+                </div>
         </div>
-    </div>
 </body>
 
 </html>

@@ -70,7 +70,7 @@
     font-size: 13px;
 }
 
-#col-info i{
+#col-info i {
     display: flex;
     align-items: center;
     font-size: 15px;
@@ -185,7 +185,7 @@
 .comment_input {
     display: flex;
     flex-direction: column;
-    border: 1.5px solid #764127;
+    border: .5px solid #764127;
 }
 
 .js_num {
@@ -232,3 +232,35 @@
     outline: none;
 }
 
+.reply {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: -1px 0;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.reply i {
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.reply_write_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.reply_write_info>span {
+    font-size: 12px;
+}
+
+.reply_write_info>span:first-child{
+    font-weight: bold;
+}
+
+.get_reply_text{
+    padding-top: 10px;
+    font-size: 14px;
+}

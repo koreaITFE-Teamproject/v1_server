@@ -220,14 +220,48 @@ function getColumn(res, req, columnNo) {
     });
 }
 
+// 좋아요 가져오기
+router.post("/getLikeColumn", (req, res) => {
+
+    let columnId = req.body.columnId;
+
+    const selectQuery = "SELECT COALESCE(like_count, 0) as like_count FROM BK_COLUMN WHERE colmn_uniqu_id = ?";
+    connection.query(selectQuery, [columnId], (selectErr, selectResults) => {
+        if (selectErr) {
+            console.error("Error executing select query:", selectErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+
+        const likeCount = selectResults[0].like_count;
+
+        res.json({ like_count: likeCount });
+    });
+});
+
+// 좋아요 업데이트
+router.post("/updateLikeColumn", (req, res) => {
+
+    let columnId = req.body.columnId;
+
+    const updateQuery = "UPDATE BK_COLUMN SET like_count = COALESCE(like_count, 0) + 1 WHERE colmn_uniqu_id = ?";
+
+    connection.query(updateQuery, [columnId], (updateErr, updateResults) => {
+        if (updateErr) {
+            console.error("Error executing update query:", updateErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+
+        res.json({ status: "SUCCESS", message: "Data inserted successfully" });
+    });
+});
 
 // 댓글 저장
 router.post("/saveReply", (req, res) => {
 
     const { colNo, replyText } = req.body;
     const userNm = req.session.nickname;
-
-    console.log(colNo);
 
     const insertQuery = `
         INSERT INTO REPLY (reply_cn, frst_reg_id, frst_reg_dt, colmn_id)
@@ -261,7 +295,7 @@ router.post("/getReply", (req, res) => {
             res.status(500).send("Internal Server Error");
             return;
         }
-        console.log(Results);
+        // console.log(Results);
 
         res.json(Results);
     });
