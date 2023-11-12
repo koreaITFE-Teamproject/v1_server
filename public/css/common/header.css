@@ -81,7 +81,7 @@ header {
     position: fixed;
     top: 0;
     transition: top 0.2s ease-in-out;
-    z-index: 3;
+    z-index: 9;
     display: grid;
     grid-template-columns: 1fr 6fr 3fr;
     align-items: center;

@@ -199,13 +199,14 @@ router.get("/read/:colNo", (req, res) => {
 // 칼럼 유형 추가하려면 ,(SELECT colmn_cl_nm from COLMN_CL WHERE colmn_cl_id = 3) as col_type      이거 추가하면됨
 function getColumn(res, req, columnNo) {
     const query = `
-    SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt,
-    BC.cn, BC.hit, BC.reply_count, BC.like_count,
-    BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
-    FROM BK_COLUMN as BC
-    inner join USER_INFO as UI
-    WHERE colmn_uniqu_id = ${columnNo} and UI.user_id = BC.colmn_wrter
-`;
+        SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt,
+        BC.cn, BC.hit, BC.like_count,
+        (SELECT COUNT(colmn_id) from REPLY WHERE colmn_id = ${columnNo}) as reply_count,
+        BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
+        FROM BK_COLUMN as BC
+        inner join USER_INFO as UI
+        WHERE colmn_uniqu_id = ${columnNo} and UI.user_id = BC.colmn_wrter
+    `;
     connection.query(query, (queryErr, results) => {
         if (queryErr) {
             console.error("Error executing query:", queryErr);
@@ -240,16 +241,7 @@ router.post("/saveReply", (req, res) => {
             return;
         }
 
-        const updateQuery = `
-            UPDATE BK_COLUMN 
-            SET reply_count = (select COUNT(*) from REPLY WHERE COLMN_id = ${colNo}})
-            WHERE colmn_uniqu_id = ${colNo}
-        `
-
-        connection.query(updateQuery, (queryErr, updateResults) => {
-
-            res.json({ status: "SUCCESS", message: "Data inserted successfully" });
-        });
+        res.json({ status: "SUCCESS", message: "Data inserted successfully" });
     });
 });
 
@@ -317,7 +309,7 @@ router.get("/getList", (req, res) => {
                 WHERE COLMN_UNIQU_ID = bc.COLMN_UNIQU_ID) AS COLMN_CL_NM,
                 DATE_FORMAT(WRITNG_TIME, '%Y.%m.%d.') AS WRITNG_TIME,
                 HIT,
-                REPLY_COUNT,
+                (SELECT COUNT(colmn_id) FROM REPLY WHERE colmn_id = COLMN_UNIQU_ID) AS REPLY_COUNT,
                 LIKE_COUNT,
                 colmn_img_path AS cip,
                 (SELECT NCNM FROM USER_INFO WHERE USER_ID = COLMN_WRTER ) AS COLMN_WRTER

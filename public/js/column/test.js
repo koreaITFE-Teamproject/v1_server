@@ -51,7 +51,7 @@ $(document).ready(function () {
                 <i class="fa-regular fa-thumbs-up"></i>
                 <p class="column-like">${resultData[i].like_count}</p>
                 <i class="fa-regular fa-comment-dots"></i>
-                <p class="column-reply">${resultData[i].reply_count}</p>
+                <p class="column-reply">${resultData[i].REPLY_COUNT}</p>
                 <i class="fa-solid fa-circle-user"></i>
                 <p class="column-nickname">${resultData[i].COLMN_WRTER}</p>
               </div>
