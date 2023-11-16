@@ -26,13 +26,8 @@ $(document).ready(function () {
     });
 
     getLikes();
-    // 좋아요 눌렀을때 숫자 오르게
-    // var isLiked = false;
 
     $(".icon").on('click', function () {
-
-        // isLiked = !isLiked;
-
         updateLikes();
     });
 
@@ -43,6 +38,13 @@ $(document).ready(function () {
             data: { columnId: $("#colNo").val() },
             success: function (data) {
                 $(".like_count").text(data.like_count);
+                if (data.user_nm != undefined) {
+                    $("#icon").removeClass();
+                    $("#icon").addClass("trueIcon");
+                } else {
+                    $("#icon").removeClass();
+                    $("#icon").addClass("icon");
+                }
             },
             error: function (error) {
                 console.error('Error updating like status:', error);
@@ -52,10 +54,19 @@ $(document).ready(function () {
 
     // 업데이트
     function updateLikes() {
+        let alreadyLiked = false;
+
+        console.log($("#icon").hasClass("trueIcon"));
+
+        // 이미 추천중일 때
+        if ($("#icon").hasClass("trueIcon")) {
+            alreadyLiked = true;
+        }
+
         $.ajax({
             type: 'POST',
             url: `http://localhost:3000/column/updateLikeColumn`,
-            data: { columnId: $("#colNo").val() },
+            data: { columnId: $("#colNo").val(), alreadyLiked: alreadyLiked },
             success: function (data) {
                 getLikes();
             },

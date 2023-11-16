@@ -117,7 +117,8 @@
     font-size: 14px;
 }
 
-.icon {
+.icon,
+.trueIcon {
     width: 130px;
     height: 45px;
     border: 1px solid #c4c4c4;
@@ -135,13 +136,15 @@
     transition: border .2s, background-color .2s;
 }
 
-.icon>p {
+.icon>p,
+.trueIcon>p {
     padding: 0 3px;
     color: #3d3d3d;
     transition: color .2s;
 }
 
-.icon>i {
+.icon>i,
+.trueIcon>i {
     padding: 0 3px;
     font-size: 24px;
     color: #c4c4c4;
@@ -150,14 +153,33 @@
 
 
 .icon:hover {
-    border: 1px solid #a2a2a2;
-    /* efefef */
     background-color: #c5c5c5;
 }
 
 .icon:hover>p,
 .icon:hover>i {
     color: white;
+}
+
+/* 이미 좋아요 누른 상태 일때 */
+.trueIcon {
+    background: #c5c5c5;
+}
+
+.trueIcon>p,
+.trueIcon>i{
+    color: white;
+}
+
+.trueIcon:hover {
+    background-color: white;
+}
+
+.trueIcon:hover>p{
+    color: #3d3d3d;
+}
+.trueIcon:hover>i {
+    color: #c4c4c4;
 }
 
 

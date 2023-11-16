@@ -145,7 +145,7 @@ router.post("/update", (req, res) => {
 
         console.log(results);
 
-        res.json({ status: "SUCCESS", message: "Data updated successfully" });
+        // res.json({ status: "SUCCESS", message: "Data updated successfully" });
     });
 });
 
@@ -224,8 +224,15 @@ function getColumn(res, req, columnNo) {
 router.post("/getLikeColumn", (req, res) => {
 
     let columnId = req.body.columnId;
+    let userNm = !req.session.nickname ? "" : req.session.nickname;
 
-    const selectQuery = "SELECT COALESCE(like_count, 0) as like_count FROM BK_COLUMN WHERE colmn_uniqu_id = ?";
+    const selectQuery = `
+        SELECT
+            COUNT(colmn_id) as like_count
+            from COLUMN_LIKE
+            WHERE colmn_id = ?
+    `;
+
     connection.query(selectQuery, [columnId], (selectErr, selectResults) => {
         if (selectErr) {
             console.error("Error executing select query:", selectErr);
@@ -235,25 +242,48 @@ router.post("/getLikeColumn", (req, res) => {
 
         const likeCount = selectResults[0].like_count;
 
-        res.json({ like_count: likeCount });
+        const query = `
+            SELECT
+                frst_reg_id as user_name
+                from COLUMN_LIKE
+                WHERE colmn_id = ? AND frst_reg_id LIKE ?
+        `;
+
+        connection.query(query, [columnId, userNm.length == 0 ? '' : `%${userNm}%`], (err, results) => {
+            if (err) {
+                console.error("Error executing select query:", err);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            console.log(results);
+            console.log(results[0]);
+
+            res.json({ like_count: likeCount, user_nm: results[0] });
+        });
     });
 });
+
 
 // 좋아요 업데이트
 router.post("/updateLikeColumn", (req, res) => {
 
-    let columnId = req.body.columnId;
+    const columnId = req.body.columnId;
+    const alreadyLiked = req.body.alreadyLiked == "true" ? true : false;
+    const userNm = req.session.nickname;
 
-    const updateQuery = "UPDATE BK_COLUMN SET like_count = COALESCE(like_count, 0) + 1 WHERE colmn_uniqu_id = ?";
+    let updateQuery = !alreadyLiked ?
+        "INSERT INTO COLUMN_LIKE SET colmn_id = ?, frst_reg_id = ?, frst_reg_dt = NOW()":
+        "DELETE FROM COLUMN_LIKE WHERE colmn_id = ? AND frst_reg_id = ?"
 
-    connection.query(updateQuery, [columnId], (updateErr, updateResults) => {
-        if (updateErr) {
-            console.error("Error executing update query:", updateErr);
+    connection.query(updateQuery, [columnId, userNm], (err, results) => {
+        if (err) {
+            console.error("Error executing update query:", err);
             res.status(500).send("Internal Server Error");
             return;
         }
 
-        res.json({ status: "SUCCESS", message: "Data inserted successfully" });
+        return res.json({ status: "SUCCESS", message: "Data inserted successfully" });
     });
 });
 
@@ -344,7 +374,7 @@ router.get("/getList", (req, res) => {
                 DATE_FORMAT(WRITNG_TIME, '%Y.%m.%d.') AS WRITNG_TIME,
                 HIT,
                 (SELECT COUNT(colmn_id) FROM REPLY WHERE colmn_id = COLMN_UNIQU_ID) AS REPLY_COUNT,
-                LIKE_COUNT,
+                (SELECT COUNT(colmn_id) FROM COLUMN_LIKE WHERE colmn_id = COLMN_UNIQU_ID) AS LIKE_COUNT,
                 colmn_img_path AS cip,
                 (SELECT NCNM FROM USER_INFO WHERE USER_ID = COLMN_WRTER ) AS COLMN_WRTER
                 FROM (SELECT * FROM BK_COLUMN
