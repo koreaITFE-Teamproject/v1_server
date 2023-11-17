@@ -22,7 +22,7 @@ router.get("/fetchColum", (req, res) => {
         (SELECT NCNM FROM USER_INFO WHERE USER_ID = COLMN_WRTER ) AS COLMN_WRTER
         from BK_COLUMN as BC
         ORDER BY COLMN_UNIQU_ID DESC
-        limit 15
+        limit 10
     `;
 
     connection.query(query, (queryErr, results) => {
@@ -31,6 +31,8 @@ router.get("/fetchColum", (req, res) => {
             res.status(500).send("Internal Server Error");
             return;
         }
+
+        console.log(results);
 
         res.json({ column: results });
     });

@@ -128,7 +128,7 @@ router.get("/modify/:id", (req, res) => {
 router.post("/update", (req, res) => {
     const { sj, cn, ct, imgFn, colNo } = req.body;
 
-    console.log(imgFn);
+    // console.log(imgFn);
 
     const query = `
         UPDATE BK_COLUMN 
@@ -143,9 +143,9 @@ router.post("/update", (req, res) => {
             return;
         }
 
-        console.log(results);
+        // console.log(results);
 
-        // res.json({ status: "SUCCESS", message: "Data updated successfully" });
+        res.json({ status: "SUCCESS", message: "Data updated successfully" });
     });
 });
 

@@ -1,13 +1,4 @@
-@font-face {
-    font-family: 'HakgyoansimWoojuR';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
 main {
-    font-family: 'HakgyoansimWoojuR';
-    padding: 0 5px;
     overflow: hidden;
 }
 
@@ -265,18 +256,99 @@ hr {
     cursor: pointer;
 }
 
-.blogbox {
-    width: 900%;
-    height: 500px;
-    /* background-color: skyblue; */
-    /* margin: 0 auto; */
-    margin-left: 23%;
+
+#blogbox {
+    margin-top: 50px;
+    position: relative;
 }
 
-.image1 {
-    /* background-image:url('https://i.ibb.co/3493r17/cat.jpg') */
-    width: 450px;
-    background-color: skyblue;
+#column_container {
+    width: 960px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+#column_container>div {
+    width: 4800px;
+    display: flex;
+    height: 650px;
+    transform: translateX(0%);
+    transition: transform .2s ease-in-out;
+}
+
+.column {
+    position: relative;
+    width: 480px;
     height: 90%;
-    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.column::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color .2s;
+}
+
+.column:hover,
+.column:hover::before {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.column_info {
+    width: 80%;
+    height: 70%;
+    display: grid;
+    grid-template-rows: 60% 2fr 1fr;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'omyu_pretty';
+}
+
+.column_info>span:first-child {
+    padding: 70px 0;
+    font-size: 42px;
+}
+
+
+.column_info>span:last-child {
+    font-size: 20px;
+}
+
+
+.bi-arrow-left-short,
+.bi-arrow-right-short {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, .7);
+    background-color: rgba(255, 255, 255, .5);
+    font-size: 80px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 7;
+    cursor: pointer;
+}
+
+.bi-arrow-left-short {
+    left: 2%;
+}
+
+.bi-arrow-right-short {
+    right: 2%;
 }

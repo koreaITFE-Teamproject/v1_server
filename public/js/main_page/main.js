@@ -148,4 +148,39 @@ $(document).ready(function () {
             }
         });
     }
+
+
+
+
+    /* 칼럼관련 */
+    let colCtTlX = 0;    // columnContainerTranslateX
+    showColMoveBtn();
+
+    // 이전 버튼 클릭
+    $(".bi-arrow-left-short").click(function(){
+        clickColumnMoveBtn(20);
+    });
+
+    // 다음 버튼 클릭
+    $(".bi-arrow-right-short").click(function(){
+        clickColumnMoveBtn(-20);
+    });
+
+    function clickColumnMoveBtn(x){
+        colCtTlX += x;
+        console.log(colCtTlX)
+        $("#column_container>div").css("transform", `translateX(${colCtTlX}%)`);
+        showColMoveBtn();
+    }
+
+    function showColMoveBtn(){
+        if(colCtTlX == 0){
+            $(".bi-arrow-left-short").hide();
+        } else if(colCtTlX == -80){
+            $(".bi-arrow-right-short").hide();
+        } else {
+            $(".bi-arrow-left-short").show();
+            $(".bi-arrow-right-short").show();
+        }
+    }
 });

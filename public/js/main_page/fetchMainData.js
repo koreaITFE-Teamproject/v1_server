@@ -1,6 +1,4 @@
 $(function () {
-    let count = 0;
-
     fetchMainData();
 
     function fetchMainData() {
@@ -11,16 +9,8 @@ $(function () {
             success: function (data) {
                 let resultData = data.column;
 
-                console.log(resultData[0]);
-                console.log(resultData[0].sj);
-                console.log(resultData[0].COLMN_WRTER);
-                console.log(resultData[0].ROW_NUM);
-                console.log(resultData[0].cip);
-
-                count = 0;
-
-                for (var i = 0; i < 3; i++) {
-                    addColumnData(resultData);
+                for (var i = 0; i < 10; i++) {
+                    addColumnData(resultData, i);
                 }
             },
             error: function (err) {
@@ -29,48 +19,23 @@ $(function () {
         });
     }
 
-    function addColumnData(rd) {
-        $("#column_slide_bar").append(`
-        <div class="cut_div">
-            <div class="bar_item">
-                <a href="/column/read/${rd[0 + count].ROW_NUM}">
-                    <img class="column_img" src="${!rd[0 + count].cip ? 'http://placehold.it/300x240' : rd[0 + count].cip}">
-                    <div class="column_title">${rd[0 + count].sj}</div>
-                    <div class="column_writer">${rd[0 + count++].COLMN_WRTER}</div>
-                </a>
-            </div>
-            <div class="bar_item">
-                <a href="/column/read/${rd[0 + count].ROW_NUM}">
-                    <img class="column_img" src="${!rd[0 + count].cip ? 'http://placehold.it/300x240' : rd[0 + count].cip}">
-                    <div class="column_title">${rd[0 + count].sj}</div>
-                    <div class="column_writer">${rd[0 + count++].COLMN_WRTER}</div>
-                </a>
-            </div>
-            <div class="bar_item">
-                <a href="/column/read/${rd[0 + count].ROW_NUM}">
-                    <img class="column_img" src="${!rd[0 + count].cip ? 'http://placehold.it/300x240' : rd[0 + count].cip}">
-                    <div class="column_title">${rd[0 + count].sj}</div>
-                    <div class="column_writer">${rd[0 + count++].COLMN_WRTER}</div>
-                </a>
-            </div>
-            <div class="bar_item">
-                <a href="/column/read/${rd[0 + count].ROW_NUM}">
-                    <img class="column_img" src="${!rd[0 + count].cip ? 'http://placehold.it/300x240' : rd[0 + count].cip}">
-                    <div class="column_title">${rd[0 + count].sj}</div>
-                    <div class="column_writer">${rd[0 + count++].COLMN_WRTER}</div>
-                </a>
-            </div>
-            <div class="bar_item">
-                <a href="/column/read/${rd[0 + count].ROW_NUM}">
-                    <img class="column_img" src="${!rd[0 + count].cip ? 'http://placehold.it/300x240' : rd[0 + count].cip}">
-                    <div class="column_title">${rd[0 + count].sj}</div>
-                    <div class="column_writer">${rd[0 + count++].COLMN_WRTER}</div>
-                </a>
-            </div>
-        </div >
+    function addColumnData(rd, i) {
+        $("#column_container>div").append(`
+            <a id="column${i}" class="column" href="/column/read/${rd[i].ROW_NUM}">
+                <div class="column_info">
+                    <span>${rd[i].sj}</span>
+                    <span>${rd[i].COLMN_WRTER}</span>
+                </div>
+            </a>
         `);
+
+        $(`#column${i}`).css("backgroundImage", `url(${!rd[i].cip ? "http://placehold.it/480x585" : rd[i].cip})`);
+        // $(`#column${i}`).css("backgroundImage", `url(${rd[i].cip})`);
     }
 
+
+
+    let count = 0;
 
     const colTypes = ['==선택==', ' 국내 소설', '해외 소설', '시/에세이', '인문', '가정/육아', '요리', '건강', '취미/실용', '경제/경영',
         '자기계발', '정치/사회', '역사/문화', '종교', '예술/대중문화', '기술공학', '외국어', '여행', '컴퓨터/IT', '잡지', '만화'];
@@ -89,7 +54,6 @@ $(function () {
                 </div>
             `)
         }
-        count = 0;
     }
 });
 
