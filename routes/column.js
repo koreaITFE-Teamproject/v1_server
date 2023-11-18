@@ -163,7 +163,7 @@ router.get("/read/:colNo", (req, res) => {
             return;
         }
 
-        console.log(hitResults[0]);
+        // console.log(hitResults[0]);
 
         let columnTemp = null;
 
@@ -256,9 +256,6 @@ router.post("/getLikeColumn", (req, res) => {
                 return;
             }
 
-            console.log(results);
-            console.log(results[0]);
-
             res.json({ like_count: likeCount, user_nm: results[0] });
         });
     });
@@ -273,7 +270,7 @@ router.post("/updateLikeColumn", (req, res) => {
     const userNm = req.session.nickname;
 
     let updateQuery = !alreadyLiked ?
-        "INSERT INTO COLUMN_LIKE SET colmn_id = ?, frst_reg_id = ?, frst_reg_dt = NOW()":
+        "INSERT INTO COLUMN_LIKE SET colmn_id = ?, frst_reg_id = ?, frst_reg_dt = NOW()" :
         "DELETE FROM COLUMN_LIKE WHERE colmn_id = ? AND frst_reg_id = ?"
 
     connection.query(updateQuery, [columnId, userNm], (err, results) => {
@@ -314,12 +311,67 @@ router.post("/getReply", (req, res) => {
     const colNo = req.body.colNo;
 
     const selectQuery = `
-        SELECT reply_cn, frst_reg_id, DATE_FORMAT(frst_reg_dt, '%y.%m.%d.') as wt, reply_delete_ennc as del
+        SELECT
+        reply_id,
+        reply_cn,
+        frst_reg_id,
+        (SELECT user_uniq_id from USER_INFO as UI WHERE frst_reg_id = UI.ncnm) as frst_reg_no,
+        DATE_FORMAT(frst_reg_dt, '%y.%m.%d.') as wt,
+        reply_delete_ennc as del
         from REPLY
         WHERE colmn_id = ${colNo};
     `;
 
     connection.query(selectQuery, (queryErr, Results) => {
+        if (queryErr) {
+            console.error("Error executing data query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+        // console.log(Results);
+
+        res.json(Results);
+    });
+});
+
+
+// 댓글 수정
+router.post("/modReply", (req, res) => {
+    const replyModifyText = req.body.replyModifyText;
+    const replyId = req.body.replyId;
+
+    console.log(replyModifyText);
+    console.log(replyId);
+
+    const query = `
+        UPDATE REPLY
+            set reply_cn = ?
+            WHERE reply_id = ?
+    `;
+
+    connection.query(query, [replyModifyText, replyId], (queryErr, Results) => {
+        if (queryErr) {
+            console.error("Error executing data query:", queryErr);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+        // console.log(Results);
+
+        res.json(Results);
+    });
+});
+
+// 댓글 삭제
+router.post("/delReply", (req, res) => {
+    const replyId = req.body.replyId;
+
+    const query = `
+        UPDATE REPLY
+            set reply_delete_ennc = 1
+            WHERE reply_id = ?
+    `;
+
+    connection.query(query, [replyId], (queryErr, Results) => {
         if (queryErr) {
             console.error("Error executing data query:", queryErr);
             res.status(500).send("Internal Server Error");
@@ -421,7 +473,7 @@ router.post("/saveColumn", (req, res) => {
             return;
         }
 
-        console.log("Data inserted successfully:", result);
+        // console.log("Data inserted successfully:", result);
 
         imgPath = "";
 
