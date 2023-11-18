@@ -200,7 +200,7 @@ router.get("/read/:colNo", (req, res) => {
 function getColumn(res, req, columnNo) {
     const query = `
         SELECT BC.colmn_uniqu_id as c_id, BC.sj, DATE_FORMAT(BC.writng_time, '%Y.%m.%d.') as wt,
-        BC.cn, BC.hit, BC.like_count,
+        BC.cn, BC.hit,
         (SELECT COUNT(colmn_id) from REPLY WHERE colmn_id = ${columnNo}) as reply_count,
         BC.colmn_cl_setup as cs, UI.ncnm as nm, UI.user_uniq_id as u_no
         FROM BK_COLUMN as BC
