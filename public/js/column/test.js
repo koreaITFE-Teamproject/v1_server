@@ -44,7 +44,7 @@ $(document).ready(function () {
                 </div>
                 <!-- 이미지 -->
                 <a class="column-img-wrap" href="/column/read/${resultData[i].ROW_NUM}">
-                <img class="column-img" src="${!resultData[i].cip ? 'http://placehold.it/130x130' : resultData[i].cip}" alt=""></img>
+                <img class="column-img" src="${!resultData[i].cip ? 'http://placehold.it/130x130' : resultData[i].cip}" alt="---------------깃허브 푸시해야 보입니다!"></img>
                 </a>
               </div>
               <div class="column-bot">
