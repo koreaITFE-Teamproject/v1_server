@@ -50,72 +50,19 @@ main {
     border-left: 1px solid gainsboro;
 }
 
-.column_img {
-    width: 500px !important;
-    transform: scale(1);
-    z-index: 3;
-    transition: transform .1s;
-}
-
-.column_title {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(40, 40, 40, 0.2);
-    /* background-color: rgb(255, 255, 255, 0.5); */
-    z-index: 5;
-    padding: 5px;
-    transition: background-color 1s;
-}
-
-.bar_item:hover {
-    cursor: pointer;
-
-    .column_img {
-        transform: scale(1.15);
-    }
-
-}
-
-.column_writer {
-    width: 100%;
-    height: 73px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border: 0.5px solid #D3B396;
-}
-
 /* 분야별 칼럼 분류 item div */
-.class_item {
-    width: 150px;
-    height: 150px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 150px;
-    box-shadow: 0.5px 0.5px 0.5px 0.5px gainsboro;
-}
-
-.class_item:hover {
-    cursor: pointer;
-    border: 0.5px solid #D3B396;
-}
-
 #class_frame {
     width: 100%;
     margin: 0 auto;
+}
+
+.class_item {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px gainsboro;
 }
 
 /* 마우스 호버 시 포인터 모양으로 변경 + border랑 글자 색 변환 */
