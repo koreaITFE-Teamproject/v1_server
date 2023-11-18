@@ -32,7 +32,7 @@ router.get("/fetchColum", (req, res) => {
             return;
         }
 
-        console.log(results);
+        // console.log(results);
 
         res.json({ column: results });
     });

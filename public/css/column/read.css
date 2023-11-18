@@ -167,7 +167,7 @@
 }
 
 .trueIcon>p,
-.trueIcon>i{
+.trueIcon>i {
     color: white;
 }
 
@@ -175,9 +175,10 @@
     background-color: white;
 }
 
-.trueIcon:hover>p{
+.trueIcon:hover>p {
     color: #3d3d3d;
 }
+
 .trueIcon:hover>i {
     color: #c4c4c4;
 }
@@ -274,15 +275,56 @@
     flex-direction: column;
 }
 
-.reply_write_info>span {
+.reply_write_info span {
     font-size: 12px;
 }
 
-.reply_write_info>span:first-child{
+.reply_write_info>span {
     font-weight: bold;
 }
 
-.get_reply_text{
+/* .reply_sc_line {
+    float: right;
+} */
+
+.reply_sc_line>button {
+    float: right;
+    width: 38px;
+    height: 30px;
+    padding: 0;
+    margin: 0 2px;
+}
+
+.reply_sc_line>button>i {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.get_reply_text {
     padding-top: 10px;
     font-size: 14px;
+}
+
+.reply_modify {
+    width: 680px;
+    margin: 10px 0;
+    margin-left: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.btn-primary {
+    display: none;
+    width: 7%;
+    height: 28px;
+    font-size: 14px;
+    margin: 10px 0;
+    margin-left: 690px;
+    padding: 0;
 }
